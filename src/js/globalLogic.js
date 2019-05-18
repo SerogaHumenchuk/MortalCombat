@@ -2,24 +2,21 @@ let globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
   round: 1,
-  userName: null,
   intervalTimer: null,
+  arena: null,
 
   user: {
-    atack: null,
+    obj: null,
+    name: null,
+    attack: null,
     defence: null,
-    damage: null,
+    damage: null
   },
-
   computer: {
-    atack: null,
+    obj: null,
+    name: null,
+    attack: null,
     defence: null,
-    damage: null,
-  },
-
-  userHero: null,
-  compHero: null,
-  arena: null,
-  userCharacter: null,
-  compCharacter: null,
+    damage: null
+  }
 };

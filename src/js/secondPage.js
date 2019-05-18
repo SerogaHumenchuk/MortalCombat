@@ -1,76 +1,76 @@
-const heroes  = [
+const heroes = [
   {
-    name: 'redskull', 
-    attack: 15,
-    defence: 8, 
-    url: './images/hero/redskull/user-redscull', 
-    runURL: '_run.gif', 
-    attackURL: '_attack.gif', 
-    blockURL: '_block.gif',
-    hitRL: '_hit.gif',
-    dieURL: '_die.gif'
-  }, 
+    "name": "redskull",
+    "attack": 15,
+    "defence": 8,
+    "url": "./images/hero/redskull/user-redscull",
+    "runURL": "_run.gif",
+    "attackURL": "_attack.gif",
+    "blockURL": "_block.gif",
+    "hitURL": "_hit.gif",
+    "dieURL": "_die.gif"
+  },
   {
-    name: 'colossus', 
-    attack: 15,
-    defence: 8, 
-    url: './images/hero/colossus/user-colossus', 
-    runURL: '_run.gif', 
-    attackURL: '_attack.gif', 
-    blockURL: '_block.gif',
-    hitRL: '_hit.gif',
-    dieURL: '_die.gif'
-  }, 
+    "name": "colossus",
+    "attack": 15,
+    "defence": 8,
+    "url": "./images/hero/colossus/user-colossus",
+    "runURL": "_run.gif",
+    "attackURL": "_attack.gif",
+    "blockURL": "_block.gif",
+    "hitURL": "_hit.gif",
+    "dieURL": "_die.gif"
+  },
   {
-    name: 'mystique', 
-    attack: 15,
-    defence: 8, 
-    url: './images/hero/mystique/user-mystique', 
-    runURL: '_run.gif', 
-    attackURL: '_attack.gif', 
-    blockURL: '_block.gif',
-    hitRL: '_hit.gif',
-    dieURL: '_die.gif'
-  }, 
+    "name": "mystique",
+    "attack": 15,
+    "defence": 8,
+    "url": "./images/hero/mystique/user-mystique",
+    "runURL": "_run.gif",
+    "attackURL": "_attack.gif",
+    "blockURL": "_block.gif",
+    "hitURL": "_hit.gif",
+    "dieURL": "_die.gif"
+  },
   {
-    name: 'starlord', 
-    attack: 15,
-    defence: 8, 
-    url: './images/hero/starlord/user-starlord', 
-    runURL: '_run.gif', 
-    attackURL: '_attack.gif', 
-    blockURL: '_block.gif',
-    hitRL: '_block.gif',
-    dieURL: '_die.gif'
+    "name": "starlord",
+    "attack": 15,
+    "defence": 8,
+    "url": "./images/hero/starlord/user-starlord",
+    "runURL": "_run.gif",
+    "attackURL": "_attack.gif",
+    "blockURL": "_block.gif",
+    "hitURL": "_block.gif",
+    "dieURL": "_die.gif"
   }
 ];
 
 const fields = [
   {
-    name: 'boat', 
-    url: './images/arena/boat.gif', 
-  }, 
+    "name": "boat",
+    "url": "./images/arena/boat.gif"
+  },
   {
-    name: 'light', 
-    url: './images/arena/light.gif', 
-  }, 
+    "name": "light",
+    "url": "./images/arena/light.gif"
+  },
   {
-    name: 'main', 
-    url: './images/arena/main.gif', 
-  }, 
+    "name": "main",
+    "url": "./images/arena/main.gif"
+  },
   {
-    name: 'train', 
-    url: './images/arena/train.gif', 
-  }, 
+    "name": "train",
+    "url": "./images/arena/train.gif"
+  },
   {
-    name: 'waterfall', 
-    url: './images/arena/waterfall.gif', 
-  }, 
+    "name": "waterfall",
+    "url": "./images/arena/waterfall.gif"
+  },
   {
-    name: 'wind', 
-    url: './images/arena/wind.gif', 
+    "name": "wind",
+    "url": "./images/arena/wind.gif"
   }
-]
+];
 
 class BuildHeroes {
   constructor (heroes) {
@@ -93,7 +93,7 @@ class BuildHeroes {
 
       img.classList.add('hero');
       img.setAttribute('src', `${hero.url}${hero.runURL}`);
-      img.setAttribute('alt', `${hero.name} hero`);
+      img.setAttribute('alt', hero.name);
 
       label.append(radio, img);
       this.wrapper.appendChild(label);
@@ -151,32 +151,59 @@ class BuildRandomBtn {
 
 class SubmitAction {
   constructor (btn) {
-    // this.heroes = heroesWrp,
-    // this.fields = fieldsWrp,
     this.btn = btn,
     this.events();
   }
 
   checkAction (e) {
     e.preventDefault();
-    this.getImgSrc();    
+    this.getHero();
+    this.getField();
   }
 
-  getImgSrc () {
+  getHero () {
     const radioHero = document.querySelector('input[name="hero-radio"]:checked');
-    console.log(radioHero);
 
     if (radioHero !== null) {
       const img = radioHero.nextSibling;
       const imgSrc = img.getAttribute('src');
-      const imgRandom = img.classList
+      const imgName = img.getAttribute('alt');
 
-      console.log(imgSrc);
+      if (imgSrc !== './images/dice.png') {
+        globalObj.user.obj = heroes.find( hero => hero.name == imgName);
+        globalObj.user.attack = globalObj.user.obj.attack;
+        globalObj.user.defence = globalObj.user.obj.defence;
+        console.log(globalObj);
+      } else { this.randomHero() }
     }
   }
 
-  random () {
-    console.log('object');
+  getField () {
+    const radioField = document.querySelector('input[name="field-radio"]:checked');
+
+    if (radioField !== null) {
+      const img = radioField.nextSibling;
+
+      if (img === null) {
+        const fieldName = radioField.parentElement.className.slice(13);
+      
+        globalObj.arena = `./images/arena/${fieldName}.gif`;
+      } else {
+        this.randomField();
+      }
+    }
+  }
+
+  randomHero () {
+    const num = Math.floor(Math.random() * heroes.length);
+    globalObj.user.obj = heroes[num];
+    globalObj.user.attack = heroes[num].attack;
+    globalObj.user.defence = heroes[num].defence;
+  }
+
+  randomField () {
+    const num = Math.floor(Math.random() * fields.length);
+    globalObj.arena = fields[num].url;
   }
 
   events () {
@@ -185,8 +212,8 @@ class SubmitAction {
   }
 }
 
-new BuildHeroes(heroes);
-new BuildFields(fields);
+new BuildHeroes( heroes );
+new BuildFields( fields );
 new BuildRandomBtn( document.querySelector('.fighters-section'), 'hero' );
 new BuildRandomBtn( document.querySelector('.fields-section'), 'field' );
-new SubmitAction(document.querySelector('.secondPage__submit'));
+new SubmitAction( document.querySelector('.secondPage__submit') );
