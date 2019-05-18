@@ -1,0 +1,20 @@
+/*
+  Import partials below
+*/
+@import './normalize';
+@import './secondPage';
+
+@font-face{
+  font-family: "Mortal";
+  src: url("../fonts/mkx.ttf");
+  src: 
+  url("../fonts/mkx.woff") format("woff"), 
+  url("../fonts/mkx.woff2") format("woff2");
+}
+
+h2 {
+  color: #eee;
+  font-size: 40px;
+  letter-spacing: 2px;
+  margin: 10px 0;
+}
