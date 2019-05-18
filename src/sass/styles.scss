@@ -3,13 +3,13 @@
 */
 @import './normalize';
 @import './secondPage';
+@import './firstPage.scss';
 
-@font-face{
-  font-family: "Mortal";
-  src: url("../fonts/mkx.ttf");
-  src: 
-  url("../fonts/mkx.woff") format("woff"), 
-  url("../fonts/mkx.woff2") format("woff2");
+@font-face {
+  font-family: 'Mortal';
+  src: url('../fonts/mkx.ttf');
+  src: url('../fonts/mkx.woff') format('woff'),
+    url('../fonts/mkx.woff2') format('woff2');
 }
 
 h2 {
