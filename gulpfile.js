@@ -12,7 +12,6 @@ const imagemin = require('gulp-imagemin');
 const svgstore = require('gulp-svgstore');
 const plumber = require('gulp-plumber');
 const rigger = require('gulp-rigger');
-const stylelint = require('gulp-stylelint');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
@@ -29,11 +28,6 @@ function html() {
 function styles() {
   return src('src/sass/styles.scss')
     .pipe(plumber())
-    .pipe(
-      stylelint({
-        reporters: [{ formatter: 'string', console: true }],
-      }),
-    )
     .pipe(sass())
     .pipe(postcss([autoprefixer()]))
     .pipe(gcmq())
@@ -63,7 +57,7 @@ function sprite() {
 }
 
 function images() {
-  return src(['src/images/**/*.{png,jpg,jpeg,svg}', '!src/images/icons/**/*'])
+  return src(['src/images/**/*.{gif,png,jpg,jpeg,svg}', '!src/images/icons/**/*'])
     .pipe(
       imagemin([
         imagemin.jpegtran({ progressive: true }),
@@ -83,7 +77,7 @@ function fonts() {
 function watcher(done) {
   watch('src/**/*.html').on('change', series(html, server.reload));
   watch('src/sass/**/*.scss').on('change', series(styles, server.reload));
-  watch('src/js/**/*.js').on('change', series(scripts, server.reload));
+  watch('src/js/**/*.{json,js}').on('change', series(scripts, server.reload));
 
   done();
 }
