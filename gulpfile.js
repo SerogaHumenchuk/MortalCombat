@@ -103,9 +103,13 @@ function prepare() {
   return del(['**/.gitkeep', 'README.md']);
 }
 
+function sound() {
+  return src('src/sounds/**/*').pipe(dest('build/sounds'));
+}
+
 const build = series(
   clean,
-  parallel(sprite, images, fonts, html, styles, scripts),
+  parallel(sprite, images, fonts, html, styles, scripts, sound),
 );
 
 const start = series(build, watcher, serve);
@@ -113,3 +117,4 @@ const start = series(build, watcher, serve);
 exports.prepare = prepare;
 exports.build = build;
 exports.start = start;
+exports.sound = sound;
