@@ -385,10 +385,6 @@ template {
   user-select: none;
 }
 
-div {
-  display: none;
-}
-
 .secondPage__submit {
   font-size: 20px;
   border: none;
