@@ -1,0 +1,25 @@
+const MyLives = document.querySelector('.My__Lives')
+const EnemyLives = document.querySelector('.Enemy__Lives')
+const myLivesContainer = document.querySelector('.MyHealthy__Bar')
+const EnemyLivesContainer = document.querySelector('.EnemyHealthy__Bar')
+
+class Livesbar {
+    constructor (container, lifeAmount) {
+        this.container = container,
+        this.lifeAmount =  lifeAmount
+    }
+        changeColor = () => {
+            if(this.lifeAmount >= 70 && this.lifeAmount <= 100){
+                this.container.style.backgroundColor = "green"
+            }else if(this.lifeAmount >= 30 && this.lifeAmount < 70){
+                this.container.style.backgroundColor = "orange"
+            }else if(this.lifeAmount < 30){
+                this.container.style.backgroundColor = "red"}
+        }
+}
+
+const heroLifeBar = new Livesbar(MyLives, 50)
+const enemyLifeBar = new Livesbar(EnemyLives, 100)
+console.log(heroLifeBar);
+heroLifeBar.changeColor();
+enemyLifeBar.changeColor();

@@ -1,0 +1,91 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .fightPage__container {
+    width: 100%;
+    height: 100vh;
+  }
+  .healthy__container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+  }
+  
+  .MyHealthy__Bar {
+    width: 150px;
+    height: 19px;
+    transform: skewX(40deg);
+    border: 2px solid black;
+    border-radius: 3px;
+    margin-top: 5px;
+  }
+  .EnemyHealthy__Bar {
+    width: 150px;
+    height: 19px;
+    transform: skewX(-40deg);
+    border: 2px solid black;
+    border-radius: 3px;
+    margin-top: 5px;
+  }
+  .My__Lives {
+    width: 100%;
+    height: 15px;
+  }
+  .Enemy__Lives {
+    width: 100%;
+    height: 15px;
+}
+@media(min-width:768px){
+.EnemyHealthy__Bar {
+    width: 250px;
+    margin-top: 20px;
+}
+.MyHealthy__Bar {
+    width: 250px;
+    margin-top: 20px;
+}
+}
+@media(min-width:1023px){
+.EnemyHealthy__Bar {
+    width: 350px;
+    height: 31px;
+    margin-top: 30px;
+    border: 4px solid black;
+}
+.MyHealthy__Bar {
+    width: 350px;
+    height: 31px;
+    margin-top: 30px;
+    border: 4px solid black;
+}
+.My__Lives {
+    height: 25px;
+}
+.Enemy__Lives {
+    height: 25px;
+}
+}
+@media(min-width:1439px){
+    .EnemyHealthy__Bar {
+        width: 400px;
+        height: 31px;
+        margin-top: 30px;
+        border: 4px solid black;
+    }
+    .MyHealthy__Bar {
+        width: 400px;
+        height: 31px;
+        margin-top: 30px;
+        border: 4px solid black;
+    }
+    .My__Lives {
+        height: 25px;
+    }
+    .Enemy__Lives {
+        height: 25px;
+    }
+    }
