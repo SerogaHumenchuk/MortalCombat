@@ -1,56 +1,23 @@
-class UserName {
-  constructor () {
-    this.name = document.querySelector('.name'),
-    this.form = document.querySelector('.form'),
-    this.listener();
-  }
+(() => {
+  let name = document.querySelector('.name');
+  let firstPageForm = document.querySelector('.firstPage__form');
+  let firstPageWrapp = document.querySelector('.firstPageWrapp');
+  let secondPageWrapp = document.querySelector('.secondPageWrapp');
 
-  setUserName () {
-    globalObj.user.name = (this.name.value).toString();
-    console.log(globalObj);
-  }
+  const changeFirstPageToSecondPage = function() {
+    firstPageWrapp.classList.add('hide');
+    secondPageWrapp.classList.remove('hide');
+  };
 
-  listener () {
-    const $this = this;
-    this.form.addEventListener( 'submit', this.setUserName.bind($this) );
-  }
-}
-
-class ChangePageToSecondPage {
-  constructor () {
-    this.firstPageWrapp = document.querySelector('.firstPageWrapp'),
-    this.secondPageWrapp = document.querySelector('.secondPageWrapp'),
-    this.form = document.querySelector('.form'),
-    this.listener();
-  }
-
-  change (e) {
+  const onSubmit = function(e) {
     e.preventDefault();
-    this.firstPageWrapp.classList.add('hide');
-    this.secondPageWrapp.classList.remove('hide');
-  }
-
-  listener () {
-    const $this = this;
-    this.form.addEventListener('submit', this.change.bind($this) );
-  }
-}
-
-class StartMusic {
-  constructor () {
-    this.listener();
-  }
-
-  music () {
-    playClickFighterPlay();
-  }
-
-  listener () { 
-    const $this = this;
-    window.addEventListener( 'DOMContentLoaded', this.music.bind($this) ); 
-  }
-}
-
-new StartMusic();
-new UserName();
-new ChangePageToSecondPage();
+    if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
+      // globalObj.user.name = name.value;
+      changeFirstPageToSecondPage();
+    } else {
+      alert('Invalid UserName');
+    }
+  };
+  firstPageForm.addEventListener('submit', onSubmit);
+  // console.log(globalObj);
+})();

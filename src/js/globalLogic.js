@@ -1,4 +1,4 @@
-let globalObj = {
+const globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
   round: 1,
@@ -10,13 +10,13 @@ let globalObj = {
     name: null,
     attack: null,
     defence: null,
-    damage: null
+    damage: null,
   },
   computer: {
     obj: null,
     name: null,
     attack: null,
     defence: null,
-    damage: null
-  }
+    damage: null,
+  },
 };
