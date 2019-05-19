@@ -212,8 +212,30 @@ class SubmitAction {
   }
 }
 
+class ClickSound {
+  constructor () {
+    this.fighterSection = document.querySelector('.fighters-section'),
+    this.fieldSection = document.querySelector('.fields-section'), 
+    this.listeners();
+  }
+
+  click (e) {
+    if ( e.target.nodeName === 'INPUT' || e.target.nodeName === 'LABEL' ) {
+      const audio = document.getElementById('clickmouse');
+      audio.play();
+    }
+  }
+
+  listeners () {
+    const $this = this;
+    this.fighterSection.addEventListener( 'click', this.click.bind($this) );
+    this.fieldSection.addEventListener( 'click', this.click.bind($this) );
+  }
+}
+
 new BuildHeroes( heroes );
 new BuildFields( fields );
 new BuildRandomBtn( document.querySelector('.fighters-section'), 'hero' );
 new BuildRandomBtn( document.querySelector('.fields-section'), 'field' );
 new SubmitAction( document.querySelector('.secondPage__submit') );
+new ClickSound();

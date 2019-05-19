@@ -1,11 +1,39 @@
-const form = document.querySelector('.form');
-const name = document.querySelector('.name');
-const firstPageWrapp = document.querySelector('.firstPageWrapp');
-const secondPageWrapp = document.querySelector('.secondPageWrapp');
+class UserName {
+  constructor () {
+    this.name = document.querySelector('.name'),
+    this.form = document.querySelector('.form');
+  }
 
-form.addEventListener('submit', onSubmit);
-function onSubmit(e) {
-  e.preventDefault();
-  firstPageWrapp.classList.add('hide');
-  secondPageWrapp.classList.remove('hide');
+  setUserName () {
+    globalObj.user.name = (this.name.value).toString();
+    console.log(globalObj);
+  }
+
+  listener () {
+    const $this = this;
+    this.form.addEventListener( 'submit', this.setUserName.bind($this) );
+  }
 }
+
+class ChangePageToSecondPage {
+  constructor () {
+    this.firstPageWrapp = document.querySelector('.firstPageWrapp'),
+    this.secondPageWrapp = document.querySelector('.secondPageWrapp'),
+    this.form = document.querySelector('.form'),
+    this.listener();
+  }
+
+  change (e) {
+    e.preventDefault();
+    this.firstPageWrapp.classList.add('hide');
+    this.secondPageWrapp.classList.remove('hide');
+  }
+
+  listener () {
+    const $this = this;
+    this.form.addEventListener('submit', this.change.bind($this) );
+  }
+}
+
+new UserName();
+new ChangePageToSecondPage();

@@ -553,6 +553,14 @@ template {
   src: url("../fonts/mkx.woff") format("woff"), url("../fonts/mkx.woff2") format("woff2");
 }
 
+h2 {
+  font-size: 45px;
+  color: #eee;
+  padding: 10px;
+  margin: 10px;
+  letter-spacing: 3px;
+}
+
 .hide {
   display: none;
 }
