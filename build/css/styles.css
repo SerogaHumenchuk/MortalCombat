@@ -504,7 +504,7 @@ template {
 }
 
 .firstPage__wrapper {
-  background: url("../images/arena/fight.gif");
+  background: url("../images/arena/firstPageBG.gif");
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -522,7 +522,7 @@ template {
   font-size: 3.6vh;
   font-weight: 700;
   background-color: #fff;
-  margin: 5.5vh auto .7vh;
+  margin: 5.5vh auto 0.7vh;
   width: 27vh;
   height: 5vh;
   color: #000;
@@ -530,6 +530,8 @@ template {
   display: block;
   border: 2px solid #ff4500;
   border-radius: 25px;
+  outline: 0;
+  cursor: pointer;
 }
 
 .firstPage__wrapper .name {
@@ -542,6 +544,7 @@ template {
   font-weight: 400;
   padding: 5px;
   margin: 0 auto;
+  outline: 0;
 }
 
 @font-face {
@@ -550,9 +553,6 @@ template {
   src: url("../fonts/mkx.woff") format("woff"), url("../fonts/mkx.woff2") format("woff2");
 }
 
-h2 {
-  color: #eee;
-  font-size: 40px;
-  letter-spacing: 2px;
-  margin: 10px 0;
+.hide {
+  display: none;
 }

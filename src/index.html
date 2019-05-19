@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="copyright" content="Author" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+    <meta name="apple-mobile-web-app-title" content="Application Name" />
+    <meta
+      name="msapplication-TileImage"
+      content="images/favicons/144x144.png"
+    />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Mortal Combat</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.min.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="copyright" content="Author" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
-  <meta name="apple-mobile-web-app-title" content="Application Name" />
-  <meta name="msapplication-TileImage" content="images/favicons/144x144.png" />
-  <meta name="msapplication-TileColor" content="#000000" />
-  <meta name="format-detection" content="telephone=no" />
-  <title>Mortal Combat</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
-  <link rel="stylesheet" href="css/styles.min.css" />
-</head>
+  <body>
+    <div class="firstPageWrapp">
+      //= ./html/firstPage.html
+    </div>
+    <div class="secondPageWrapp hide">
+      //= ./html/secondPage.html
+    </div>
+    <div class="thirdPageWrapp hide">
+      //= ./html/fightPage.html
+    </div>
 
-<body>
-  <div>
-    //= ./html/firstPage.html
-  </div>
-  //= ./html/secondPage.html
-  <div>
-    //= ./html/fightPage.html
-  </div>
-  <audio
+    <audio
       id="play"
       src="sounds/Mortal - Kombat-[AudioTrimmer.com].mp3"
       loop="loop"
@@ -43,12 +51,6 @@
     <audio id="Player-won" src="./sounds/Player-won.mp3"></audio>
     <audio id="screen-saver" src="./sounds/screen-saver.mp3"></audio>
     <audio id="fighter-selection" src="./sounds/fighter-selection.mp3"></audio>
-    <ul>
-      <li><button class="fight">fight music</button></li>
-      <li><button class="lose">lose music</button></li>
-      <li><button class="winner">winner music</button></li>
-    </ul>
-  <script src="js/scripts.js"></script>
-</body>
-
+    <script src="js/scripts.js"></script>
+  </body>
 </html>
