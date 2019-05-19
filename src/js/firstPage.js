@@ -8,4 +8,6 @@ function onSubmit(e) {
   e.preventDefault();
   firstPageWrapp.classList.add('hide');
   secondPageWrapp.classList.remove('hide');
+  playCickFighterPlay();
 }
+playCickFighterPlay();

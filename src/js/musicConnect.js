@@ -47,3 +47,11 @@ function playCickFighterSelection(){
     const audio = document.getElementById('fighter-selection');
     audio.play();
 }
+function playCickFighterPlay(){
+    const audio = document.getElementById('play');
+    audio.play();
+}
+function playCickFighterKlickMouse(){
+    const audio = document.getElementById('klickmouse');
+    audio.play();
+}
