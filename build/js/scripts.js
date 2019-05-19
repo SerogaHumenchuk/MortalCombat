@@ -10,7 +10,10 @@ function onSubmit(e) {
   e.preventDefault();
   firstPageWrapp.classList.add('hide');
   secondPageWrapp.classList.remove('hide');
+  playCickFighterPlay();
 }
+
+playCickFighterPlay();
 let globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
@@ -79,6 +82,16 @@ function playCickScreenSaver() {
 
 function playCickFighterSelection() {
   const audio = document.getElementById('fighter-selection');
+  audio.play();
+}
+
+function playCickFighterPlay() {
+  const audio = document.getElementById('play');
+  audio.play();
+}
+
+function playCickFighterKlickMouse() {
+  const audio = document.getElementById('klickmouse');
   audio.play();
 }
 // функция вывода информации о раунде
@@ -271,11 +284,32 @@ class SubmitAction {
 
 }
 
+class ClickSound {
+  constructor() {
+    this.fighterSection = document.querySelector('.fighters-section'), this.fieldSection = document.querySelector('.fields-section'), this.listeners();
+  }
+
+  click(e) {
+    if (e.target.nodeName === 'INPUT' || e.target.nodeName === 'LABEL') {
+      const audio = document.getElementById('clickmouse');
+      audio.play();
+    }
+  }
+
+  listeners() {
+    const $this = this;
+    this.fighterSection.addEventListener('click', this.click.bind($this));
+    this.fieldSection.addEventListener('click', this.click.bind($this));
+  }
+
+}
+
 new BuildHeroes(heroes);
 new BuildFields(fields);
 new BuildRandomBtn(document.querySelector('.fighters-section'), 'hero');
 new BuildRandomBtn(document.querySelector('.fields-section'), 'field');
 new SubmitAction(document.querySelector('.secondPage__submit'));
+new ClickSound();
 
 //default action when time is over and user wasn't make a choose
 class DefaultAction {
