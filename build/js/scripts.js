@@ -1,19 +1,42 @@
 
 
-const form = document.querySelector('.form');
-const name = document.querySelector('.name');
-const firstPageWrapp = document.querySelector('.firstPageWrapp');
-const secondPageWrapp = document.querySelector('.secondPageWrapp');
-form.addEventListener('submit', onSubmit);
+class UserName {
+  constructor() {
+    this.name = document.querySelector('.name'), this.form = document.querySelector('.form');
+  }
 
-function onSubmit(e) {
-  e.preventDefault();
-  firstPageWrapp.classList.add('hide');
-  secondPageWrapp.classList.remove('hide');
-  playCickFighterPlay();
+  setUserName() {
+    globalObj.user.name = this.name.value.toString();
+    console.log(globalObj);
+  }
+
+  listener() {
+    const $this = this;
+    this.form.addEventListener('submit', this.setUserName.bind($this));
+  }
+
 }
 
-playCickFighterPlay();
+class ChangePageToSecondPage {
+  constructor() {
+    this.firstPageWrapp = document.querySelector('.firstPageWrapp'), this.secondPageWrapp = document.querySelector('.secondPageWrapp'), this.form = document.querySelector('.form'), this.listener();
+  }
+
+  change(e) {
+    e.preventDefault();
+    this.firstPageWrapp.classList.add('hide');
+    this.secondPageWrapp.classList.remove('hide');
+  }
+
+  listener() {
+    const $this = this;
+    this.form.addEventListener('submit', this.change.bind($this));
+  }
+
+}
+
+new UserName();
+new ChangePageToSecondPage();
 let globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
