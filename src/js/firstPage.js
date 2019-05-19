@@ -1,7 +1,8 @@
 class UserName {
   constructor () {
     this.name = document.querySelector('.name'),
-    this.form = document.querySelector('.form');
+    this.form = document.querySelector('.form'),
+    this.listener();
   }
 
   setUserName () {
@@ -35,5 +36,21 @@ class ChangePageToSecondPage {
   }
 }
 
+class StartMusic {
+  constructor () {
+    this.listener();
+  }
+
+  music () {
+    playClickFighterPlay();
+  }
+
+  listener () { 
+    const $this = this;
+    window.addEventListener( 'DOMContentLoaded', this.music.bind($this) ); 
+  }
+}
+
+new StartMusic();
 new UserName();
 new ChangePageToSecondPage();

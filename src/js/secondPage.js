@@ -212,6 +212,27 @@ class SubmitAction {
   }
 }
 
+class ChangePageToFightPage {
+  constructor () {
+    this.secondWrapper = document.querySelector('.secondPageWrapp'), 
+    this.thirdWrapper = document.querySelector('.thirdPageWrapp'), 
+    this.btn = document.querySelector('.secondPage__submit'), 
+    this.listener();
+  }
+
+  change (e) {
+    e.preventDefault();
+    this.secondWrapper.classList.add('hide');
+    this.thirdWrapper.classList.remove('hide');
+    console.log('object');
+  }
+
+  listener () {
+    const $this = this;
+    this.btn.addEventListener( 'click', this.change.bind($this) );
+  }
+}
+
 class ClickSound {
   constructor () {
     this.fighterSection = document.querySelector('.fighters-section'),
@@ -239,3 +260,4 @@ new BuildRandomBtn( document.querySelector('.fighters-section'), 'hero' );
 new BuildRandomBtn( document.querySelector('.fields-section'), 'field' );
 new SubmitAction( document.querySelector('.secondPage__submit') );
 new ClickSound();
+new ChangePageToFightPage();
