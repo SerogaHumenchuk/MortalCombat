@@ -1,0 +1,103 @@
+section.fightround {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(256, 0, 0, 0.8);
+}
+
+form.attack-defense {
+    display: flex;
+}
+
+ul.form-list {
+    list-style: none;
+    font-size: 16px;
+}
+
+h3.form-title {
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+div.attack,
+div.defense {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+button.punch-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    right: 6%;
+    bottom: 20px;
+    font-size: 14px;
+    background-image: url('http://chittagongit.com/download/294339');
+    background-repeat: no-repeat;
+    background-size: 75px 75px;
+}
+
+@media(min-width: 768px) {
+    section.fight {
+        padding-top: 50px;
+    }
+    .attack,
+    .defense {
+        position: relative;
+    }
+
+    button.punch-button {
+        width: 95px;
+        height: 95px;
+        font-size: 20px;
+    }
+
+    ul.form-list {
+        font-size: 23px;
+        display: flex;
+    }
+
+    h3.form-title {
+        font-size: 22px;
+        position: absolute;
+        left: 60px;
+        bottom: 62px;
+    }
+
+    button.punch-button {
+        background-size: 90px 90px;
+    }
+
+}
+
+@media(min-width: 1024px) {
+    section.fight {
+        padding-top: 60px;
+    }
+    h3.form-title {
+        font-size: 24px;
+        position: absolute;
+        left: 60px;
+        bottom:80px;
+    }
+    button.punch-button {
+        width: 120px;
+        height: 120px;
+        font-size: 24px;
+    }
+
+    ul.form-list {
+        font-size: 28px;
+    }
+
+    h3.form-title {
+        font-size: 26px;
+    }
+
+    button.punch-button {
+        background-size: 115px 115px;
+    }
+}
