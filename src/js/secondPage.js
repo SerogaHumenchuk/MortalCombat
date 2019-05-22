@@ -23,8 +23,8 @@ const heroes = [
   },
   {
     "name": "mystique",
-    "attack": 15,
-    "defence": 8,
+    "attack": 10,
+    "defence": 13,
     "url": "./images/hero/mystique/user-mystique",
     "runURL": "_run.gif",
     "attackURL": "_attack.gif",
@@ -253,6 +253,8 @@ class ClickSound {
     this.fieldSection.addEventListener( 'click', this.click.bind($this) );
   }
 }
+
+
 
 new BuildHeroes( heroes );
 new BuildFields( fields );

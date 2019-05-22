@@ -15,15 +15,33 @@
     e.preventDefault();
 
     if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
-      // globalObj.user.name = name.value;
+      globalObj.user.name = name.value;
       changeFirstPageToSecondPage();
     } else {
       alert('Invalid UserName');
     }
   };
 
-  firstPageForm.addEventListener('submit', onSubmit); // console.log(globalObj);
+  firstPageForm.addEventListener('submit', onSubmit);
 })();
+
+class StartMusic {
+  constructor() {
+    this.listener();
+  }
+
+  music() {
+    playClickFighterPlay();
+  }
+
+  listener() {
+    const $this = this;
+    window.addEventListener('DOMContentLoaded', this.music.bind($this));
+  }
+
+}
+
+new StartMusic();
 const globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
@@ -163,8 +181,8 @@ const heroes = [{
   "dieURL": "_die.gif"
 }, {
   "name": "mystique",
-  "attack": 15,
-  "defence": 8,
+  "attack": 10,
+  "defence": 13,
   "url": "./images/hero/mystique/user-mystique",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",

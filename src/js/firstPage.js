@@ -12,12 +12,28 @@
   const onSubmit = function(e) {
     e.preventDefault();
     if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
-      // globalObj.user.name = name.value;
+      globalObj.user.name = name.value;
       changeFirstPageToSecondPage();
     } else {
       alert('Invalid UserName');
     }
   };
   firstPageForm.addEventListener('submit', onSubmit);
-  // console.log(globalObj);
 })();
+
+class StartMusic {
+  constructor () {
+    this.listener();
+  }
+
+  music () {
+    playClickFighterPlay();
+  }
+
+  listener () { 
+    const $this = this;
+    window.addEventListener( 'DOMContentLoaded', this.music.bind($this) ); 
+  }
+}
+
+new StartMusic();
