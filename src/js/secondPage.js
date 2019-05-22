@@ -3,7 +3,8 @@ const heroes = [
     "name": "redskull",
     "attack": 15,
     "defence": 8,
-    "url": "./images/hero/redskull/user-redscull",
+    "url": "./images/hero/redskull/user-redskull",
+    "walkURL": "_walk.gif",
     "runURL": "_run.gif",
     "attackURL": "_attack.gif",
     "blockURL": "_block.gif",
@@ -12,9 +13,10 @@ const heroes = [
   },
   {
     "name": "colossus",
-    "attack": 15,
-    "defence": 8,
+    "attack": 13,
+    "defence": 10,
     "url": "./images/hero/colossus/user-colossus",
+    "walkURL": "_walk.gif",
     "runURL": "_run.gif",
     "attackURL": "_attack.gif",
     "blockURL": "_block.gif",
@@ -26,6 +28,7 @@ const heroes = [
     "attack": 10,
     "defence": 13,
     "url": "./images/hero/mystique/user-mystique",
+    "walkURL": "_walk.gif",
     "runURL": "_run.gif",
     "attackURL": "_attack.gif",
     "blockURL": "_block.gif",
@@ -34,9 +37,10 @@ const heroes = [
   },
   {
     "name": "starlord",
-    "attack": 15,
-    "defence": 8,
+    "attack": 9,
+    "defence": 14,
     "url": "./images/hero/starlord/user-starlord",
+    "walkURL": "_walk.gif",
     "runURL": "_run.gif",
     "attackURL": "_attack.gif",
     "blockURL": "_block.gif",
@@ -92,7 +96,7 @@ class BuildHeroes {
       radio.setAttribute('name', 'hero-radio');
 
       img.classList.add('hero');
-      img.setAttribute('src', `${hero.url}${hero.runURL}`);
+      img.setAttribute('src', `${hero.url}${hero.walkURL}`);
       img.setAttribute('alt', hero.name);
 
       label.append(radio, img);

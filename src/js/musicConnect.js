@@ -47,11 +47,19 @@ function playClickFighterSelection(){
     const audio = document.getElementById('fighter-selection');
     audio.play();
 }
+
 function playClickFighterPlay(){
     const audio = document.getElementById('play');
     audio.play();
 }
-function playClickFighterKlickMouse(){
+
+function stopClickFighterPlay (){
+    const audio = document.getElementById('play');
+    audio.pause();
+    audio.currentTime = 0;
+}
+
+function playClickFighterClickMouse(){
     const audio = document.getElementById('clickmouse');
     audio.play();
 }

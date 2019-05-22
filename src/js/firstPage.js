@@ -15,7 +15,7 @@
       globalObj.user.name = name.value;
       changeFirstPageToSecondPage();
     } else {
-      alert('Invalid UserName');
+      alert('Invalid username');
     }
   };
   firstPageForm.addEventListener('submit', onSubmit);
@@ -23,16 +23,24 @@
 
 class StartMusic {
   constructor () {
+    this.secondPageWrapp = document.querySelector('.secondPageWrapp').classList.contains('hide'), 
+    this.btnStart = document.querySelector('.start'), 
     this.listener();
   }
 
-  music () {
+  musicFirstPage () {
     playClickFighterPlay();
+  }
+
+  musicSecondPage () {
+    stopClickFighterPlay();
+    playClickFighterSelection();
   }
 
   listener () { 
     const $this = this;
-    window.addEventListener( 'DOMContentLoaded', this.music.bind($this) ); 
+    this.btnStart.addEventListener( 'click', this.musicSecondPage.bind($this) );
+    window.addEventListener( 'DOMContentLoaded', this.musicFirstPage.bind($this) ); 
   }
 }
 
