@@ -224,11 +224,12 @@ class ChangePageToFightPage {
     this.listener();
   }
 
-  change (e) {
-    e.preventDefault();
-    this.secondWrapper.classList.add('hide');
-    this.thirdWrapper.classList.remove('hide');
-    console.log('object');
+  change () {
+    if ( document.querySelector('input[name="hero-radio"]:checked') !== null 
+    && document.querySelector('input[name="field-radio"]:checked') ) {
+      this.secondWrapper.classList.add('hide');
+      this.thirdWrapper.classList.remove('hide');
+    } else {alert('Choose your fighter and field!')}
   }
 
   listener () {

@@ -14,6 +14,8 @@
     if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
       globalObj.user.name = name.value;
       changeFirstPageToSecondPage();
+      stopClickFighterPlay();
+      playClickFighterSelection();
     } else {
       alert('Invalid username');
     }
@@ -32,14 +34,8 @@ class StartMusic {
     playClickFighterPlay();
   }
 
-  musicSecondPage () {
-    stopClickFighterPlay();
-    playClickFighterSelection();
-  }
-
   listener () { 
     const $this = this;
-    this.btnStart.addEventListener( 'click', this.musicSecondPage.bind($this) );
     window.addEventListener( 'DOMContentLoaded', this.musicFirstPage.bind($this) ); 
   }
 }

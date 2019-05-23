@@ -17,8 +17,10 @@
     if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
       globalObj.user.name = name.value;
       changeFirstPageToSecondPage();
+      stopClickFighterPlay();
+      playClickFighterSelection();
     } else {
-      alert('Invalid UserName');
+      alert('Invalid username');
     }
   };
 
@@ -27,16 +29,16 @@
 
 class StartMusic {
   constructor() {
-    this.listener();
+    this.secondPageWrapp = document.querySelector('.secondPageWrapp').classList.contains('hide'), this.btnStart = document.querySelector('.start'), this.listener();
   }
 
-  music() {
+  musicFirstPage() {
     playClickFighterPlay();
   }
 
   listener() {
     const $this = this;
-    window.addEventListener('DOMContentLoaded', this.music.bind($this));
+    window.addEventListener('DOMContentLoaded', this.musicFirstPage.bind($this));
   }
 
 }
@@ -154,7 +156,13 @@ function playClickFighterPlay() {
   audio.play();
 }
 
-function playClickFighterKlickMouse() {
+function stopClickFighterPlay() {
+  const audio = document.getElementById('play');
+  audio.pause();
+  audio.currentTime = 0;
+}
+
+function playClickFighterClickMouse() {
   const audio = document.getElementById('clickmouse');
   audio.play();
 }
@@ -163,7 +171,8 @@ const heroes = [{
   "name": "redskull",
   "attack": 15,
   "defence": 8,
-  "url": "./images/hero/redskull/user-redscull",
+  "url": "./images/hero/redskull/user-redskull",
+  "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
   "blockURL": "_block.gif",
@@ -171,9 +180,10 @@ const heroes = [{
   "dieURL": "_die.gif"
 }, {
   "name": "colossus",
-  "attack": 15,
-  "defence": 8,
+  "attack": 13,
+  "defence": 10,
   "url": "./images/hero/colossus/user-colossus",
+  "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
   "blockURL": "_block.gif",
@@ -184,6 +194,7 @@ const heroes = [{
   "attack": 10,
   "defence": 13,
   "url": "./images/hero/mystique/user-mystique",
+  "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
   "blockURL": "_block.gif",
@@ -191,9 +202,10 @@ const heroes = [{
   "dieURL": "_die.gif"
 }, {
   "name": "starlord",
-  "attack": 15,
-  "defence": 8,
+  "attack": 9,
+  "defence": 14,
   "url": "./images/hero/starlord/user-starlord",
+  "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
   "blockURL": "_block.gif",
@@ -235,7 +247,7 @@ class BuildHeroes {
       radio.setAttribute('type', 'radio');
       radio.setAttribute('name', 'hero-radio');
       img.classList.add('hero');
-      img.setAttribute('src', `${hero.url}${hero.runURL}`);
+      img.setAttribute('src', `${hero.url}${hero.walkURL}`);
       img.setAttribute('alt', hero.name);
       label.append(radio, img);
       this.wrapper.appendChild(label);
@@ -353,11 +365,13 @@ class ChangePageToFightPage {
     this.secondWrapper = document.querySelector('.secondPageWrapp'), this.thirdWrapper = document.querySelector('.thirdPageWrapp'), this.btn = document.querySelector('.secondPage__submit'), this.listener();
   }
 
-  change(e) {
-    e.preventDefault();
-    this.secondWrapper.classList.add('hide');
-    this.thirdWrapper.classList.remove('hide');
-    console.log('object');
+  change() {
+    if (document.querySelector('input[name="hero-radio"]:checked') !== null && document.querySelector('input[name="field-radio"]:checked')) {
+      this.secondWrapper.classList.add('hide');
+      this.thirdWrapper.classList.remove('hide');
+    } else {
+      alert('Choose your fighter and field!');
+    }
   }
 
   listener() {
