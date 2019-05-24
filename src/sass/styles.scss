@@ -5,6 +5,7 @@
 @import './secondPage';
 @import './firstPage.scss';
 @import './timer.scss';
+@import './healthy.scss';
 
 @font-face {
   font-family: 'Mortal';
@@ -13,7 +14,7 @@
     url('../fonts/mkx.woff2') format('woff2');
 }
 
-h2{
+h2 {
   font-size: 45px;
   color: #eee;
   padding: 10px;

@@ -1,20 +1,50 @@
 
 
-const form = document.querySelector('.form');
-const name = document.querySelector('.name');
-const firstPageWrapp = document.querySelector('.firstPageWrapp');
-const secondPageWrapp = document.querySelector('.secondPageWrapp');
-form.addEventListener('submit', onSubmit);
+(() => {
+  let name = document.querySelector('.name');
+  let firstPageForm = document.querySelector('.firstPage__form');
+  let firstPageWrapp = document.querySelector('.firstPageWrapp');
+  let secondPageWrapp = document.querySelector('.secondPageWrapp');
 
-function onSubmit(e) {
-  e.preventDefault();
-  firstPageWrapp.classList.add('hide');
-  secondPageWrapp.classList.remove('hide');
-  playCickFighterPlay();
+  const changeFirstPageToSecondPage = function () {
+    firstPageWrapp.classList.add('hide');
+    secondPageWrapp.classList.remove('hide');
+  };
+
+  const onSubmit = function (e) {
+    e.preventDefault();
+
+    if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
+      globalObj.user.name = name.value;
+      changeFirstPageToSecondPage();
+      stopClickFighterPlay();
+      playClickFighterSelection();
+    } else {
+      alert('Invalid username');
+    }
+  };
+
+  firstPageForm.addEventListener('submit', onSubmit);
+})();
+
+class StartMusic {
+  constructor() {
+    this.secondPageWrapp = document.querySelector('.secondPageWrapp').classList.contains('hide'), this.btnStart = document.querySelector('.start'), this.listener();
+  }
+
+  musicFirstPage() {
+    playClickFighterPlay();
+  }
+
+  listener() {
+    const $this = this;
+    window.addEventListener('DOMContentLoaded', this.musicFirstPage.bind($this));
+  }
+
 }
 
-playCickFighterPlay();
-let globalObj = {
+new StartMusic();
+const globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
   round: 1,
@@ -35,63 +65,105 @@ let globalObj = {
     damage: null
   }
 };
-function playCickMusic() {
+const MyLives = document.querySelector('.My__Lives');
+const EnemyLives = document.querySelector('.Enemy__Lives');
+const myLivesContainer = document.querySelector('.MyHealthy__Bar');
+const EnemyLivesContainer = document.querySelector('.EnemyHealthy__Bar');
+
+class Livesbar {
+  constructor(container, lifeAmount) {
+    this.container = container, this.lifeAmount = lifeAmount;
+  }
+
+  changeColor() {
+    if (this.lifeAmount >= 70 && this.lifeAmount <= 100) {
+      this.container.style.backgroundColor = 'green';
+    } else if (this.lifeAmount >= 30 && this.lifeAmount < 70) {
+      this.container.style.backgroundColor = 'orange';
+    } else if (this.lifeAmount < 30) {
+      this.container.style.backgroundColor = 'red';
+    }
+  }
+
+  changeWidth() {
+    this.container.style.width = `${+this.lifeAmount}%`;
+  }
+
+  changeHP(damage) {
+    this.lifeAmount -= damage;
+    this.changeColor();
+    this.changeWidth();
+  }
+
+}
+
+const heroLifeBar = new Livesbar(MyLives, 100);
+const enemyLifeBar = new Livesbar(EnemyLives, 100);
+heroLifeBar.changeHP(20);
+enemyLifeBar.changeHP(80);
+function playClickMusic() {
   const audio = document.getElementById('music_start');
   audio.play();
 }
 
-function playCickFightSound() {
+function playClickFightSound() {
   const audio = document.getElementById('fight-sound');
   audio.play();
 }
 
-function playCickWinner() {
+function playClickWinner() {
   const audio = document.getElementById('winner');
   audio.play();
 }
 
-function playCickLooser() {
+function playClickLooser() {
   const audio = document.getElementById('looser');
   audio.play();
 }
 
-function playCickKick() {
+function playClickKick() {
   const audio = document.getElementById('kick');
   audio.play();
 }
 
-function playCickDraw() {
+function playClickDraw() {
   const audio = document.getElementById('draw');
   audio.play();
 }
 
-function playCickFight() {
+function playClickFight() {
   const audio = document.getElementById('fight');
   audio.play();
 }
 
-function playCickPlayerWon() {
+function playClickPlayerWon() {
   const audio = document.getElementById('player-won');
   audio.play();
 }
 
-function playCickScreenSaver() {
+function playClickScreenSaver() {
   const audio = document.getElementById('screen-saver');
   audio.play();
 }
 
-function playCickFighterSelection() {
+function playClickFighterSelection() {
   const audio = document.getElementById('fighter-selection');
   audio.play();
 }
 
-function playCickFighterPlay() {
+function playClickFighterPlay() {
   const audio = document.getElementById('play');
   audio.play();
 }
 
-function playCickFighterKlickMouse() {
-  const audio = document.getElementById('klickmouse');
+function stopClickFighterPlay() {
+  const audio = document.getElementById('play');
+  audio.pause();
+  audio.currentTime = 0;
+}
+
+function playClickFighterClickMouse() {
+  const audio = document.getElementById('clickmouse');
   audio.play();
 }
 // функция вывода информации о раунде
@@ -99,7 +171,8 @@ const heroes = [{
   "name": "redskull",
   "attack": 15,
   "defence": 8,
-  "url": "./images/hero/redskull/user-redscull",
+  "url": "./images/hero/redskull/user-redskull",
+  "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
   "blockURL": "_block.gif",
@@ -107,9 +180,10 @@ const heroes = [{
   "dieURL": "_die.gif"
 }, {
   "name": "colossus",
-  "attack": 15,
-  "defence": 8,
+  "attack": 13,
+  "defence": 10,
   "url": "./images/hero/colossus/user-colossus",
+  "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
   "blockURL": "_block.gif",
@@ -117,9 +191,10 @@ const heroes = [{
   "dieURL": "_die.gif"
 }, {
   "name": "mystique",
-  "attack": 15,
-  "defence": 8,
+  "attack": 10,
+  "defence": 13,
   "url": "./images/hero/mystique/user-mystique",
+  "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
   "blockURL": "_block.gif",
@@ -127,9 +202,10 @@ const heroes = [{
   "dieURL": "_die.gif"
 }, {
   "name": "starlord",
-  "attack": 15,
-  "defence": 8,
+  "attack": 9,
+  "defence": 14,
   "url": "./images/hero/starlord/user-starlord",
+  "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
   "blockURL": "_block.gif",
@@ -171,7 +247,7 @@ class BuildHeroes {
       radio.setAttribute('type', 'radio');
       radio.setAttribute('name', 'hero-radio');
       img.classList.add('hero');
-      img.setAttribute('src', `${hero.url}${hero.runURL}`);
+      img.setAttribute('src', `${hero.url}${hero.walkURL}`);
       img.setAttribute('alt', hero.name);
       label.append(radio, img);
       this.wrapper.appendChild(label);
@@ -284,6 +360,27 @@ class SubmitAction {
 
 }
 
+class ChangePageToFightPage {
+  constructor() {
+    this.secondWrapper = document.querySelector('.secondPageWrapp'), this.thirdWrapper = document.querySelector('.thirdPageWrapp'), this.btn = document.querySelector('.secondPage__submit'), this.listener();
+  }
+
+  change() {
+    if (document.querySelector('input[name="hero-radio"]:checked') !== null && document.querySelector('input[name="field-radio"]:checked')) {
+      this.secondWrapper.classList.add('hide');
+      this.thirdWrapper.classList.remove('hide');
+    } else {
+      alert('Choose your fighter and field!');
+    }
+  }
+
+  listener() {
+    const $this = this;
+    this.btn.addEventListener('click', this.change.bind($this));
+  }
+
+}
+
 class ClickSound {
   constructor() {
     this.fighterSection = document.querySelector('.fighters-section'), this.fieldSection = document.querySelector('.fields-section'), this.listeners();
@@ -310,6 +407,7 @@ new BuildRandomBtn(document.querySelector('.fighters-section'), 'hero');
 new BuildRandomBtn(document.querySelector('.fields-section'), 'field');
 new SubmitAction(document.querySelector('.secondPage__submit'));
 new ClickSound();
+new ChangePageToFightPage();
 
 //default action when time is over and user wasn't make a choose
 class DefaultAction {
