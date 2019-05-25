@@ -212,12 +212,25 @@ const punchBut = document.querySelector('.punch-button');
 let attack;
 let defense;
 let output;
+let atchecks = document.querySelectorAll('[name="attack"]');
+let defchecks = document.querySelectorAll('[name="defense"]');
 
 function fightFunc(e) {
   e.preventDefault();
+  atchecks.forEach(input => {
+    if (input.checked) {
+      input.nextElementSibling.classList.remove('chIcon');
+      input.nextElementSibling.classList.add('atIcon');
+    }
+  });
+  defchecks.forEach(input => {
+    if (input.checked) {
+      input.nextElementSibling.classList.remove('chIcon');
+      input.nextElementSibling.classList.add('atIcon');
+    }
+  });
   let attack = document.querySelector('[name="attack"]:checked').value;
   let defense = document.querySelector('[name="defense"]:checked').value;
-  attack.classList.add("chIcon");
 
   if (attack === null || defense === null) {
     output = 'MAKE A CHOISE';
@@ -231,8 +244,30 @@ function fightFunc(e) {
 }
 
 ;
+ADForm.addEventListener('click', () => {
+  // let checkat = document.querySelector('[name="attack"]:checked');
+  // checkat.nextElementSibling.classList.add('chIcon');
+  atchecks.forEach(input => {
+    if (input.checked) {
+      input.nextElementSibling.classList.add('chIcon');
+      input.nextElementSibling.classList.remove('atIcon');
+    } else {
+      input.nextElementSibling.classList.remove('chIcon');
+      input.nextElementSibling.classList.add('atIcon');
+    }
+  });
+  defchecks.forEach(input => {
+    if (input.checked) {
+      input.nextElementSibling.classList.add('chIcon');
+      input.nextElementSibling.classList.remove('atIcon');
+    } else {
+      input.nextElementSibling.classList.remove('chIcon');
+      input.nextElementSibling.classList.add('atIcon');
+    }
+  });
+});
 ADForm.addEventListener('submit', fightFunc);
-punchBut.addEventListener('click', resetTimer);
+punchBut.addEventListener('click', resetTimerBut);
 const heroes = [{
   "name": "redskull",
   "attack": 15,
@@ -570,6 +605,7 @@ function resetTimer() {
     clearInterval(intervalTimer);
     isPaused = isPaused ? false : true;
   }
+<<<<<<< HEAD
 } // resetTimer()
 // let revTime = 5;
 // function revTimer(){
@@ -584,6 +620,37 @@ function resetTimer() {
 class FightLogic {
   constructor() {
     this.obj = globalObj, this.userAttack = this.obj.user.attack, this.userDefence = this.obj.user.defence, this.userHealth = this.obj.lifeUser, this.userAttackPart = this.obj.user.attackPart, this.userDefencePart = this.obj.user.defencePart, this.computerAttack = this.obj.computer.attack, this.computerDefence = this.obj.computer.defence, this.computerHealth = this.obj.lifeComputer, this.computerAttackPart = this.obj.computer.attackPart, this.computerDefencePart = this.obj.computer.defencePart;
+=======
+}
+
+function resetTimerBut() {
+  if (attack !== null && defense !== null) {
+    if (isStarted === false) {
+      timeLeft = 10;
+      remainTime = 10;
+      timer(wholeTime);
+      isStarted = true;
+      setterBtns.forEach(function (btn) {
+        btn.disabled = true;
+        btn.style.opacity = 0.5;
+      });
+    } else if (isPaused) {
+      timeLeft = 10;
+      remainTime = 10;
+      timer(timeLeft);
+      isPaused = isPaused ? false : true;
+    } else {
+      timeLeft = 10;
+      remainTime = 10;
+      clearInterval(intervalTimer);
+      isPaused = isPaused ? false : true;
+    }
+  }
+}
+class FightLogic {
+  constructor() {
+    this.obj = globalObj, this.userAttack = this.obj.user.attack, this.userDefence = this.obj.user.defence, this.userHealth = this.obj.lifeUser, this.userAttackPart = this.obj.user.attackPart, this.userDefencePart = this.obj.user.defencePart, this.computerAttack = this.obj.computer.attack, this.computerDefence = this.obj.computer.defence, this.computerHealth = this.obj.lifeComputer, this.computerAttackPart = this.obj.computer.attackPart, this.computerDefencePart = this.obj.computer.defencePart, this.healthUserLogic();
+>>>>>>> 68dc3df2cf51fdfa9bf995872edd965e5ca47c27
   }
 
   healthUserLogic() {
@@ -591,6 +658,7 @@ class FightLogic {
       this.userHealth -= this.computerAttack;
     } else if (this.userDefencePart === this.computerAttackPart) {
       const damage = this.userDefence - this.computerAttack;
+<<<<<<< HEAD
       if (damage > 0) this.userHealth -= damage;
     }
   }
@@ -604,6 +672,16 @@ class FightLogic {
     }
   }
 
+=======
+
+      if (damage > 0) {
+        this.userHealth -= damage;
+        console.log(this.userHealth);
+      }
+    }
+  }
+
+>>>>>>> 68dc3df2cf51fdfa9bf995872edd965e5ca47c27
 }
 
 new FightLogic(); //user makes damage to computer
