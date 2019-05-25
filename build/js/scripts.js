@@ -167,6 +167,31 @@ function playClickFighterClickMouse() {
   audio.play();
 }
 // функция вывода информации о раунде
+const ADForm = document.querySelector('.attack-defense');
+const punchBut = document.querySelector('.punch-button');
+let attack;
+let defense;
+let output;
+
+function fightFunc(e) {
+  e.preventDefault();
+  let attack = document.querySelector('[name="attack"]:checked').value;
+  let defense = document.querySelector('[name="defense"]:checked').value;
+
+  if (attack === null || defense === null) {
+    output = 'MAKE A CHOISE';
+    console.log(output);
+  } else {
+    output = `The varname hit Bot in ${attack} and protect ${defense}`;
+  }
+
+  console.log(output);
+  ADForm.reset();
+}
+
+;
+ADForm.addEventListener('submit', fightFunc);
+punchBut.addEventListener('click', resetTimer);
 const heroes = [{
   "name": "redskull",
   "attack": 15,
@@ -408,7 +433,102 @@ new BuildRandomBtn(document.querySelector('.fields-section'), 'field');
 new SubmitAction(document.querySelector('.secondPage__submit'));
 new ClickSound();
 new ChangePageToFightPage();
+// (function(){
+let progressBar = document.querySelector('.e-c-progress'); // let indicator = document.getElementById('e-indicator');
 
+let pointer = document.getElementById('e-pointer');
+let length = Math.PI * 2 * 100;
+progressBar.style.strokeDasharray = length;
+
+function update(value, timePercent) {
+  var offset = -length - length * value / timePercent;
+  progressBar.style.strokeDashoffset = -offset;
+  pointer.style.transform = `rotate(-${360 * value / timePercent}deg)`;
+} //circle ends
+
+
+let displayOutput = document.querySelector('.display-remain-time');
+const setterBtns = document.querySelectorAll('button[data-setter]');
+let intervalTimer;
+let timeLeft;
+let wholeTime = 10; // manage this to set the whole time
+
+let isPaused = false;
+let isStarted = false;
+update(wholeTime, wholeTime); //refreshes progress bar
+
+displayTimeLeft(wholeTime);
+
+function changeWholeTime(seconds) {
+  if (wholeTime + seconds > 0) {
+    wholeTime += seconds;
+    update(wholeTime, wholeTime);
+  }
+}
+
+function timer(seconds) {
+  //counts time, takes seconds
+  let remainTime = Date.now() + seconds * 1000;
+  displayTimeLeft(seconds);
+  intervalTimer = setInterval(function () {
+    timeLeft = Math.round((remainTime - Date.now()) / 1000);
+
+    if (timeLeft < 0) {
+      clearInterval(intervalTimer);
+      isStarted = false;
+      setterBtns.forEach(function (btn) {
+        btn.disabled = false;
+        btn.style.opacity = 1;
+      });
+      displayTimeLeft(wholeTime);
+      return;
+    }
+
+    displayTimeLeft(timeLeft);
+  }, 1000);
+}
+
+function displayTimeLeft(timeLeft) {
+  //displays time on the input
+  let minutes = Math.floor(timeLeft / 60);
+  let seconds = timeLeft % 60;
+  let displayString = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  displayOutput.textContent = displayString;
+  update(timeLeft, wholeTime);
+}
+
+function resetTimer() {
+  if (isStarted === false) {
+    timeLeft = 10;
+    remainTime = 10;
+    timer(wholeTime);
+    isStarted = true;
+    setterBtns.forEach(function (btn) {
+      btn.disabled = true;
+      btn.style.opacity = 0.5;
+    });
+  } else if (isPaused) {
+    timeLeft = 10;
+    remainTime = 10;
+    timer(timeLeft);
+    isPaused = isPaused ? false : true;
+  } else {
+    timeLeft = 10;
+    remainTime = 10;
+    clearInterval(intervalTimer);
+    isPaused = isPaused ? false : true;
+  }
+} // resetTimer()
+// let revTime = 5;
+// function revTimer(){
+// revTime--;
+// console.log(revTime);
+// if(revTime === 0){
+//   break;
+// }
+// }
+// setInterval(revTimer, 1000);
+// })();
 //default action when time is over and user wasn't make a choose
 class DefaultAction {
   constructor(xp, attack) {
