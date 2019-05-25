@@ -1,4 +1,4 @@
-(() => {
+;(() => {
   let name = document.querySelector('.name');
   let firstPageForm = document.querySelector('.firstPage__form');
   let firstPageWrapp = document.querySelector('.firstPageWrapp');

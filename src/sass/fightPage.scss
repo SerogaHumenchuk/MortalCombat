@@ -1,0 +1,24 @@
+.fightPage {
+  &__container {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: bottom;
+  }
+
+}
+.computer-hero,
+.user-hero{
+  position: absolute;
+  bottom: 2%;
+  width: 17%;
+}
+
+.user-hero{
+  left: 10%;
+}
+
+.computer-hero{
+  right: 10%;
+  transform: scaleX(-1);
+}

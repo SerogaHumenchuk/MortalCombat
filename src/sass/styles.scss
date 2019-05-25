@@ -2,11 +2,12 @@
   Import partials below
 */
 @import './normalize';
-@import './secondPage';
 @import './firstPage.scss';
+@import './secondPage';
 @import './healthy.scss';
 @import './timer.scss';
 @import './roundInfo.scss';
+@import './fightPage';
 
 @font-face {
   font-family: 'Mortal';
