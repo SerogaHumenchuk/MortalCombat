@@ -10,9 +10,8 @@ class FightLogic {
     this.computerDefence = this.obj.computer.defence,
     this.computerHealth = this.obj.lifeComputer,
     this.computerAttackPart = this.obj.computer.attackPart,
-    this.computerDefencePart = this.obj.computer.defencePart,
-    this.healthUserLogic();
-    }
+    this.computerDefencePart = this.obj.computer.defencePart;
+  }
 
   healthUserLogic () {
     if ( this.userDefencePart !== this.computerAttackPart ) {
@@ -20,10 +19,17 @@ class FightLogic {
     } else if ( this.userDefencePart === this.computerAttackPart ) {
       const damage = this.userDefence - this.computerAttack;
 
-      if (damage > 0) {
-        this.userHealth -= damage;
-        console.log(this.userHealth);
-      }
+      if (damage > 0) this.userHealth -= damage;
+    }
+  }
+
+  healthUserLogic () {
+    if ( this.computerDefencePart !== this.userAttackPart ) {
+      this.computerHealth -= this.userAttack;
+    } else if ( this.userDefencePart === this.computerAttackPart ) {
+      const damage = this.computerDefence - this.userAttack;
+
+      if (damage > 0) this.userHealth -= damage;
     }
   }
 }
