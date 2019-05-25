@@ -4,6 +4,7 @@ const heroes = [
     "attack": 15,
     "defence": 8,
     "url": "./images/hero/redskull/user-redskull",
+    "standURL": ".gif",
     "walkURL": "_walk.gif",
     "runURL": "_run.gif",
     "attackURL": "_attack.gif",
@@ -16,6 +17,7 @@ const heroes = [
     "attack": 13,
     "defence": 10,
     "url": "./images/hero/colossus/user-colossus",
+    "standURL": ".gif",
     "walkURL": "_walk.gif",
     "runURL": "_run.gif",
     "attackURL": "_attack.gif",
@@ -28,6 +30,7 @@ const heroes = [
     "attack": 10,
     "defence": 13,
     "url": "./images/hero/mystique/user-mystique",
+    "standURL": ".gif",
     "walkURL": "_walk.gif",
     "runURL": "_run.gif",
     "attackURL": "_attack.gif",
@@ -40,6 +43,7 @@ const heroes = [
     "attack": 9,
     "defence": 14,
     "url": "./images/hero/starlord/user-starlord",
+    "standURL": ".gif",
     "walkURL": "_walk.gif",
     "runURL": "_run.gif",
     "attackURL": "_attack.gif",
@@ -155,6 +159,7 @@ class BuildRandomBtn {
 
 class SubmitAction {
   constructor (btn) {
+    this.block = document.querySelector('.fightPage__container'),
     this.btn = btn,
     this.events();
   }
@@ -163,6 +168,13 @@ class SubmitAction {
     e.preventDefault();
     this.getHero();
     this.getField();
+    this.changeBackground();
+    new ComputerRandomHero();
+    new DefaultStart();
+  }
+
+  changeBackground () {
+    this.block.style.backgroundImage = `url(${globalObj.arena})`;
   }
 
   getHero () {
@@ -212,6 +224,7 @@ class SubmitAction {
 
   events () {
     const $this = this;
+
     this.btn.addEventListener('click', this.checkAction.bind($this));
   }
 }
@@ -258,8 +271,6 @@ class ClickSound {
     this.fieldSection.addEventListener( 'click', this.click.bind($this) );
   }
 }
-
-
 
 new BuildHeroes( heroes );
 new BuildFields( fields );
