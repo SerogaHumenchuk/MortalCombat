@@ -1,4 +1,62 @@
+const globalObj = {
+  lifeUser: 100,
+  lifeComputer: 100,
+  round: 1,
+  intervalTimer: null,
+  arena: null,
+  user: {
+    obj: null,
+    name: null,
+    attack: null,
+    defence: null,
+    damage: null
+  },
+  computer: {
+    obj: null,
+    name: null,
+    attack: null,
+    defence: null,
+    damage: null
+  }
+};
 
+class DefaultStart {
+  constructor() {
+    this.wrapper = document.querySelector('.fightPage__container'), this.userHero = globalObj.user.obj, this.computerHero = globalObj.computer.obj, this.startPositionUser(), this.startPositionComputer();
+  }
+
+  startPositionUser() {
+    const img = document.createElement('img');
+    img.classList.add('user-hero');
+    img.setAttribute('src', `${this.userHero.url}${this.userHero.standURL}`);
+    this.wrapper.append(img);
+  }
+
+  startPositionComputer() {
+    const img = document.createElement('img');
+    img.classList.add('computer-hero');
+    img.setAttribute('src', `${this.computerHero.url}${this.computerHero.standURL}`);
+    this.wrapper.append(img);
+  }
+
+}
+
+;
+class ComputerRandomHero {
+  constructor() {
+    this.heroes = heroes, this.random();
+  }
+
+  random() {
+    const num = Math.floor(Math.random() * this.heroes.length);
+    globalObj.computer.obj = heroes[num];
+    globalObj.computer.name = heroes[num].name;
+    globalObj.computer.attack = heroes[num].attack;
+    globalObj.computer.defence = heroes[num].defence;
+  }
+
+}
+;
 
 (() => {
   let name = document.querySelector('.name');
@@ -44,27 +102,7 @@ class StartMusic {
 }
 
 new StartMusic();
-const globalObj = {
-  lifeUser: 100,
-  lifeComputer: 100,
-  round: 1,
-  intervalTimer: null,
-  arena: null,
-  user: {
-    obj: null,
-    name: null,
-    attack: null,
-    defence: null,
-    damage: null
-  },
-  computer: {
-    obj: null,
-    name: null,
-    attack: null,
-    defence: null,
-    damage: null
-  }
-};
+
 const MyLives = document.querySelector('.My__Lives');
 const EnemyLives = document.querySelector('.Enemy__Lives');
 const myLivesContainer = document.querySelector('.MyHealthy__Bar');
@@ -177,6 +215,7 @@ function fightFunc(e) {
   e.preventDefault();
   let attack = document.querySelector('[name="attack"]:checked').value;
   let defense = document.querySelector('[name="defense"]:checked').value;
+  attack.classList.add("chIcon");
 
   if (attack === null || defense === null) {
     output = 'MAKE A CHOISE';
@@ -197,6 +236,7 @@ const heroes = [{
   "attack": 15,
   "defence": 8,
   "url": "./images/hero/redskull/user-redskull",
+  "standURL": ".gif",
   "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
@@ -208,6 +248,7 @@ const heroes = [{
   "attack": 13,
   "defence": 10,
   "url": "./images/hero/colossus/user-colossus",
+  "standURL": ".gif",
   "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
@@ -219,6 +260,7 @@ const heroes = [{
   "attack": 10,
   "defence": 13,
   "url": "./images/hero/mystique/user-mystique",
+  "standURL": ".gif",
   "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
@@ -230,6 +272,7 @@ const heroes = [{
   "attack": 9,
   "defence": 14,
   "url": "./images/hero/starlord/user-starlord",
+  "standURL": ".gif",
   "walkURL": "_walk.gif",
   "runURL": "_run.gif",
   "attackURL": "_attack.gif",
@@ -323,13 +366,20 @@ class BuildRandomBtn {
 
 class SubmitAction {
   constructor(btn) {
-    this.btn = btn, this.events();
+    this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.events();
   }
 
   checkAction(e) {
     e.preventDefault();
     this.getHero();
     this.getField();
+    this.changeBackground();
+    new ComputerRandomHero();
+    new DefaultStart();
+  }
+
+  changeBackground() {
+    this.block.style.backgroundImage = `url(${globalObj.arena})`;
   }
 
   getHero() {

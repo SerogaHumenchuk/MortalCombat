@@ -375,6 +375,69 @@ template {
   display: none;
 }
 
+.firstPage__wrapper {
+  background: url("../images/arena/firstPageBG.gif");
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.firstPage__wrapper .fighting {
+  display: block;
+  width: 76vh;
+  height: 28vh;
+  margin: 0 auto;
+}
+
+.firstPage__wrapper .start {
+  font-family: Mortal, sans-serif;
+  font-size: 3.6vh;
+  font-weight: 700;
+  background-color: #fff;
+  margin: 5.5vh auto 0.7vh;
+  text-transform: uppercase;
+  width: 27vh;
+  height: 5vh;
+  color: #000;
+  text-align: center;
+  display: block;
+  border: 2px solid #ff4500;
+  border-radius: 25px;
+  outline: 0;
+  cursor: pointer;
+}
+
+.firstPage__wrapper .name {
+  font-family: Mortal, sans-serif;
+  color: #000;
+  text-align: center;
+  display: block;
+  border: 2px solid #ff4500;
+  border-radius: 25px;
+  font-size: 2.8vh;
+  font-weight: 400;
+  padding: 5px;
+  margin: 0 auto;
+  outline: 0;
+}
+
+.firstPage__wrapper .name::-webkit-input-placeholder {
+  font-family: Mortal, sans-serif;
+}
+
+.firstPage__wrapper .name:-ms-input-placeholder {
+  font-family: Mortal, sans-serif;
+}
+
+.firstPage__wrapper .name::-ms-input-placeholder {
+  font-family: Mortal, sans-serif;
+}
+
+.firstPage__wrapper .name::placeholder {
+  font-family: Mortal, sans-serif;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -501,69 +564,6 @@ template {
 
 .secondPage__container .fields-section .field__wind {
   background-image: url("../images/arena/wind.gif");
-}
-
-.firstPage__wrapper {
-  background: url("../images/arena/firstPageBG.gif");
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.firstPage__wrapper .fighting {
-  display: block;
-  width: 76vh;
-  height: 28vh;
-  margin: 0 auto;
-}
-
-.firstPage__wrapper .start {
-  font-family: Mortal, sans-serif;
-  font-size: 3.6vh;
-  font-weight: 700;
-  background-color: #fff;
-  margin: 5.5vh auto 0.7vh;
-  text-transform: uppercase;
-  width: 27vh;
-  height: 5vh;
-  color: #000;
-  text-align: center;
-  display: block;
-  border: 2px solid #ff4500;
-  border-radius: 25px;
-  outline: 0;
-  cursor: pointer;
-}
-
-.firstPage__wrapper .name {
-  font-family: Mortal, sans-serif;
-  color: #000;
-  text-align: center;
-  display: block;
-  border: 2px solid #ff4500;
-  border-radius: 25px;
-  font-size: 2.8vh;
-  font-weight: 400;
-  padding: 5px;
-  margin: 0 auto;
-  outline: 0;
-}
-
-.firstPage__wrapper .name::-webkit-input-placeholder {
-  font-family: Mortal, sans-serif;
-}
-
-.firstPage__wrapper .name:-ms-input-placeholder {
-  font-family: Mortal, sans-serif;
-}
-
-.firstPage__wrapper .name::-ms-input-placeholder {
-  font-family: Mortal, sans-serif;
-}
-
-.firstPage__wrapper .name::placeholder {
-  font-family: Mortal, sans-serif;
 }
 
 * {
@@ -744,12 +744,24 @@ svg.decrease {
 }
 
 section.fight-round {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  height: 20vh;
   width: 100%;
   background-color: rgba(255, 0, 0, 0.8);
-  padding-top: 30px;
+  position: relative;
+}
+
+.fightPage_wrapper {
+  height: 100vh;
+}
+
+.atIcon {
+  margin-top: 10px;
+  width: 50px;
+  fill: #fff;
+}
+
+.chIcon {
+  fill: #000;
 }
 
 form.attack-defense {
@@ -775,10 +787,17 @@ h3.form-title {
 div.attack,
 div.defense {
   display: flex;
-  margin-left: 7%;
-  margin-bottom: 10px;
   flex-direction: column;
-  align-items: flex-end;
+  position: absolute;
+  bottom: 10px;
+}
+
+div.attack {
+  left: 10%;
+}
+
+div.defense {
+  left: 40%;
 }
 
 button.punch-button {
@@ -787,11 +806,36 @@ button.punch-button {
   border-radius: 50%;
   position: absolute;
   right: 6%;
-  bottom: 20px;
+  bottom: 16px;
   font-size: 14px;
   background-image: url("http://chittagongit.com/download/294339");
   background-repeat: no-repeat;
   background-size: 75px 75px;
+}
+
+.fightPage__container {
+  height: 80vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: bottom;
+}
+
+.computer-hero,
+.user-hero {
+  position: absolute;
+  bottom: 20%;
+  width: 17%;
+}
+
+.user-hero {
+  left: 10%;
+}
+
+.computer-hero {
+  right: 10%;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 @font-face {
@@ -823,10 +867,6 @@ h2 {
     margin-top: 20px;
   }
 
-  section.fight-round {
-    padding-top: 95px;
-  }
-
   .attack,
   .defense {
     position: relative;
@@ -839,8 +879,8 @@ h2 {
   }
 
   button.punch-button {
-    width: 95px;
-    height: 95px;
+    width: 85px;
+    height: 85px;
     font-size: 20px;
   }
 
@@ -857,7 +897,7 @@ h2 {
   }
 
   button.punch-button {
-    background-size: 90px 90px;
+    background-size: 80px 80px;
   }
 }
 
@@ -886,17 +926,13 @@ h2 {
 }
 
 @media (min-width: 1024px) {
-  section.fight-round {
-    padding-top: 120px;
-  }
-
   h3.form-title {
     font-size: 40px;
   }
 
   button.punch-button {
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     font-size: 24px;
   }
 
@@ -915,7 +951,7 @@ h2 {
   }
 
   button.punch-button {
-    background-size: 115px 115px;
+    background-size: 105px 105px;
   }
 }
 

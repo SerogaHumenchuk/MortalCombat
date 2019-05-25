@@ -8,6 +8,7 @@ function fightFunc(e){
   e.preventDefault();
   let attack = document.querySelector('[name="attack"]:checked').value;
   let defense = document.querySelector('[name="defense"]:checked').value;
+  attack.classList.add("chIcon")
   if(attack === null || defense === null){
       output = 'MAKE A CHOISE';
       console.log(output);
