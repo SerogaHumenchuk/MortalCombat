@@ -1,3 +1,18 @@
+class RandomPart {
+  constructor () {
+    this.parts = ['head', 'body', 'legs'],
+    this.random();
+  }
+
+  random () {
+    const randomAttack = Math.floor(Math.random() * this.parts.length);
+    const randomDefence = Math.floor(Math.random() * this.parts.length);
+
+    globalObj.computer.attackPart = this.parts[randomAttack];
+    globalObj.computer.defencePart = this.parts[randomDefence];
+  }
+}
+
 class FightLogic {
   constructor () {
     this.obj = globalObj,
