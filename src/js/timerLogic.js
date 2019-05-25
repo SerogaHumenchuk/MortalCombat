@@ -7,7 +7,7 @@ let length = Math.PI * 2 * 100;
 progressBar.style.strokeDasharray = length;
 
 function update(value, timePercent) {
-  var offset = -length - (length * value) / timePercent;
+  const offset = -length - (length * value) / timePercent;
   progressBar.style.strokeDashoffset = -offset;
   pointer.style.transform = `rotate(-${(360 * value) / timePercent}deg)`;
 }

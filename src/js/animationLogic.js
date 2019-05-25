@@ -10,14 +10,16 @@ const globalObj = {
     name: null,
     attack: null,
     defence: null,
-    damage: null,
+    attackPart: null,
+    defencePart: null,
   },
   computer: {
     obj: null,
     name: null,
     attack: null,
     defence: null,
-    damage: null,
+    attackPart: null,
+    defencePart: null,
   },
 };
 
