@@ -375,6 +375,200 @@ template {
   display: none;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.secondPage__submit {
+  font-size: 20px;
+  border: none;
+  border-radius: 4px;
+  margin: 20px;
+  padding: 15px 25px;
+}
+
+.secondPage__container {
+  font-family: Mortal;
+  max-width: 100vw;
+  min-height: 100vh;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("../images/arena/main.gif");
+  background-size: cover;
+}
+
+.secondPage__container .fighters-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 40%;
+  height: 700px;
+  position: relative;
+}
+
+.secondPage__container .fighters-section .fighter {
+  min-width: 230px;
+  height: 230px;
+  border: 3px solid #f00;
+  border-radius: 10px;
+  transition: all ease-in-out 200ms;
+  background: url("../images/arena/main.gif") 30% bottom;
+  margin: 10px;
+}
+
+.secondPage__container .fighters-section .fighter:hover {
+  border-color: #a00;
+}
+
+.secondPage__container input[type='radio'] {
+  display: none;
+}
+
+.secondPage__container input[type='radio']:checked {
+  display: flex;
+}
+
+.secondPage__container label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondPage__container .fields-section {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 6vh;
+}
+
+.secondPage__container .fields-section .field {
+  min-width: 120px;
+  width: 10%;
+  height: 120px;
+  border: 3px solid #f00;
+  border-radius: 10px;
+  transition: all ease-in-out 200ms;
+  background-size: cover;
+}
+
+.secondPage__container .fields-section .field:hover {
+  border-color: #a00;
+}
+
+.secondPage__container .fields-section .field__boat {
+  background-image: url("../images/arena/boat.gif");
+}
+
+.secondPage__container .fields-section .field__light {
+  background-image: url("../images/arena/light.gif");
+}
+
+.secondPage__container .fields-section .field__main {
+  background-image: url("../images/arena/main.gif");
+}
+
+.secondPage__container .fields-section .field__train {
+  order: 1;
+  background-image: url("../images/arena/train.gif");
+}
+
+.secondPage__container .fields-section .field__waterfall {
+  order: 2;
+  background-image: url("../images/arena/waterfall.gif");
+}
+
+.secondPage__container .fields-section .field__wind {
+  order: 3;
+  background-image: url("../images/arena/wind.gif");
+}
+
+.fighter__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+
+.fighter__card {
+  width: 55%;
+  height: 450px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 25px;
+}
+
+.hero__name {
+  text-align: center;
+  font-size: 70px;
+  color: #eeeeee;
+  letter-spacing: 3px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.hero__attack {
+  font-size: 30px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 10px;
+}
+
+.hero__img {
+  -webkit-transform: scale(2);
+  transform: scale(2);
+}
+
+.hero__defence {
+  font-size: 30px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 10px;
+}
+
+.fighters-section > .random-btn {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -60px;
+  margin-top: -60px;
+}
+
+.random-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  max-width: 120px;
+  height: 120px;
+  border: 3px solid #f00;
+  border-radius: 10px;
+  transition: all ease-in-out 200ms;
+  background-color: #333;
+}
+
+.random-btn img {
+  max-width: 50px;
+}
+
 .firstPage__wrapper {
   background: url("../images/arena/firstPageBG.gif");
   width: 100%;
@@ -442,134 +636,6 @@ template {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.secondPage__submit {
-  font-size: 20px;
-  border: none;
-  border-radius: 4px;
-  margin: 20px;
-  padding: 15px 25px;
-}
-
-.secondPage__container {
-  font-family: Mortal;
-  max-width: 100vw;
-  min-height: 100vh;
-  max-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: url("../images/bc_im_2nd_page.png");
-  background-size: cover;
-}
-
-.secondPage__container .random-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10%;
-  max-width: 120px;
-  height: 120px;
-  border: 3px solid #f00;
-  border-radius: 10px;
-  transition: all ease-in-out 200ms;
-  background-color: #333;
-}
-
-.secondPage__container .random-btn img {
-  max-width: 50px;
-}
-
-.secondPage__container .fighters-section {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-}
-
-.secondPage__container .fighters-section .fighter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15%;
-  min-width: 100px;
-  height: 120px;
-  border: 3px solid #f00;
-  border-radius: 10px;
-  transition: all ease-in-out 200ms;
-  background: url("../images/arena/main.gif") 30% bottom;
-}
-
-.secondPage__container .fighters-section .fighter:hover {
-  border-color: #a00;
-}
-
-.secondPage__container input[type="radio"] {
-  display: none;
-}
-
-.secondPage__container input[type="radio"]:checked {
-  display: flex;
-}
-
-.secondPage__container label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.secondPage__container .fields-section {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-}
-
-.secondPage__container .fields-section .field {
-  min-width: 120px;
-  width: 10%;
-  height: 120px;
-  border: 3px solid #f00;
-  border-radius: 10px;
-  transition: all ease-in-out 200ms;
-  background-size: cover;
-}
-
-.secondPage__container .fields-section .field:hover {
-  border-color: #a00;
-}
-
-.secondPage__container .fields-section .field__boat {
-  background-image: url("../images/arena/boat.gif");
-}
-
-.secondPage__container .fields-section .field__light {
-  background-image: url("../images/arena/light.gif");
-}
-
-.secondPage__container .fields-section .field__main {
-  background-image: url("../images/arena/main.gif");
-}
-
-.secondPage__container .fields-section .field__train {
-  background-image: url("../images/arena/train.gif");
-}
-
-.secondPage__container .fields-section .field__waterfall {
-  background-image: url("../images/arena/waterfall.gif");
-}
-
-.secondPage__container .fields-section .field__wind {
-  background-image: url("../images/arena/wind.gif");
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 .fightPage__container {
@@ -614,230 +680,6 @@ template {
   height: 15px;
 }
 
-@-webkit-keyframes fontbulger {
-  0% {
-    font-size: 30px;
-  }
-
-  50% {
-    font-size: 35px;
-  }
-
-  100% {
-    font-size: 30px;
-  }
-}
-
-@keyframes fontbulger {
-  0% {
-    font-size: 30px;
-  }
-
-  50% {
-    font-size: 35px;
-  }
-
-  100% {
-    font-size: 30px;
-  }
-}
-
-.timer {
-  position: relative;
-}
-
-.minutes-set {
-  float: left;
-  margin-right: 28px;
-}
-
-.seconds-set {
-  float: right;
-}
-
-.display-remain-time {
-  font-family: 'Roboto';
-  font-weight: 100;
-  font-size: 30px;
-  color: #f71f10;
-  -webkit-animation: fontbulger 1s infinite;
-  animation: fontbulger 1s infinite;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  text-align: center;
-  position: absolute;
-  transform: translate(-50%, 0);
-  left: 50%;
-  top: 30px;
-}
-
-#pause {
-  outline: none;
-  background: transparent;
-  border: none;
-  margin-top: 10px;
-  width: 50px;
-  height: 50px;
-  position: relative;
-}
-
-.play::before {
-  display: block;
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-left: 22px solid #f71f10;
-}
-
-.pause::after {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 12px;
-  width: 15px;
-  height: 30px;
-  background-color: transparent;
-  border-radius: 1px;
-  border: 5px solid #f71f10;
-  border-top: none;
-  border-bottom: none;
-}
-
-#pause:hover {
-  opacity: 0.8;
-}
-
-.e-c-base {
-  fill: none;
-  stroke: #5949e9;
-  stroke-width: 4px;
-}
-
-.e-c-progress {
-  fill: none;
-  stroke: #f71f10;
-  stroke-width: 4px;
-  transition: stroke-dashoffset 0.7s;
-}
-
-.e-c-pointer {
-  fill: #fff;
-  stroke: #f71f10;
-  stroke-width: 2px;
-}
-
-#e-pointer {
-  transition: -webkit-transform 0.7s;
-  transition: transform 0.7s;
-  transition: transform 0.7s, -webkit-transform 0.7s;
-}
-
-svg.decrease {
-  width: 100px;
-  position: absolute;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  left: 50%;
-}
-
-section.fight-round {
-  height: 20vh;
-  width: 100%;
-  background-color: rgba(255, 0, 0, 0.8);
-  position: relative;
-}
-
-.fightPage_wrapper {
-  height: 100vh;
-}
-
-.atIcon {
-  margin-top: 10px;
-  width: 50px;
-  fill: #fff;
-}
-
-.chIcon {
-  fill: #000;
-}
-
-form.attack-defense {
-  display: flex;
-  margin-left: 5%;
-}
-
-ul.form-list {
-  list-style: none;
-  font-size: 16px;
-}
-
-.form-list li {
-  margin-bottom: 2px;
-  font-size: 18px;
-}
-
-h3.form-title {
-  margin-bottom: 10px;
-  font-size: 24px;
-}
-
-div.attack,
-div.defense {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  bottom: 10px;
-}
-
-div.attack {
-  left: 10%;
-}
-
-div.defense {
-  left: 40%;
-}
-
-button.punch-button {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  position: absolute;
-  right: 6%;
-  bottom: 16px;
-  font-size: 14px;
-  background-image: url("http://chittagongit.com/download/294339");
-  background-repeat: no-repeat;
-  background-size: 75px 75px;
-}
-
-.fightPage__container {
-  height: 80vh;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: bottom;
-}
-
-.computer-hero,
-.user-hero {
-  position: absolute;
-  bottom: 20%;
-  width: 17%;
-}
-
-.user-hero {
-  left: 10%;
-}
-
-.computer-hero {
-  right: 10%;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
-
 @font-face {
   font-family: 'Mortal';
   src: url("../fonts/mkx.ttf");
@@ -866,39 +708,6 @@ h2 {
     width: 250px;
     margin-top: 20px;
   }
-
-  .attack,
-  .defense {
-    position: relative;
-  }
-
-  .form-list li {
-    margin-bottom: 20px;
-    font-size: 22px;
-    margin-left: 6px;
-  }
-
-  button.punch-button {
-    width: 85px;
-    height: 85px;
-    font-size: 20px;
-  }
-
-  ul.form-list {
-    font-size: 23px;
-    display: flex;
-  }
-
-  h3.form-title {
-    font-size: 28px;
-    position: absolute;
-    left: 60px;
-    bottom: 62px;
-  }
-
-  button.punch-button {
-    background-size: 80px 80px;
-  }
 }
 
 @media (min-width: 1023px) {
@@ -922,36 +731,6 @@ h2 {
 
   .Enemy__Lives {
     height: 25px;
-  }
-}
-
-@media (min-width: 1024px) {
-  h3.form-title {
-    font-size: 40px;
-  }
-
-  button.punch-button {
-    width: 110px;
-    height: 110px;
-    font-size: 24px;
-  }
-
-  .form-list li {
-    margin-bottom: 20px;
-    font-size: 28px;
-    margin-left: 10px;
-  }
-
-  ul.form-list {
-    font-size: 28px;
-  }
-
-  h3.form-title {
-    font-size: 26px;
-  }
-
-  button.punch-button {
-    background-size: 105px 105px;
   }
 }
 
