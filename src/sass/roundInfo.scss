@@ -1,130 +1,140 @@
-section.fight-round {
+.fight-round {
     height: 20vh;
     width: 100%;
     background-color: rgba(256, 0, 0, 0.8);
     position: relative;
-}
-.fightPage_wrapper{
-    height: 100vh;
-}
-.atIcon{
-    margin-top: 10px;
-    width: 50px;
-    fill: #fff;
-}
-.chIcon{
-    fill: #000;
-}
 
-form.attack-defense {
-    display: flex;
-    margin-left: 5%;
-}
-
-ul.form-list {
-    list-style: none;
-    font-size: 16px;
-}
-.form-list li{
-    margin-bottom: 2px;
-    font-size: 18px;
-}
-
-h3.form-title {
-    margin-bottom: 10px;
-    font-size: 24px;
-}
-
-div.attack,
-div.defense {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    bottom: 10px;
-}
-div.attack{
-left: 10%;
-}
-div.defense{
-left: 40%;
-}
-
-button.punch-button {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    position: absolute;
-    right: 6%;
-    bottom: 16px;
-    font-size: 14px;
-    background-image: url('http://chittagongit.com/download/294339');
-    background-repeat: no-repeat;
-    background-size: 75px 75px;
-}
-
-@media(min-width: 768px) {
-    section.fight-round {
-    }
-    .attack,
-    .defense {
-        position: relative;
-    }
-    .form-list li{
-        margin-bottom: 20px;
-        font-size: 22px;
-        margin-left: 6px;
+    .fightPage_wrapper {
+        height: 100vh;
     }
 
-    button.punch-button {
-        width: 85px;
-        height: 85px;
-        font-size: 20px;
+    .atIcon {
+        fill: #ffffff;
+        width: 50px;
     }
 
-    ul.form-list {
-        font-size: 23px;
+    input{
+        display: none;
+    }
+
+    .chIcon {
+        fill: #000;
+        width: 50px;
+    }
+
+    form.attack-defense {
         display: flex;
+        margin-left: 5%;
     }
 
-    h3.form-title {
-        font-size: 28px;
+    .form-list {
+        list-style: none;
+        font-size: 16px;
         position: absolute;
-        left: 60px;
-        bottom: 62px;
+        bottom: -20px;
+        left: 20px;
     }
 
-    button.punch-button {
-        background-size: 80px 80px;
+    .form-list{
+        margin-bottom: 2px;
     }
 
-}
-
-@media(min-width: 1024px) {
-    section.fight-round {
-    }
     h3.form-title {
-        font-size: 40px;
-    }
-    button.punch-button {
-        width: 110px;
-        height: 110px;
+        margin-bottom: 10px;
         font-size: 24px;
     }
-    .form-list li{
-        margin-bottom: 20px;
-        font-size: 28px;
-        margin-left: 10px;
+
+    div.attack,
+    div.defense {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 10px;
     }
 
-    ul.form-list {
-        font-size: 28px;
+    div.attack {
+        left: 10%;
     }
 
-    h3.form-title {
-        font-size: 26px;
+    div.defense {
+        left: 40%;
     }
 
     button.punch-button {
-        background-size: 105px 105px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        position: absolute;
+        right: 6%;
+        bottom: 16px;
+        font-size: 14px;
+        background-image: url('http://chittagongit.com/download/294339');
+        background-repeat: no-repeat;
+        background-size: 75px 75px;
+    }
+
+    @media(min-width: 768px) {
+        .attack,
+        .defense {
+            position: relative;
+        }
+
+        .form-list{
+            margin-bottom: 20px;
+            margin-left: 6px;
+        }
+
+        button.punch-button {
+            width: 85px;
+            height: 85px;
+            font-size: 20px;
+        }
+
+        .form-list {
+            font-size: 23px;
+            display: flex;
+        }
+
+        h3.form-title {
+            font-size: 28px;
+            position: absolute;
+            left: 60px;
+            bottom: 62px;
+        }
+
+        button.punch-button {
+            background-size: 80px 80px;
+        }
+
+    }
+
+    @media(min-width: 1024px) {
+
+        h3.form-title {
+            font-size: 40px;
+        }
+
+        button.punch-button {
+            width: 110px;
+            height: 110px;
+            font-size: 24px;
+        }
+
+        .form-list{
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+
+        .form-list {
+            font-size: 28px;
+        }
+
+        h3.form-title {
+            font-size: 26px;
+        }
+
+        button.punch-button {
+            background-size: 105px 105px;
+        }
     }
 }

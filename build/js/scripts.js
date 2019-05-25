@@ -210,12 +210,25 @@ const punchBut = document.querySelector('.punch-button');
 let attack;
 let defense;
 let output;
+let atchecks = document.querySelectorAll('[name="attack"]');
+let defchecks = document.querySelectorAll('[name="defense"]');
 
 function fightFunc(e) {
   e.preventDefault();
+  atchecks.forEach(input => {
+    if (input.checked) {
+      input.nextElementSibling.classList.remove('chIcon');
+      input.nextElementSibling.classList.add('atIcon');
+    }
+  });
+  defchecks.forEach(input => {
+    if (input.checked) {
+      input.nextElementSibling.classList.remove('chIcon');
+      input.nextElementSibling.classList.add('atIcon');
+    }
+  });
   let attack = document.querySelector('[name="attack"]:checked').value;
   let defense = document.querySelector('[name="defense"]:checked').value;
-  attack.classList.add("chIcon");
 
   if (attack === null || defense === null) {
     output = 'MAKE A CHOISE';
@@ -229,8 +242,30 @@ function fightFunc(e) {
 }
 
 ;
+ADForm.addEventListener('click', () => {
+  // let checkat = document.querySelector('[name="attack"]:checked');
+  // checkat.nextElementSibling.classList.add('chIcon');
+  atchecks.forEach(input => {
+    if (input.checked) {
+      input.nextElementSibling.classList.add('chIcon');
+      input.nextElementSibling.classList.remove('atIcon');
+    } else {
+      input.nextElementSibling.classList.remove('chIcon');
+      input.nextElementSibling.classList.add('atIcon');
+    }
+  });
+  defchecks.forEach(input => {
+    if (input.checked) {
+      input.nextElementSibling.classList.add('chIcon');
+      input.nextElementSibling.classList.remove('atIcon');
+    } else {
+      input.nextElementSibling.classList.remove('chIcon');
+      input.nextElementSibling.classList.add('atIcon');
+    }
+  });
+});
 ADForm.addEventListener('submit', fightFunc);
-punchBut.addEventListener('click', resetTimer);
+punchBut.addEventListener('click', resetTimerBut);
 const heroes = [{
   "name": "redskull",
   "attack": 15,
@@ -568,17 +603,32 @@ function resetTimer() {
     clearInterval(intervalTimer);
     isPaused = isPaused ? false : true;
   }
-} // resetTimer()
-// let revTime = 5;
-// function revTimer(){
-// revTime--;
-// console.log(revTime);
-// if(revTime === 0){
-//   break;
-// }
-// }
-// setInterval(revTimer, 1000);
-// })();
+}
+
+function resetTimerBut() {
+  if (attack !== null && defense !== null) {
+    if (isStarted === false) {
+      timeLeft = 10;
+      remainTime = 10;
+      timer(wholeTime);
+      isStarted = true;
+      setterBtns.forEach(function (btn) {
+        btn.disabled = true;
+        btn.style.opacity = 0.5;
+      });
+    } else if (isPaused) {
+      timeLeft = 10;
+      remainTime = 10;
+      timer(timeLeft);
+      isPaused = isPaused ? false : true;
+    } else {
+      timeLeft = 10;
+      remainTime = 10;
+      clearInterval(intervalTimer);
+      isPaused = isPaused ? false : true;
+    }
+  }
+}
 //default action when time is over and user wasn't make a choose
 class DefaultAction {
   constructor(xp, attack) {
