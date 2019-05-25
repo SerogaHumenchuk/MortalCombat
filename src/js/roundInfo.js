@@ -36,6 +36,7 @@ function fightFunc(e) {
   }
 
   new RandomPart();
+  new FightLogic();
 
   console.log(output);
   ADForm.reset();
