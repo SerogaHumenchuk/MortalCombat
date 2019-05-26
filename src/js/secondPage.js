@@ -248,6 +248,7 @@ class ChangePageToFightPage {
   listener () {
     const $this = this;
     this.btn.addEventListener( 'click', this.change.bind($this) );
+    this.btn.addEventListener( 'click', resetTimer);
   }
 }
 

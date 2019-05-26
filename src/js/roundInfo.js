@@ -5,55 +5,33 @@ let attack;
 let defense;
 let output;
 let atchecks = document.querySelectorAll('[name="attack"]');
-      let defchecks = document.querySelectorAll('[name="defense"]');
+let defchecks = document.querySelectorAll('[name="defense"]');
+let checkerr = false;
 
 function fightFunc(e) {
   e.preventDefault();
-  atchecks.forEach(input => {
-    if (input.checked) {
-      input.nextElementSibling.classList.remove('chIcon');
-      input.nextElementSibling.classList.add('atIcon');
-    }
-  })
-  defchecks.forEach(input => {
-    if (input.checked) {
-      input.nextElementSibling.classList.remove('chIcon');
-      input.nextElementSibling.classList.add('atIcon');
-    } 
-  })
-  let attack = document.querySelector('[name="attack"]:checked').value;
-  let defense = document.querySelector('[name="defense"]:checked').value;
-  if (attack === null || defense === null) {
+  let attack = document.querySelector('[name="attack"]:checked');
+  let defense = document.querySelector('[name="defense"]:checked');
+  if (attack == null || defense == null) {
     output = 'MAKE A CHOISE';
-    console.log(output);
   } else {
-    output = `The varname hit Bot in ${attack} and protect ${defense}`;
+    output = `The varname hit Bot in ${attack.value} and protect ${defense.value}`;
+    resetTimer();
   }
+  document.querySelector('.output').textContent = '';
   console.log(output);
+  let i = 0;
+  if (!checkerr) {
+     const byLatId = setInterval(function () {
+      if (i < output.length) {
+        document.querySelector('.output').append(output[i]);
+        i++;
+      }
+    }, 40)
+    checker = true;
+    clearInterval(byLatId);
+  }
   ADForm.reset();
 };
-ADForm.addEventListener('click', () => {
-      // let checkat = document.querySelector('[name="attack"]:checked');
-      // checkat.nextElementSibling.classList.add('chIcon');
-      atchecks.forEach(input => {
-        if (input.checked) {
-            input.nextElementSibling.classList.add('chIcon');
-            input.nextElementSibling.classList.remove('atIcon');
-        }else{
-          input.nextElementSibling.classList.remove('chIcon');
-          input.nextElementSibling.classList.add('atIcon')
-        }
-      })
-      defchecks.forEach(input => {
-        if (input.checked) {
-            input.nextElementSibling.classList.add('chIcon');
-            input.nextElementSibling.classList.remove('atIcon');
-        }else{
-          input.nextElementSibling.classList.remove('chIcon');
-          input.nextElementSibling.classList.add('atIcon')
-        }
-      })
-    })
-      
-      ADForm.addEventListener('submit', fightFunc);
-      punchBut.addEventListener('click', resetTimerBut);
+ADForm.addEventListener('submit', fightFunc);
+// punchBut.addEventListener('click', resetTimerBut);
