@@ -1,29 +1,33 @@
+button {
+    outline: 0;
+}
+
 .fight-round {
-    font-family:'Mortal';
+    font-family: 'Mortal';
 
     .fightPage_wrapper {
         height: 100vh;
     }
 
-    .output{
+    .output {
         color: red;
         text-transform: uppercase;
         position: absolute;
         top: 150px;
-        transform: translate(-50%,0);
+        transform: translate(-50%, 0);
         left: 50%;
         font-size: 28px;
         text-align: center;
         max-width: 400px;
         transition: all 500ms ease-in-out;
-    } 
+    }
 
     .atIcon {
         fill: #ffffff;
         width: 30px;
         transition: all ease-in 200ms;
 
-        &:hover{
+        &:hover {
             fill: #ff0000;
             transition: all ease-in 200ms;
         }
@@ -32,7 +36,7 @@
     input {
         display: none;
 
-        &:checked ~ .atIcon{
+        &:checked~.atIcon {
             fill: #ff0000;
         }
     }
@@ -42,12 +46,14 @@
         width: 30px;
         transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
-    .form-attack-list{
+
+    .form-attack-list {
         position: fixed;
         left: 15px;
         bottom: 200px;
     }
-    .form-defense-list{
+
+    .form-defense-list {
         position: fixed;
         right: 15px;
         bottom: 200px;
@@ -73,10 +79,12 @@
         bottom: 302px;
         color: #ffffff;
     }
-    .attack-title{
+
+    .attack-title {
         left: 15px;
     }
-    .defense-title{
+
+    .defense-title {
         right: 15px;
     }
 
@@ -85,6 +93,7 @@
     }
 
     button.punch-button {
+        filter: invert(24%) sepia(98%) saturate(7365%) hue-rotate(359deg) brightness(96%) contrast(112%);
         width: 70px;
         height: 70px;
         border-radius: 50%;
@@ -93,7 +102,7 @@
         background-image: url('http://chittagongit.com/download/294339');
         background-repeat: no-repeat;
         background-size: 65px 65px;
-        transform: translate(-50%,0);
+        transform: translate(-50%, 0);
         left: 50%;
         bottom: 0;
         background-color: transparent;
@@ -101,7 +110,7 @@
     }
 
     @media(min-width: 768px) {
-        .output{
+        .output {
             font-size: 40px;
         }
 
@@ -109,7 +118,8 @@
             bottom: 125px;
         }
 
-        .atIcon, .chIcon{
+        .atIcon,
+        .chIcon {
             width: 50px;
         }
 

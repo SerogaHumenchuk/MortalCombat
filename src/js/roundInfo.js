@@ -4,6 +4,12 @@ const punchBut = document.querySelector('.punch-button');
 let attack, defense, output;
 let atchecks = document.querySelectorAll('[name="attack"]');
 let defchecks = document.querySelectorAll('[name="defense"]');
+let nickname = document.querySelector('.nick_name');
+let botname = document.querySelector('.bot_name');
+
+console.log(globalObj.computer.name);
+nickname.textContent = globalObj.user.name;
+botname.textContent = globalObj.computer.name;
 
 function fightFunc(e) {
   e.preventDefault();
@@ -67,3 +73,4 @@ function fightFunc(e) {
 ADForm.addEventListener('submit', fightFunc);
 // punchBut.addEventListener('click', resetTimerBut);
 //call resetTimer() when animation is ended
+ 

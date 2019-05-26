@@ -139,6 +139,7 @@ class ComputerRandomHero {
 
     if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
       globalObj.user.name = name.value;
+      nickname.textContent = name.value;
       changeFirstPageToSecondPage();
       stopClickFighterPlay();
       playClickFighterSelection();
@@ -280,6 +281,11 @@ const punchBut = document.querySelector('.punch-button');
 let attack, defense, output;
 let atchecks = document.querySelectorAll('[name="attack"]');
 let defchecks = document.querySelectorAll('[name="defense"]');
+let nickname = document.querySelector('.nick_name');
+let botname = document.querySelector('.bot_name');
+console.log(globalObj.computer.name);
+nickname.textContent = globalObj.user.name;
+botname.textContent = globalObj.computer.name;
 
 function fightFunc(e) {
   e.preventDefault();

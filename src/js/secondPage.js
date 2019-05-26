@@ -1,5 +1,4 @@
-const heroes = [
-  {
+const heroes = [{
     name: 'redskull',
     attack: 15,
     defence: 8,
@@ -53,8 +52,7 @@ const heroes = [
   }
 ];
 
-const fields = [
-  {
+const fields = [{
     name: 'boat',
     url: './images/arena/boat.gif'
   },
@@ -83,8 +81,8 @@ const fields = [
 class BuildHeroes {
   constructor(heroes) {
     (this.wrapper = document.querySelector('.fighters-section')),
-      (this.heroes = heroes),
-      this.build();
+    (this.heroes = heroes),
+    this.build();
   }
 
   build() {
@@ -112,8 +110,8 @@ class BuildHeroes {
 class BuildFields {
   constructor(fields) {
     (this.wrapper = document.querySelector('.fields-section')),
-      (this.fields = fields),
-      this.build();
+    (this.fields = fields),
+    this.build();
   }
 
   build() {
@@ -230,10 +228,10 @@ class SubmitAction {
 class ChangePageToFightPage {
   constructor() {
     (this.secondWrapper = document.querySelector('.secondPageWrapp')),
-      (this.thirdWrapper = document.querySelector('.thirdPageWrapp')),
-      (this.btn = document.querySelector('.secondPage__submit')),
-      (this.gifPage = document.querySelector('.gifPage')),
-      this.listener();
+    (this.thirdWrapper = document.querySelector('.thirdPageWrapp')),
+    (this.btn = document.querySelector('.secondPage__submit')),
+    (this.gifPage = document.querySelector('.gifPage')),
+    this.listener();
   }
 
   change() {
@@ -250,17 +248,17 @@ class ChangePageToFightPage {
 
   listener() {
     const $this = this;
-    this.btn.addEventListener( 'click', this.change.bind($this) );
-    this.btn.addEventListener( 'click', resetGif);
-    this.btn.addEventListener( 'click', resetGif);
+    this.btn.addEventListener('click', this.change.bind($this));
+    this.btn.addEventListener('click', resetGif);
+    this.btn.addEventListener('click', resetGif);
   }
 }
 
 class ClickSound {
   constructor() {
     (this.fighterSection = document.querySelector('.fighters-section')),
-      (this.fieldSection = document.querySelector('.fields-section')),
-      this.listeners();
+    (this.fieldSection = document.querySelector('.fields-section')),
+    this.listeners();
   }
 
   click(e) {
@@ -280,11 +278,11 @@ class ClickSound {
 class ReturnInfoCard {
   constructor() {
     (this.labelsWrapper = document.querySelector('.fighters-section')),
-      (this.hero_name = document.querySelector('.hero__name')),
-      (this.hero_url = document.querySelector('.hero__img')),
-      (this.hero_attack = document.querySelector('.hero__attack')),
-      (this.hero_Defence = document.querySelector('.hero__defence')),
-      (this.obj = null);
+    (this.hero_name = document.querySelector('.hero__name')),
+    (this.hero_url = document.querySelector('.hero__img')),
+    (this.hero_attack = document.querySelector('.hero__attack')),
+    (this.hero_Defence = document.querySelector('.hero__defence')),
+    (this.obj = null);
 
     this.listeners();
   }
