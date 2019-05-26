@@ -1,5 +1,5 @@
 .firstPage__wrapper {
-  background: url('../images/arena/firstPageBG.gif');
+  background: url('../images/start-bg.gif');
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -42,7 +42,7 @@
     margin: 0 auto;
     outline: 0;
 
-    &::placeholder{
+    &::placeholder {
       font-family: Mortal, sans-serif;
     }
   }
