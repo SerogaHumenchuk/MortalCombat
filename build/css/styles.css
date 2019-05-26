@@ -452,8 +452,9 @@ template {
   font-size: 20px;
   border: none;
   border-radius: 4px;
-  margin: 20px;
   padding: 15px 25px;
+  position: absolute;
+  margin-left: 30px;
 }
 
 .secondPage__container {
@@ -464,55 +465,40 @@ template {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url("../images/bc_im_2nd_page.png");
+  background: url("../images/arena/main.gif");
   background-size: cover;
-}
-
-.secondPage__container .random-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10%;
-  max-width: 120px;
-  height: 120px;
-  border: 3px solid #f00;
-  border-radius: 10px;
-  transition: all ease-in-out 200ms;
-  background-color: #333;
-}
-
-.secondPage__container .random-btn img {
-  max-width: 50px;
 }
 
 .secondPage__container .fighters-section {
   display: flex;
-  justify-content: space-evenly;
-  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 40%;
+  height: 700px;
+  position: relative;
 }
 
 .secondPage__container .fighters-section .fighter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15%;
-  min-width: 100px;
-  height: 120px;
+  min-width: 230px;
+  height: 230px;
   border: 3px solid #f00;
   border-radius: 10px;
   transition: all ease-in-out 200ms;
   background: url("../images/arena/main.gif") 30% bottom;
+  margin: 10px;
 }
 
 .secondPage__container .fighters-section .fighter:hover {
   border-color: #a00;
 }
 
-.secondPage__container input[type="radio"] {
+.secondPage__container input[type='radio'] {
   display: none;
 }
 
-.secondPage__container input[type="radio"]:checked {
+.secondPage__container input[type='radio']:checked {
   display: flex;
 }
 
@@ -524,8 +510,10 @@ template {
 
 .secondPage__container .fields-section {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  width: 90%;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 6vh;
 }
 
 .secondPage__container .fields-section .field {
@@ -555,15 +543,102 @@ template {
 }
 
 .secondPage__container .fields-section .field__train {
+  order: 1;
   background-image: url("../images/arena/train.gif");
 }
 
 .secondPage__container .fields-section .field__waterfall {
+  order: 2;
   background-image: url("../images/arena/waterfall.gif");
 }
 
 .secondPage__container .fields-section .field__wind {
+  order: 3;
   background-image: url("../images/arena/wind.gif");
+}
+
+.sub__container {
+  background-color: blue;
+}
+
+.fighter__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+
+.fighter__card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 55%;
+  height: 450px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.card__info {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero__name {
+  font-size: 80px;
+  color: #eeeeee;
+  letter-spacing: 5px;
+}
+
+.hero__attack {
+  font-size: 40px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: red;
+}
+
+.hero__img {
+  height: 100%;
+}
+
+.hero__defence {
+  font-size: 40px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: red;
+}
+
+.fighters-section > .random-btn {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -60px;
+  margin-top: -60px;
+}
+
+.random-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  max-width: 120px;
+  height: 120px;
+  border: 3px solid #f00;
+  border-radius: 10px;
+  transition: all ease-in-out 200ms;
+  background-color: #333;
+}
+
+.random-btn img {
+  max-width: 50px;
 }
 
 * {

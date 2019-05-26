@@ -268,72 +268,72 @@ ADForm.addEventListener('click', () => {
 ADForm.addEventListener('submit', fightFunc);
 punchBut.addEventListener('click', resetTimerBut);
 const heroes = [{
-  "name": "redskull",
-  "attack": 15,
-  "defence": 8,
-  "url": "./images/hero/redskull/user-redskull",
-  "standURL": ".gif",
-  "walkURL": "_walk.gif",
-  "runURL": "_run.gif",
-  "attackURL": "_attack.gif",
-  "blockURL": "_block.gif",
-  "hitURL": "_hit.gif",
-  "dieURL": "_die.gif"
+  name: 'redskull',
+  attack: 15,
+  defence: 8,
+  url: './images/hero/redskull/user-redskull',
+  standURL: '.gif',
+  walkURL: '_walk.gif',
+  runURL: '_run.gif',
+  attackURL: '_attack.gif',
+  blockURL: '_block.gif',
+  hitURL: '_hit.gif',
+  dieURL: '_die.gif'
 }, {
-  "name": "colossus",
-  "attack": 13,
-  "defence": 10,
-  "url": "./images/hero/colossus/user-colossus",
-  "standURL": ".gif",
-  "walkURL": "_walk.gif",
-  "runURL": "_run.gif",
-  "attackURL": "_attack.gif",
-  "blockURL": "_block.gif",
-  "hitURL": "_hit.gif",
-  "dieURL": "_die.gif"
+  name: 'colossus',
+  attack: 13,
+  defence: 10,
+  url: './images/hero/colossus/user-colossus',
+  standURL: '.gif',
+  walkURL: '_walk.gif',
+  runURL: '_run.gif',
+  attackURL: '_attack.gif',
+  blockURL: '_block.gif',
+  hitURL: '_hit.gif',
+  dieURL: '_die.gif'
 }, {
-  "name": "mystique",
-  "attack": 10,
-  "defence": 13,
-  "url": "./images/hero/mystique/user-mystique",
-  "standURL": ".gif",
-  "walkURL": "_walk.gif",
-  "runURL": "_run.gif",
-  "attackURL": "_attack.gif",
-  "blockURL": "_block.gif",
-  "hitURL": "_hit.gif",
-  "dieURL": "_die.gif"
+  name: 'mystique',
+  attack: 10,
+  defence: 13,
+  url: './images/hero/mystique/user-mystique',
+  standURL: '.gif',
+  walkURL: '_walk.gif',
+  runURL: '_run.gif',
+  attackURL: '_attack.gif',
+  blockURL: '_block.gif',
+  hitURL: '_hit.gif',
+  dieURL: '_die.gif'
 }, {
-  "name": "starlord",
-  "attack": 9,
-  "defence": 14,
-  "url": "./images/hero/starlord/user-starlord",
-  "standURL": ".gif",
-  "walkURL": "_walk.gif",
-  "runURL": "_run.gif",
-  "attackURL": "_attack.gif",
-  "blockURL": "_block.gif",
-  "hitURL": "_block.gif",
-  "dieURL": "_die.gif"
+  name: 'starlord',
+  attack: 9,
+  defence: 14,
+  url: './images/hero/starlord/user-starlord',
+  standURL: '.gif',
+  walkURL: '_walk.gif',
+  runURL: '_run.gif',
+  attackURL: '_attack.gif',
+  blockURL: '_block.gif',
+  hitURL: '_block.gif',
+  dieURL: '_die.gif'
 }];
 const fields = [{
-  "name": "boat",
-  "url": "./images/arena/boat.gif"
+  name: 'boat',
+  url: './images/arena/boat.gif'
 }, {
-  "name": "light",
-  "url": "./images/arena/light.gif"
+  name: 'light',
+  url: './images/arena/light.gif'
 }, {
-  "name": "main",
-  "url": "./images/arena/main.gif"
+  name: 'main',
+  url: './images/arena/main.gif'
 }, {
-  "name": "train",
-  "url": "./images/arena/train.gif"
+  name: 'train',
+  url: './images/arena/train.gif'
 }, {
-  "name": "waterfall",
-  "url": "./images/arena/waterfall.gif"
+  name: 'waterfall',
+  url: './images/arena/waterfall.gif'
 }, {
-  "name": "wind",
-  "url": "./images/arena/wind.gif"
+  name: 'wind',
+  url: './images/arena/wind.gif'
 }];
 
 class BuildHeroes {
@@ -512,6 +512,37 @@ class ClickSound {
 
 }
 
+class ReturnInfoCard {
+  constructor() {
+    this.labelsWrapper = document.querySelector('.fighters-section'), this.hero_name = document.querySelector('.hero__name'), this.hero_url = document.querySelector('.hero__img'), this.hero_attack = document.querySelector('.hero__attack'), this.hero_Defence = document.querySelector('.hero__defence'), this.obj = null;
+    this.listeners();
+  }
+
+  listeners() {
+    const $this = this;
+    this.labelsWrapper.addEventListener('click', this.returnObj.bind($this));
+  }
+
+  returnObj(e) {
+    if (e.target.nodeName === 'IMG') {
+      let imgAlt = e.target.getAttribute('alt');
+      const obj = heroes.find(hero => hero.name === imgAlt);
+      this.obj = obj;
+      this.show();
+    }
+  }
+
+  show() {
+    if (this.obj) {
+      this.hero_name.textContent = this.obj.name;
+      this.hero_url.setAttribute('src', `${this.obj.url}_run.gif`);
+      this.hero_attack.textContent = 'Attack: ' + this.obj.attack;
+      this.hero_Defence.textContent = 'Defence: ' + this.obj.defence;
+    }
+  }
+
+}
+
 new BuildHeroes(heroes);
 new BuildFields(fields);
 new BuildRandomBtn(document.querySelector('.fighters-section'), 'hero');
@@ -519,6 +550,7 @@ new BuildRandomBtn(document.querySelector('.fields-section'), 'field');
 new SubmitAction(document.querySelector('.secondPage__submit'));
 new ClickSound();
 new ChangePageToFightPage();
+new ReturnInfoCard();
 // (function(){
 let progressBar = document.querySelector('.e-c-progress'); // let indicator = document.getElementById('e-indicator');
 
