@@ -464,55 +464,39 @@ template {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url("../images/bc_im_2nd_page.png");
+  background: url("../images/arena/main.gif");
   background-size: cover;
-}
-
-.secondPage__container .random-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10%;
-  max-width: 120px;
-  height: 120px;
-  border: 3px solid #f00;
-  border-radius: 10px;
-  transition: all ease-in-out 200ms;
-  background-color: #333;
-}
-
-.secondPage__container .random-btn img {
-  max-width: 50px;
 }
 
 .secondPage__container .fighters-section {
   display: flex;
-  justify-content: space-evenly;
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 40%;
+  height: 700px;
+  position: relative;
 }
 
 .secondPage__container .fighters-section .fighter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15%;
-  min-width: 100px;
-  height: 120px;
+  min-width: 230px;
+  height: 230px;
   border: 3px solid #f00;
   border-radius: 10px;
   transition: all ease-in-out 200ms;
   background: url("../images/arena/main.gif") 30% bottom;
+  margin: 10px;
 }
 
 .secondPage__container .fighters-section .fighter:hover {
   border-color: #a00;
 }
 
-.secondPage__container input[type="radio"] {
+.secondPage__container input[type='radio'] {
   display: none;
 }
 
-.secondPage__container input[type="radio"]:checked {
+.secondPage__container input[type='radio']:checked {
   display: flex;
 }
 
@@ -524,8 +508,10 @@ template {
 
 .secondPage__container .fields-section {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  width: 90%;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 6vh;
 }
 
 .secondPage__container .fields-section .field {
@@ -555,15 +541,95 @@ template {
 }
 
 .secondPage__container .fields-section .field__train {
+  order: 1;
   background-image: url("../images/arena/train.gif");
 }
 
 .secondPage__container .fields-section .field__waterfall {
+  order: 2;
   background-image: url("../images/arena/waterfall.gif");
 }
 
 .secondPage__container .fields-section .field__wind {
+  order: 3;
   background-image: url("../images/arena/wind.gif");
+}
+
+.fighter__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+
+.fighter__card {
+  width: 55%;
+  height: 450px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 25px;
+}
+
+.hero__name {
+  text-align: center;
+  font-size: 70px;
+  color: #eeeeee;
+  letter-spacing: 3px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.hero__attack {
+  font-size: 30px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 10px;
+}
+
+.hero__img {
+  -webkit-transform: scale(2);
+  transform: scale(2);
+}
+
+.hero__defence {
+  font-size: 30px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 10px;
+}
+
+.fighters-section > .random-btn {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -60px;
+  margin-top: -60px;
+}
+
+.random-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  max-width: 120px;
+  height: 120px;
+  border: 3px solid #f00;
+  border-radius: 10px;
+  transition: all ease-in-out 200ms;
+  background-color: #333;
+}
+
+.random-btn img {
+  max-width: 50px;
 }
 
 * {
@@ -744,28 +810,62 @@ svg.decrease {
 }
 
 .fight-round {
-  height: 20vh;
-  width: 100%;
-  background-color: rgba(255, 0, 0, 0.8);
-  position: relative;
+  font-family: 'Mortal';
 }
 
 .fight-round .fightPage_wrapper {
   height: 100vh;
 }
 
+.fight-round .output {
+  color: red;
+  text-transform: uppercase;
+  position: absolute;
+  top: 150px;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  left: 50%;
+  font-size: 28px;
+  text-align: center;
+  max-width: 400px;
+  transition: all 500ms ease-in-out;
+}
+
 .fight-round .atIcon {
   fill: #ffffff;
-  width: 50px;
+  width: 30px;
+  transition: all ease-in 200ms;
+}
+
+.fight-round .atIcon:hover {
+  fill: #000;
+  transition: all ease-in 200ms;
 }
 
 .fight-round input {
   display: none;
 }
 
+.fight-round input:checked ~ .atIcon {
+  fill: #ff0000;
+}
+
 .fight-round .chIcon {
   fill: #000;
-  width: 50px;
+  width: 30px;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.fight-round .form-attack-list {
+  position: fixed;
+  left: 15px;
+  bottom: 200px;
+}
+
+.fight-round .form-defense-list {
+  position: fixed;
+  right: 15px;
+  bottom: 200px;
 }
 
 .fight-round form.attack-defense {
@@ -774,32 +874,27 @@ svg.decrease {
 }
 
 .fight-round .form-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   list-style: none;
   font-size: 16px;
   position: absolute;
-  bottom: -20px;
-  left: 20px;
-}
-
-.fight-round .form-list {
-  margin-bottom: 2px;
 }
 
 .fight-round h3.form-title {
-  margin-bottom: 10px;
   font-size: 24px;
+  position: fixed;
+  bottom: 302px;
+  color: #ffffff;
 }
 
-.fight-round div.attack,
-.fight-round div.defense {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  bottom: 10px;
+.fight-round .attack-title {
+  left: 15px;
 }
 
-.fight-round div.attack {
-  left: 10%;
+.fight-round .defense-title {
+  right: 15px;
 }
 
 .fight-round div.defense {
@@ -807,20 +902,25 @@ svg.decrease {
 }
 
 .fight-round button.punch-button {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  position: absolute;
-  right: 6%;
-  bottom: 16px;
   font-size: 14px;
+  position: absolute;
   background-image: url("http://chittagongit.com/download/294339");
   background-repeat: no-repeat;
-  background-size: 75px 75px;
+  background-size: 65px 65px;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  left: 50%;
+  bottom: 0;
+  background-color: transparent;
+  border: none;
 }
 
 .fightPage__container {
-  height: 80vh;
+  height: 100vh;
+  box-shadow: inset 0px 56px 133px 38px rgba(0, 0, 0, 0.69);
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: center;
@@ -830,7 +930,7 @@ svg.decrease {
 .computer-hero,
 .user-hero {
   position: absolute;
-  bottom: 20%;
+  bottom: 11%;
   width: 17%;
 }
 
@@ -842,6 +942,15 @@ svg.decrease {
   right: 10%;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+}
+
+.giphy {
+  background-image: url("../images/reverse.gif");
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 @font-face {
@@ -873,19 +982,22 @@ h2 {
     margin-top: 20px;
   }
 
-  .fight-round .attack,
-  .fight-round .defense {
-    position: relative;
+  .fight-round .output {
+    font-size: 40px;
   }
 
   .fight-round .form-list {
-    margin-bottom: 20px;
-    margin-left: 6px;
+    bottom: 125px;
+  }
+
+  .fight-round .atIcon,
+  .fight-round .chIcon {
+    width: 50px;
   }
 
   .fight-round button.punch-button {
-    width: 85px;
-    height: 85px;
+    width: 75px;
+    height: 75px;
     font-size: 20px;
   }
 
@@ -896,13 +1008,10 @@ h2 {
 
   .fight-round h3.form-title {
     font-size: 28px;
-    position: absolute;
-    left: 60px;
-    bottom: 62px;
   }
 
   .fight-round button.punch-button {
-    background-size: 80px 80px;
+    background-size: 70px 70px;
   }
 }
 
@@ -936,26 +1045,17 @@ h2 {
   }
 
   .fight-round button.punch-button {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     font-size: 24px;
-  }
-
-  .fight-round .form-list {
-    margin-bottom: 20px;
-    margin-left: 10px;
   }
 
   .fight-round .form-list {
     font-size: 28px;
   }
 
-  .fight-round h3.form-title {
-    font-size: 26px;
-  }
-
   .fight-round button.punch-button {
-    background-size: 95px 95px;
+    background-size: 75px 75px;
   }
 }
 

@@ -4,7 +4,6 @@ const punchBut = document.querySelector('.punch-button');
 let attack, defense, output;
 let atchecks = document.querySelectorAll('[name="attack"]');
 let defchecks = document.querySelectorAll('[name="defense"]');
-let checkerr = false;
 
 function fightFunc(e) {
   e.preventDefault();
@@ -14,6 +13,7 @@ function fightFunc(e) {
     output = 'MAKE A CHOISE';
   } else {
     output = `You hit ${globalObj.computer.name} in ${attack} and protect your ${defense}`;
+    resetTimer();
   }
 
   new RandomPart();
@@ -21,17 +21,19 @@ function fightFunc(e) {
 
   console.log(output);
   let i = 0;
-  if (!checkerr) {
      const byLatId = setInterval(function () {
       if (i < output.length) {
         document.querySelector('.output').append(output[i]);
         i++;
       }
     }, 40)
-    checker = true;
     clearInterval(byLatId);
   }
   ADForm.reset();
-};
 ADForm.addEventListener('submit', fightFunc);
+
+function gifFunc(){
+  
+}
 // punchBut.addEventListener('click', resetTimerBut);
+//call resetTimer() when animation is ended
