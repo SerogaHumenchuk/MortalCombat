@@ -48,3 +48,40 @@ class DefaultStart {
     this.wrapper.append(img);
   }
 };
+
+class FightAnimation{
+  constructor () {
+    this.userHero = document.querySelector('img.user-hero'), 
+    this.computerHero = document.querySelector('img.computer-hero');
+  }
+
+  runUser () {
+    let left = 9;
+    this.userHero.setAttribute ( 'src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}` );
+
+    const intervalUser = setInterval( () => this.userHero.style.left = `${left += 0.4}%`, 1000/60 );
+
+    setTimeout( () => clearInterval(intervalUser), 1188 );
+  }
+
+  runComputer () {
+    let right = 9;
+    this.computerHero.setAttribute ( 'src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}` );
+
+    const intervalComputer = setInterval( () => this.computerHero.style.right = `${right += 0.4}%`, 1000/60 );
+
+    setTimeout( () => clearInterval(intervalComputer), 1188 );
+  }
+
+  attackUser () {
+    setTimeout( () => this.userHero.setAttribute( 'src', `${globalObj.user.obj.url}${globalObj.user.obj.attackURL}`), 1188 );
+  }
+
+  attackComputer () {
+    setTimeout( () => this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.attackURL}`), 1188 );
+  }
+
+  runBack () {
+    
+  }
+}

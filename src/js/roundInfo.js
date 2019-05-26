@@ -36,9 +36,21 @@ function fightFunc(e) {
   }
 
   new RandomPart();
-  new FightLogic();
+  const fight = new FightLogic();
+  const fightAnim = new FightAnimation();
+  fightAnim.runUser();
+  fightAnim.runComputer();
+  fightAnim.attackUser();
+  fightAnim.attackComputer();
+  // fightAnim.runBack();
 
-  console.log(output);
+  fight.healthUserLogic();
+  fight.healthComputerLogic();
+
+
+  heroLifeBar.changeHP( globalObj.lifeUser );
+  enemyLifeBar.changeHP( globalObj.lifeComputer );
+
   ADForm.reset();
 }
 ADForm.addEventListener('click', () => {

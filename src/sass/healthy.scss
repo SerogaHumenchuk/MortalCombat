@@ -34,10 +34,12 @@
   .My__Lives {
     width: 100%;
     height: 15px;
+    transition: all ease-in 200ms;
   }
   .Enemy__Lives {
     width: 100%;
     height: 15px;
+    transition: all ease-in 200ms;
 }
 @media(min-width:768px){
 .EnemyHealthy__Bar {
@@ -54,13 +56,13 @@
     width: 350px;
     height: 31px;
     margin-top: 30px;
-    border: 4px solid black;
+    border: 2px solid black;
 }
 .MyHealthy__Bar {
     width: 350px;
     height: 31px;
     margin-top: 30px;
-    border: 4px solid black;
+    border: 2px solid black;
 }
 .My__Lives {
     height: 25px;
@@ -74,14 +76,14 @@
         width: 400px;
         height: 31px;
         margin-top: 30px;
-        border: 4px solid black;
-    }
+        border: 2px solid black;
+      }
     .MyHealthy__Bar {
         width: 400px;
         height: 31px;
         margin-top: 30px;
-        border: 4px solid black;
-    }
+        border: 2px solid black;
+      }
     .My__Lives {
         height: 25px;
     }
