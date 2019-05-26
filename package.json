@@ -9,7 +9,9 @@
     "build": "gulp build",
     "sprite": "gulp sprite",
     "images": "gulp images",
-    "sound": "gulp sound"
+    "sound": "gulp sound",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -20,13 +22,14 @@
   "bugs": {
     "url": "https://github.com/axZerk/gulp-starter-kit/issues"
   },
-  "homepage": "https://github.com/axZerk/gulp-starter-kit#readme",
+  "homepage": "http://SerogaHumenchuk.github.io/MortalCombat",
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "autoprefixer": "^9.5.0",
     "browser-sync": "^2.26.3",
     "del": "^4.0.0",
+    "gh-pages": "^2.0.1",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
