@@ -50,29 +50,61 @@ class FightAnimation {
     this.userHero = document.querySelector('img.user-hero'), this.computerHero = document.querySelector('img.computer-hero');
   }
 
+  dieUser() {
+    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.dieURL}`);
+  }
+
+  dieComputer() {
+    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.dieURL}`);
+  }
+
   runUser() {
     let left = 9;
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
     const intervalUser = setInterval(() => this.userHero.style.left = `${left += 0.4}%`, 1000 / 60);
-    setTimeout(() => clearInterval(intervalUser), 1188);
+    setTimeout(() => clearInterval(intervalUser), 1280);
   }
 
   runComputer() {
     let right = 9;
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
     const intervalComputer = setInterval(() => this.computerHero.style.right = `${right += 0.4}%`, 1000 / 60);
-    setTimeout(() => clearInterval(intervalComputer), 1188);
+    setTimeout(() => clearInterval(intervalComputer), 1280);
   }
 
   attackUser() {
-    setTimeout(() => this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.attackURL}`), 1188);
+    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.attackURL}`);
   }
 
   attackComputer() {
-    setTimeout(() => this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.attackURL}`), 1188);
+    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.attackURL}`);
   }
 
-  runBack() {}
+  runBackUser() {
+    let left = parseFloat(this.userHero.style.left);
+    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
+    this.userHero.style.transform = 'scaleX(-1)';
+    const runBackInterval = setInterval(() => {
+      this.userHero.style.left = `${left -= 0.4}%`;
+    }, 1000 / 60);
+    setTimeout(() => {
+      clearInterval(runBackInterval);
+      this.userHero.style.transform = 'scaleX(1)';
+    }, 1280);
+  }
+
+  runBackComputer() {
+    let right = parseFloat(this.computerHero.style.right);
+    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
+    this.computerHero.style.transform = 'scaleX(1)';
+    const runBackInterval = setInterval(() => {
+      this.computerHero.style.right = `${right -= 0.4}%`;
+    }, 1000 / 60);
+    setTimeout(() => {
+      clearInterval(runBackInterval);
+      this.computerHero.style.transform = 'scaleX(-1)';
+    }, 1280);
+  }
 
 }
 class ComputerRandomHero {
@@ -248,7 +280,6 @@ const punchBut = document.querySelector('.punch-button');
 let attack, defense, output;
 let atchecks = document.querySelectorAll('[name="attack"]');
 let defchecks = document.querySelectorAll('[name="defense"]');
-let checkerr = false;
 
 function fightFunc(e) {
   e.preventDefault();
@@ -266,19 +297,37 @@ function fightFunc(e) {
   defense = null;
   new RandomPart();
   const fight = new FightLogic();
-  const fightAnim = new FightAnimation();
-  fightAnim.runUser();
-  fightAnim.runComputer();
-  fightAnim.attackUser();
-  fightAnim.attackComputer(); // fightAnim.runBack();
+  const fightAnimation = new FightAnimation();
+  fightAnimation.runUser();
+  fightAnimation.runComputer();
+  const timerAttack = setTimeout(() => {
+    fightAnimation.attackUser();
+    fightAnimation.attackComputer();
+  }, 1280);
+  const timerRunBack = setTimeout(() => {
+    if (globalObj.lifeUser <= 0) {
+      fightAnimation.dieUser();
+    } else {
+      fightAnimation.runBackUser();
+    }
+
+    if (globalObj.lifeComputer <= 0) {
+      fightAnimation.dieComputer();
+    } else {
+      fightAnimation.runBackComputer();
+    }
+  }, 1840); // fightAnim.runBack();
 
   fight.healthUserLogic();
   fight.healthComputerLogic();
-  heroLifeBar.changeHP(globalObj.lifeUser);
-  enemyLifeBar.changeHP(globalObj.lifeComputer);
+  setTimeout(() => {
+    heroLifeBar.changeHP(globalObj.lifeUser);
+    enemyLifeBar.changeHP(globalObj.lifeComputer);
+  }, 1300);
+  console.log(output);
+  new FightLogic();
   console.log(output);
   let i = 0;
-<<<<<<< HEAD
   const byLatId = setInterval(function () {
     if (i < output.length) {
       document.querySelector('.output').append(output[i]);
@@ -294,25 +343,6 @@ ADForm.addEventListener('submit', fightFunc);
 
 function gifFunc() {} // punchBut.addEventListener('click', resetTimerBut);
 //call resetTimer() when animation is ended
-=======
-
-  if (!checkerr) {
-    const byLatId = setInterval(function () {
-      if (i < output.length) {
-        document.querySelector('.output').append(output[i]);
-        i++;
-      }
-    }, 40);
-    checker = true;
-    clearInterval(byLatId);
-  }
-
-  ADForm.reset();
-}
-
-;
-ADForm.addEventListener('submit', fightFunc); // punchBut.addEventListener('click', resetTimerBut);
->>>>>>> liteChange
 const heroes = [{
   name: 'redskull',
   attack: 15,
@@ -541,12 +571,8 @@ class ChangePageToFightPage {
   listener() {
     const $this = this;
     this.btn.addEventListener('click', this.change.bind($this));
-<<<<<<< HEAD
     this.btn.addEventListener('click', gifFunc);
     this.btn.addEventListener('click', resetGif);
-=======
-    this.btn.addEventListener('click', resetTimer);
->>>>>>> liteChange
   }
 
 }
