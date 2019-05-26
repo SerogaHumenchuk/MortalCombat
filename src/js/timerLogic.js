@@ -88,3 +88,26 @@ function resetTimer() {
     isPaused = isPaused ? false : true;
   }
 }
+function resetTimerBut() {
+  if (attack !== null && defense !== null){
+  if (isStarted === false) {
+    timeLeft = 10;
+    remainTime = 10;
+    timer(wholeTime);
+    isStarted = true;
+    setterBtns.forEach(function (btn) {
+      btn.disabled = true;
+      btn.style.opacity = 0.5;
+    });
+  } else if (isPaused) {
+    timeLeft = 10;
+    remainTime = 10;
+    timer(timeLeft);
+    isPaused = isPaused ? false : true;
+  } else {
+    timeLeft = 10;
+    remainTime = 10;
+    clearInterval(intervalTimer);
+    isPaused = isPaused ? false : true;
+  }}
+}

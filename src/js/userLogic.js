@@ -14,27 +14,51 @@ class RandomPart {
 }
 
 class FightLogic {
-  constructor () {}
+  constructor () {
+    this.obj = globalObj,
+    this.userAttack = this.obj.user.attack,
+    this.userDefence = this.obj.user.defence,
+    this.userHealth = this.obj.lifeUser,
+    this.userAttackPart = this.obj.user.attackPart,
+    this.userDefencePart = this.obj.user.defencePart,
+    this.computerAttack = this.obj.computer.attack,
+    this.computerDefence = this.obj.computer.defence,
+    this.computerHealth = this.obj.lifeComputer,
+    this.computerAttackPart = this.obj.computer.attackPart,
+    this.computerDefencePart = this.obj.computer.defencePart;
+  }
 
   healthUserLogic () {
-    if ( globalObj.user.defencePart !== globalObj.computer.attackPart ) {
-      globalObj.lifeUser -= globalObj.computer.attack;
-    } else if ( globalObj.user.defencePart === globalObj.computer.attackPart ) {
-      const damage = globalObj.user.defence - globalObj.computer.attack;
+    if ( this.userDefencePart !== this.computerAttackPart ) {
+      this.userHealth -= this.computerAttack;
+    } else if ( this.userDefencePart === this.computerAttackPart ) {
+      const damage = this.userDefence - this.computerAttack;
 
-      if (damage > 0) globalObj.lifeUser -= damage;
+      if (damage > 0) this.userHealth -= damage;
     }
   }
 
-  healthComputerLogic () {
-    if ( globalObj.computer.defencePart !== globalObj.user.attackPart ) {
-      globalObj.lifeComputer -= globalObj.user.attack;
-    } else if ( globalObj.user.defencePart === globalObj.computer.attackPart ) {
-      const damage = globalObj.computer.defence - globalObj.user.attack;
+  healthUserLogic () {
+    if ( this.computerDefencePart !== this.userAttackPart ) {
+      this.computerHealth -= this.userAttack;
+    } else if ( this.userDefencePart === this.computerAttackPart ) {
+      const damage = this.computerDefence - this.userAttack;
 
-      if (damage > 0) globalObj.lifeComputer -= damage;
+      if (damage > 0) this.userHealth -= damage;
     }
   }
+}
+
+new FightLogic();
+//user makes damage to computer
+class userHit {
+  constructor (xp, attack) { 
+    this.attack = attack,
+    this.computerXP = xp, 
+    this.damage();
+  }
+
+  damage () {return this.computerXP = this.computerXP - this.attack};
 }
 
 //return alert when user wasn't make a choose

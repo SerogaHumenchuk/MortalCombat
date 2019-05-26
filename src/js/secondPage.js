@@ -10,7 +10,7 @@ const heroes = [
     attackURL: '_attack.gif',
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
-    dieURL: '_die.gif',
+    dieURL: '_die.gif'
   },
   {
     name: 'colossus',
@@ -23,12 +23,12 @@ const heroes = [
     attackURL: '_attack.gif',
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
-    dieURL: '_die.gif',
+    dieURL: '_die.gif'
   },
   {
     name: 'mystique',
-    attack: 10,
-    defence: 13,
+    attack: 12,
+    defence: 11,
     url: './images/hero/mystique/user-mystique',
     standURL: '.gif',
     walkURL: '_walk.gif',
@@ -36,12 +36,12 @@ const heroes = [
     attackURL: '_attack.gif',
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
-    dieURL: '_die.gif',
+    dieURL: '_die.gif'
   },
   {
     name: 'starlord',
-    attack: 9,
-    defence: 14,
+    attack: 14,
+    defence: 9,
     url: './images/hero/starlord/user-starlord',
     standURL: '.gif',
     walkURL: '_walk.gif',
@@ -49,35 +49,36 @@ const heroes = [
     attackURL: '_attack.gif',
     blockURL: '_block.gif',
     hitURL: '_block.gif',
-    dieURL: '_die.gif',
-  },
+    dieURL: '_die.gif'
+  }
+  
 ];
 
 const fields = [
   {
     name: 'boat',
-    url: './images/arena/boat.gif',
+    url: './images/arena/boat.gif'
   },
   {
     name: 'light',
-    url: './images/arena/light.gif',
+    url: './images/arena/light.gif'
   },
   {
     name: 'main',
-    url: './images/arena/main.gif',
+    url: './images/arena/main.gif'
   },
   {
     name: 'train',
-    url: './images/arena/train.gif',
+    url: './images/arena/train.gif'
   },
   {
     name: 'waterfall',
-    url: './images/arena/waterfall.gif',
+    url: './images/arena/waterfall.gif'
   },
   {
     name: 'wind',
-    url: './images/arena/wind.gif',
-  },
+    url: './images/arena/wind.gif'
+  }
 ];
 
 class BuildHeroes {
@@ -157,13 +158,7 @@ class BuildRandomBtn {
 
 class SubmitAction {
   constructor(btn) {
-    (this.block = document.querySelector('.fightPage__container')),
-      (this.btn = btn),
-      this.events();
-    this.hero_name = document.querySelector('.hero__name');
-    this.hero_url = document.querySelector('.hero__img');
-    this.hero_attack = document.querySelector('.hero__attack');
-    this.hero_Defence = document.querySelector('.hero__defence');
+    (this.block = document.querySelector('.fightPage__container')), (this.btn = btn), this.events();
   }
 
   checkAction(e) {
@@ -180,9 +175,7 @@ class SubmitAction {
   }
 
   getHero() {
-    const radioHero = document.querySelector(
-      'input[name="hero-radio"]:checked',
-    );
+    const radioHero = document.querySelector('input[name="hero-radio"]:checked');
 
     if (radioHero !== null) {
       const img = radioHero.nextSibling;
@@ -195,17 +188,13 @@ class SubmitAction {
         globalObj.user.defence = globalObj.user.obj.defence;
         console.log(globalObj);
       } else {
-        setTimeout(function() {
-          this.randomHero();
-        }, 0);
+        this.randomHero();
       }
     }
   }
 
   getField() {
-    const radioField = document.querySelector(
-      'input[name="field-radio"]:checked',
-    );
+    const radioField = document.querySelector('input[name="field-radio"]:checked');
 
     if (radioField !== null) {
       const img = radioField.nextSibling;
@@ -225,7 +214,6 @@ class SubmitAction {
     globalObj.user.obj = heroes[num];
     globalObj.user.attack = heroes[num].attack;
     globalObj.user.defence = heroes[num].defence;
-    this.name.textContent = 'Random hero';
   }
 
   randomField() {
@@ -263,7 +251,6 @@ class ChangePageToFightPage {
   listener() {
     const $this = this;
     this.btn.addEventListener('click', this.change.bind($this));
-    this.btn.addEventListener('click', resetTimer);
   }
 }
 
@@ -310,6 +297,14 @@ class ReturnInfoCard {
       let imgAlt = e.target.getAttribute('alt');
       const obj = heroes.find(hero => hero.name === imgAlt);
       this.obj = obj;
+
+      this.show();
+
+    } else if (e.target.nodeName === 'INPUT') {
+      let imgAlt = e.target.nextElementSibling.getAttribute('alt');
+      const obj = heroes.find(hero => hero.name === imgAlt);
+      this.obj = obj;
+      
       this.show();
     }
   }

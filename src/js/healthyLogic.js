@@ -19,8 +19,8 @@ class Livesbar {
   changeWidth() {
     this.container.style.width = `${+this.lifeAmount}%`;
   }
-  changeHP(life) {
-    this.lifeAmount = life;
+  changeHP(damage) {
+    this.lifeAmount -= damage;
     this.changeColor();
     this.changeWidth();
   }
@@ -28,3 +28,5 @@ class Livesbar {
 
 const heroLifeBar = new Livesbar(MyLives, 100);
 const enemyLifeBar = new Livesbar(EnemyLives, 100);
+heroLifeBar.changeHP(20);
+enemyLifeBar.changeHP(80);

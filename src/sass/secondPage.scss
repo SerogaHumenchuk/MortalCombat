@@ -7,16 +7,18 @@
 
 .secondPage {
   &__submit {
-    right: 30%;
-    top: 111%;
+    right: 35%;
+    top: 110%;
     position: absolute;
     font-size: 20px;
+    border: none;
+    border-radius: 4px;
     border: 2px solid #ff4500;
     font-size: 4vh;
     color: #000;
     background-color: #fff;
     border-radius: 25px;
-    margin: 1.2vh auto 0.5vh;
+    margin: 1.2vh auto .5vh;
     text-align: center;
     display: block;
     width: 24vh;
@@ -35,7 +37,6 @@
     background-size: cover;
 
     .fighters-section {
-      top: 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -81,8 +82,9 @@
       position: fixed;
       bottom: 6vh;
       .field {
-        width: 13%;
-        height: 180px;
+        min-width: 120px;
+        width: 10%;
+        height: 120px;
         border: 3px solid #f00;
         border-radius: 10px;
         transition: all ease-in-out 200ms;
@@ -127,16 +129,16 @@
   width: 70%;
 }
 .fighter__card {
-  top: -10px;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: 55%;
   height: 450px;
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 25px;
   padding: 10px;
+  
 }
 .card__info {
   margin-left: 20px;
@@ -188,3 +190,4 @@
     max-width: 50px;
   }
 }
+

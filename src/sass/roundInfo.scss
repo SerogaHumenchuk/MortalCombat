@@ -1,56 +1,25 @@
 .fight-round {
-    font-family:'Mortal';
+    height: 20vh;
+    width: 100%;
+    background-color: rgba(256, 0, 0, 0.8);
+    position: relative;
 
     .fightPage_wrapper {
         height: 100vh;
     }
 
-    .output{
-        color: red;
-        text-transform: uppercase;
-        position: absolute;
-        top: 150px;
-        transform: translate(-50%,0);
-        left: 50%;
-        font-size: 28px;
-        text-align: center;
-        max-width: 400px;
-        transition: all 500ms ease-in-out;
-    } 
-
     .atIcon {
         fill: #ffffff;
-        width: 30px;
-        transition: all ease-in 200ms;
-
-        &:hover{
-            fill: #000;
-            transition: all ease-in 200ms;
-        }
+        width: 50px;
     }
 
-    input {
+    input{
         display: none;
-
-        &:checked ~ .atIcon{
-            fill: #000;
-        }
     }
 
     .chIcon {
         fill: #000;
-        width: 30px;
-        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
-    .form-attack-list{
-        position: fixed;
-        left: 15px;
-        bottom: 200px;
-    }
-    .form-defense-list{
-        position: fixed;
-        right: 15px;
-        bottom: 200px;
+        width: 50px;
     }
 
     form.attack-defense {
@@ -59,25 +28,32 @@
     }
 
     .form-list {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
         list-style: none;
         font-size: 16px;
         position: absolute;
+        bottom: -20px;
+        left: 20px;
+    }
+
+    .form-list{
+        margin-bottom: 2px;
     }
 
     h3.form-title {
+        margin-bottom: 10px;
         font-size: 24px;
-        position: fixed;
-        bottom: 302px;
-        color: #ffffff;
     }
-    .attack-title{
-        left: 15px;
+
+    div.attack,
+    div.defense {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 10px;
     }
-    .defense-title{
-        right: 15px;
+
+    div.attack {
+        left: 10%;
     }
 
     div.defense {
@@ -85,37 +61,32 @@
     }
 
     button.punch-button {
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
-        font-size: 14px;
         position: absolute;
+        right: 6%;
+        bottom: 16px;
+        font-size: 14px;
         background-image: url('http://chittagongit.com/download/294339');
         background-repeat: no-repeat;
-        background-size: 65px 65px;
-        transform: translate(-50%,0);
-        left: 50%;
-        bottom: 0;
-        background-color: transparent;
-        border: none;
+        background-size: 75px 75px;
     }
 
     @media(min-width: 768px) {
-        .output{
-            font-size: 40px;
+        .attack,
+        .defense {
+            position: relative;
         }
 
-        .form-list {
-            bottom: 125px;
-        }
-
-        .atIcon, .chIcon{
-            width: 50px;
+        .form-list{
+            margin-bottom: 20px;
+            margin-left: 6px;
         }
 
         button.punch-button {
-            width: 75px;
-            height: 75px;
+            width: 85px;
+            height: 85px;
             font-size: 20px;
         }
 
@@ -126,10 +97,13 @@
 
         h3.form-title {
             font-size: 28px;
+            position: absolute;
+            left: 60px;
+            bottom: 62px;
         }
 
         button.punch-button {
-            background-size: 70px 70px;
+            background-size: 80px 80px;
         }
 
     }
@@ -141,17 +115,26 @@
         }
 
         button.punch-button {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             font-size: 24px;
+        }
+
+        .form-list{
+            margin-bottom: 20px;
+            margin-left: 10px;
         }
 
         .form-list {
             font-size: 28px;
         }
 
+        h3.form-title {
+            font-size: 26px;
+        }
+
         button.punch-button {
-            background-size: 75px 75px;
+            background-size: 95px 95px;
         }
     }
 }

@@ -2,10 +2,6 @@
   Import partials below
 */
 
-input {
-  display: none;
-}
-
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -453,16 +449,18 @@ template {
 }
 
 .secondPage__submit {
-  right: 30%;
-  top: 111%;
+  right: 35%;
+  top: 110%;
   position: absolute;
   font-size: 20px;
+  border: none;
+  border-radius: 4px;
   border: 2px solid #ff4500;
   font-size: 4vh;
   color: #000;
   background-color: #fff;
   border-radius: 25px;
-  margin: 1.2vh auto 0.5vh;
+  margin: 1.2vh auto .5vh;
   text-align: center;
   display: block;
   width: 24vh;
@@ -482,7 +480,6 @@ template {
 }
 
 .secondPage__container .fighters-section {
-  top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -530,8 +527,9 @@ template {
 }
 
 .secondPage__container .fields-section .field {
-  width: 13%;
-  height: 180px;
+  min-width: 120px;
+  width: 10%;
+  height: 120px;
   border: 3px solid #f00;
   border-radius: 10px;
   transition: all ease-in-out 200ms;
@@ -581,12 +579,11 @@ template {
 }
 
 .fighter__card {
-  top: -10px;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: 55%;
   height: 450px;
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 25px;
@@ -697,13 +694,11 @@ template {
 .My__Lives {
   width: 100%;
   height: 15px;
-  transition: all ease-in 200ms;
 }
 
 .Enemy__Lives {
   width: 100%;
   height: 15px;
-  transition: all ease-in 200ms;
 }
 
 @-webkit-keyframes fontbulger {
@@ -836,62 +831,28 @@ svg.decrease {
 }
 
 .fight-round {
-  font-family: 'Mortal';
+  height: 20vh;
+  width: 100%;
+  background-color: rgba(255, 0, 0, 0.8);
+  position: relative;
 }
 
 .fight-round .fightPage_wrapper {
   height: 100vh;
 }
 
-.fight-round .output {
-  color: red;
-  text-transform: uppercase;
-  position: absolute;
-  top: 150px;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  left: 50%;
-  font-size: 28px;
-  text-align: center;
-  max-width: 400px;
-  transition: all 500ms ease-in-out;
-}
-
 .fight-round .atIcon {
   fill: #ffffff;
-  width: 30px;
-  transition: all ease-in 200ms;
-}
-
-.fight-round .atIcon:hover {
-  fill: #000;
-  transition: all ease-in 200ms;
+  width: 50px;
 }
 
 .fight-round input {
   display: none;
 }
 
-.fight-round input:checked ~ .atIcon {
-  fill: #000;
-}
-
 .fight-round .chIcon {
   fill: #000;
-  width: 30px;
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.fight-round .form-attack-list {
-  position: fixed;
-  left: 15px;
-  bottom: 200px;
-}
-
-.fight-round .form-defense-list {
-  position: fixed;
-  right: 15px;
-  bottom: 200px;
+  width: 50px;
 }
 
 .fight-round form.attack-defense {
@@ -900,27 +861,32 @@ svg.decrease {
 }
 
 .fight-round .form-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   list-style: none;
   font-size: 16px;
   position: absolute;
+  bottom: -20px;
+  left: 20px;
+}
+
+.fight-round .form-list {
+  margin-bottom: 2px;
 }
 
 .fight-round h3.form-title {
+  margin-bottom: 10px;
   font-size: 24px;
-  position: fixed;
-  bottom: 302px;
-  color: #ffffff;
 }
 
-.fight-round .attack-title {
-  left: 15px;
+.fight-round div.attack,
+.fight-round div.defense {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 10px;
 }
 
-.fight-round .defense-title {
-  right: 15px;
+.fight-round div.attack {
+  left: 10%;
 }
 
 .fight-round div.defense {
@@ -928,25 +894,20 @@ svg.decrease {
 }
 
 .fight-round button.punch-button {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  font-size: 14px;
   position: absolute;
+  right: 6%;
+  bottom: 16px;
+  font-size: 14px;
   background-image: url("http://chittagongit.com/download/294339");
   background-repeat: no-repeat;
-  background-size: 65px 65px;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  left: 50%;
-  bottom: 0;
-  background-color: transparent;
-  border: none;
+  background-size: 75px 75px;
 }
 
 .fightPage__container {
-  height: 100vh;
-  box-shadow: inset 0px 56px 133px 38px rgba(0, 0, 0, 0.69);
+  height: 80vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: center;
@@ -957,15 +918,15 @@ svg.decrease {
 .user-hero {
   position: absolute;
   bottom: 20%;
-  width: 14%;
+  width: 17%;
 }
 
 .user-hero {
-  left: 9%;
+  left: 10%;
 }
 
 .computer-hero {
-  right: 9%;
+  right: 10%;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
@@ -999,22 +960,19 @@ h2 {
     margin-top: 20px;
   }
 
-  .fight-round .output {
-    font-size: 40px;
+  .fight-round .attack,
+  .fight-round .defense {
+    position: relative;
   }
 
   .fight-round .form-list {
-    bottom: 125px;
-  }
-
-  .fight-round .atIcon,
-  .fight-round .chIcon {
-    width: 50px;
+    margin-bottom: 20px;
+    margin-left: 6px;
   }
 
   .fight-round button.punch-button {
-    width: 75px;
-    height: 75px;
+    width: 85px;
+    height: 85px;
     font-size: 20px;
   }
 
@@ -1025,10 +983,13 @@ h2 {
 
   .fight-round h3.form-title {
     font-size: 28px;
+    position: absolute;
+    left: 60px;
+    bottom: 62px;
   }
 
   .fight-round button.punch-button {
-    background-size: 70px 70px;
+    background-size: 80px 80px;
   }
 }
 
@@ -1037,14 +998,14 @@ h2 {
     width: 350px;
     height: 31px;
     margin-top: 30px;
-    border: 2px solid black;
+    border: 4px solid black;
   }
 
   .MyHealthy__Bar {
     width: 350px;
     height: 31px;
     margin-top: 30px;
-    border: 2px solid black;
+    border: 4px solid black;
   }
 
   .My__Lives {
@@ -1062,17 +1023,26 @@ h2 {
   }
 
   .fight-round button.punch-button {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     font-size: 24px;
+  }
+
+  .fight-round .form-list {
+    margin-bottom: 20px;
+    margin-left: 10px;
   }
 
   .fight-round .form-list {
     font-size: 28px;
   }
 
+  .fight-round h3.form-title {
+    font-size: 26px;
+  }
+
   .fight-round button.punch-button {
-    background-size: 75px 75px;
+    background-size: 95px 95px;
   }
 }
 
@@ -1081,14 +1051,14 @@ h2 {
     width: 400px;
     height: 31px;
     margin-top: 30px;
-    border: 2px solid black;
+    border: 4px solid black;
   }
 
   .MyHealthy__Bar {
     width: 400px;
     height: 31px;
     margin-top: 30px;
-    border: 2px solid black;
+    border: 4px solid black;
   }
 
   .My__Lives {
