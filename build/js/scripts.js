@@ -228,10 +228,12 @@ function fightFunc(e) {
   if (attack == null || defense == null) {
     output = 'MAKE A CHOISE';
   } else {
-    output = `You hit ${globalObj.computer.name} in ${attack} and protect your ${defense}`;
+    output = `You hit ${globalObj.computer.name} in ${attack.value} and protect your ${defense.value}`;
     resetTimer();
   }
 
+  attack = null;
+  defense = null;
   new RandomPart();
   new FightLogic();
   console.log(output);
@@ -240,6 +242,7 @@ function fightFunc(e) {
     if (i < output.length) {
       document.querySelector('.output').append(output[i]);
       i++;
+      console.log(i);
     }
   }, 40);
   clearInterval(byLatId);

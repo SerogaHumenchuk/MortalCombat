@@ -838,7 +838,7 @@ svg.decrease {
 }
 
 .fight-round .atIcon:hover {
-  fill: #000;
+  fill: #ff0000;
   transition: all ease-in 200ms;
 }
 
