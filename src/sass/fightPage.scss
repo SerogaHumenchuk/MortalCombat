@@ -1,6 +1,7 @@
 .fightPage {
   &__container {
-    height: 80vh;
+    height: 100vh;
+    box-shadow: inset 0px 56px 133px 38px rgba(0,0,0,0.69);
     background-size: cover;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -11,7 +12,7 @@
 .computer-hero,
 .user-hero{
   position: absolute;
-  bottom: 20%;
+  bottom: 11%;
   width: 17%;
 }
 
