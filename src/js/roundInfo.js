@@ -15,8 +15,7 @@ function fightFunc(e) {
     output = `You hit ${globalObj.computer.name} in ${attack.value} and protect your ${defense.value}`;
     resetTimer();
   }
-  attack = null;
-  defense = null;
+
   new RandomPart();
   const fight = new FightLogic();
   const fightAnimation = new FightAnimation();
@@ -52,25 +51,19 @@ function fightFunc(e) {
     enemyLifeBar.changeHP(globalObj.lifeComputer);
   }, 1300);
 
-  console.log(output);
   new FightLogic();
 
-  console.log(output);
+  // console.log(output);
   let i = 0;
-  const byLatId = setInterval(function () {
+  document.querySelector('.output').innerHTML = '';
+  setInterval(function () {
     if (i < output.length) {
       document.querySelector('.output').append(output[i]);
       i++;
-      console.log(i);
     }
   }, 40)
-  clearInterval(byLatId);
+  ADForm.reset();
 }
-ADForm.reset();
 ADForm.addEventListener('submit', fightFunc);
-
-function gifFunc() {
-
-}
 // punchBut.addEventListener('click', resetTimerBut);
 //call resetTimer() when animation is ended
