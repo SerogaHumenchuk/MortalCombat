@@ -18,32 +18,40 @@ function fightFunc(e) {
 
   new RandomPart();
   const fight = new FightLogic();
-  const fightAnim = new FightAnimation();
-  fightAnim.runUser();
-  fightAnim.runComputer();
-  fightAnim.attackUser();
-  fightAnim.attackComputer();
+  const fightAnimation = new FightAnimation();
+
+  fightAnimation.runUser();
+  fightAnimation.runComputer();
+
+  const timerAttack = setTimeout( () => {
+    fightAnimation.attackUser();
+    fightAnimation.attackComputer();
+  }, 1280);
+
+  const timerRunBack = setTimeout( () => {
+    if (globalObj.lifeUser <= 0) {
+      fightAnimation.dieUser();
+    } else {
+      fightAnimation.runBackUser();
+    }
+
+    if (globalObj.lifeComputer <= 0) {
+      fightAnimation.dieComputer();
+    } else {
+      fightAnimation.runBackComputer();
+    }
+  }, 1840);
   // fightAnim.runBack();
 
   fight.healthUserLogic();
   fight.healthComputerLogic();
 
+  setTimeout ( () => {
+    heroLifeBar.changeHP( globalObj.lifeUser );
+    enemyLifeBar.changeHP( globalObj.lifeComputer );
+  }, 1300 );
 
-  heroLifeBar.changeHP( globalObj.lifeUser );
-  enemyLifeBar.changeHP( globalObj.lifeComputer );
-
-  console.log(output);
-  let i = 0;
-  if (!checkerr) {
-     const byLatId = setInterval(function () {
-      if (i < output.length) {
-        document.querySelector('.output').append(output[i]);
-        i++;
-      }
-    }, 40)
-    checker = true;
-    clearInterval(byLatId);
-  }
+  console.log(output);  
   ADForm.reset();
 };
 ADForm.addEventListener('submit', fightFunc);
