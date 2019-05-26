@@ -306,13 +306,31 @@ class ReturnInfoCard {
   }
 
   returnObj(e) {
-    if (e.target.nodeName === 'IMG') {
+    if ( e.target.nodeName === 'IMG' && e.target.classList.contains('random-img') ) {
+      this.showRandom();
+    } else if ( e.target.nodeName === 'INPUT' && e.target.nextSibling.classList.contains('random-img') ) {
+      this.showRandom();
+    } else if (e.target.nodeName === 'IMG') {
       let imgAlt = e.target.getAttribute('alt');
+      const obj = heroes.find(hero => hero.name === imgAlt);
+      this.obj = obj;
+      this.show();
+
+    } else if (e.target.nodeName === 'INPUT' ) {
+      let imgAlt = e.target.nextSibling.getAttribute('alt');
       const obj = heroes.find(hero => hero.name === imgAlt);
       this.obj = obj;
       this.show();
     }
   }
+
+  showRandom () {
+    this.hero_name.textContent = 'RANDOM HERO';
+    this.hero_url.setAttribute('src', '');
+    this.hero_attack.textContent = '';
+    this.hero_Defence.textContent = '';
+  }
+
   show() {
     if (this.obj) {
       this.hero_name.textContent = this.obj.name;

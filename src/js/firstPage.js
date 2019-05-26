@@ -22,6 +22,40 @@
     }
   };
   firstPageForm.addEventListener('submit', onSubmit);
+
+  const fullscreen = document.querySelector('.fullscreen');
+
+  open = elem => {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (document.mozRequestFullScreen) { /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (document.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (document.msRequestFullscreen) { /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  }
+
+  close = elem => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE/Edge */
+      document.msExitFullscreen();
+    }
+  }
+
+  fullscreen.addEventListener( 'click', () => {
+    fullscreen.classList.toggle('clicked');
+
+    fullscreen.classList.contains('clicked') 
+    ? open(document.documentElement)
+    : close(document.documentElement);
+  } );
 })();
 
 class StartMusic {

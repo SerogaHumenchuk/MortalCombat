@@ -5,6 +5,25 @@
   background-size: cover;
   background-repeat: no-repeat;
 
+  .fullscreen{
+    position: absolute;
+    left: 1%;
+    top: 2%;
+    background: transparent;
+    border: none;
+
+    &__svg{
+      box-sizing: content-box;
+      width: 3vw;
+      padding: 4px;
+      transition: all ease-in 200ms;
+
+      &:hover{
+        width: 4vw;
+      }
+    }
+  }
+
   .fighting {
     display: block;
     width: 76vh;

@@ -7,20 +7,11 @@ let defchecks = document.querySelectorAll('[name="defense"]');
 let nickname = document.querySelector('.nick_name');
 let botname = document.querySelector('.bot_name');
 
-console.log(globalObj.computer.name);
 nickname.textContent = globalObj.user.name;
 botname.textContent = globalObj.computer.name;
 
 function fightFunc(e) {
   e.preventDefault();
-  let attack = document.querySelector('[name="attack"]:checked');
-  let defense = document.querySelector('[name="defense"]:checked');
-  if (attack == null || defense == null) {
-    output = 'MAKE A CHOISE';
-  } else {
-    output = `You hit ${globalObj.computer.name} in ${attack.value} and protect your ${defense.value}`;
-    resetTimer();
-  }
 
   new RandomPart();
   const fight = new FightLogic();
@@ -58,19 +49,8 @@ function fightFunc(e) {
   }, 1300);
 
   new FightLogic();
-
-  // console.log(output);
-  let i = 0;
-  document.querySelector('.output').innerHTML = '';
-  setInterval(function () {
-    if (i < output.length) {
-      document.querySelector('.output').append(output[i]);
-      i++;
-    }
-  }, 40)
   ADForm.reset();
 }
 ADForm.addEventListener('submit', fightFunc);
 // punchBut.addEventListener('click', resetTimerBut);
 //call resetTimer() when animation is ended
- 

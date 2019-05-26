@@ -107,6 +107,7 @@ button {
         bottom: 0;
         background-color: transparent;
         border: none;
+        z-index: 100;
     }
 
     @media(min-width: 768px) {
