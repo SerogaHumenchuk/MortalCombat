@@ -17,6 +17,8 @@ const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 const server = require('browser-sync').create();
+const gulp = require('gulp');
+const deploy = require('gulp-gh-pages');
 
 function html() {
   return src('src/*.html')
@@ -57,7 +59,10 @@ function sprite() {
 }
 
 function images() {
-  return src(['src/images/**/*.{gif,png,jpg,jpeg,svg}', '!src/images/icons/**/*'])
+  return src([
+    'src/images/**/*.{gif,png,jpg,jpeg,svg}',
+    '!src/images/icons/**/*',
+  ])
     .pipe(
       imagemin([
         imagemin.jpegtran({ progressive: true }),
@@ -111,7 +116,9 @@ const build = series(
   clean,
   parallel(sprite, images, fonts, html, styles, scripts, sound),
 );
-
+gulp.task('deploy', function() {
+  return gulp.src('./build/**/*').pipe(deploy());
+});
 const start = series(build, watcher, serve);
 
 exports.prepare = prepare;
