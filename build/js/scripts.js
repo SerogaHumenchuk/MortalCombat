@@ -139,6 +139,7 @@ class ComputerRandomHero {
 
     if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
       globalObj.user.name = name.value;
+      nickname.textContent = name.value;
       changeFirstPageToSecondPage();
       stopClickFighterPlay();
       playClickFighterSelection();
@@ -280,6 +281,11 @@ const punchBut = document.querySelector('.punch-button');
 let attack, defense, output;
 let atchecks = document.querySelectorAll('[name="attack"]');
 let defchecks = document.querySelectorAll('[name="defense"]');
+let nickname = document.querySelector('.nick_name');
+let botname = document.querySelector('.bot_name');
+console.log(globalObj.computer.name);
+nickname.textContent = globalObj.user.name;
+botname.textContent = globalObj.computer.name;
 
 function fightFunc(e) {
   e.preventDefault();
@@ -293,8 +299,6 @@ function fightFunc(e) {
     resetTimer();
   }
 
-  attack = null;
-  defense = null;
   new RandomPart();
   const fight = new FightLogic();
   const fightAnimation = new FightAnimation();
@@ -324,24 +328,20 @@ function fightFunc(e) {
     heroLifeBar.changeHP(globalObj.lifeUser);
     enemyLifeBar.changeHP(globalObj.lifeComputer);
   }, 1300);
-  console.log(output);
-  new FightLogic();
-  console.log(output);
+  new FightLogic(); // console.log(output);
+
   let i = 0;
-  const byLatId = setInterval(function () {
+  document.querySelector('.output').innerHTML = '';
+  setInterval(function () {
     if (i < output.length) {
       document.querySelector('.output').append(output[i]);
       i++;
-      console.log(i);
     }
   }, 40);
-  clearInterval(byLatId);
+  ADForm.reset();
 }
 
-ADForm.reset();
-ADForm.addEventListener('submit', fightFunc);
-
-function gifFunc() {} // punchBut.addEventListener('click', resetTimerBut);
+ADForm.addEventListener('submit', fightFunc); // punchBut.addEventListener('click', resetTimerBut);
 //call resetTimer() when animation is ended
 const heroes = [{
   name: 'redskull',
@@ -571,7 +571,7 @@ class ChangePageToFightPage {
   listener() {
     const $this = this;
     this.btn.addEventListener('click', this.change.bind($this));
-    this.btn.addEventListener('click', gifFunc);
+    this.btn.addEventListener('click', resetGif);
     this.btn.addEventListener('click', resetGif);
   }
 

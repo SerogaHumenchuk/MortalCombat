@@ -839,6 +839,10 @@ svg.decrease {
   left: 50%;
 }
 
+button {
+  outline: 0;
+}
+
 .fight-round {
   font-family: 'Mortal';
 }
@@ -932,6 +936,8 @@ svg.decrease {
 }
 
 .fight-round button.punch-button {
+  -webkit-filter: invert(24%) sepia(98%) saturate(7365%) hue-rotate(359deg) brightness(96%) contrast(112%);
+  filter: invert(24%) sepia(98%) saturate(7365%) hue-rotate(359deg) brightness(96%) contrast(112%);
   width: 70px;
   height: 70px;
   border-radius: 50%;

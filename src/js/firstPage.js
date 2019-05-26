@@ -13,6 +13,7 @@
     e.preventDefault();
     if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
       globalObj.user.name = name.value;
+      nickname.textContent = name.value;
       changeFirstPageToSecondPage();
       stopClickFighterPlay();
       playClickFighterSelection();
