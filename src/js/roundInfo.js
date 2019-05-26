@@ -4,7 +4,6 @@ const punchBut = document.querySelector('.punch-button');
 let attack, defense, output;
 let atchecks = document.querySelectorAll('[name="attack"]');
 let defchecks = document.querySelectorAll('[name="defense"]');
-let checkerr = false;
 
 function fightFunc(e) {
   e.preventDefault();
@@ -13,9 +12,11 @@ function fightFunc(e) {
   if (attack == null || defense == null) {
     output = 'MAKE A CHOISE';
   } else {
-    output = `You hit ${globalObj.computer.name} in ${attack} and protect your ${defense}`;
+    output = `You hit ${globalObj.computer.name} in ${attack.value} and protect your ${defense.value}`;
+    resetTimer();
   }
-
+  attack = null;
+  defense = null;
   new RandomPart();
   const fight = new FightLogic();
   const fightAnimation = new FightAnimation();
@@ -23,12 +24,12 @@ function fightFunc(e) {
   fightAnimation.runUser();
   fightAnimation.runComputer();
 
-  const timerAttack = setTimeout( () => {
+  const timerAttack = setTimeout(() => {
     fightAnimation.attackUser();
     fightAnimation.attackComputer();
   }, 1280);
 
-  const timerRunBack = setTimeout( () => {
+  const timerRunBack = setTimeout(() => {
     if (globalObj.lifeUser <= 0) {
       fightAnimation.dieUser();
     } else {
@@ -46,13 +47,30 @@ function fightFunc(e) {
   fight.healthUserLogic();
   fight.healthComputerLogic();
 
-  setTimeout ( () => {
-    heroLifeBar.changeHP( globalObj.lifeUser );
-    enemyLifeBar.changeHP( globalObj.lifeComputer );
-  }, 1300 );
+  setTimeout(() => {
+    heroLifeBar.changeHP(globalObj.lifeUser);
+    enemyLifeBar.changeHP(globalObj.lifeComputer);
+  }, 1300);
 
-  console.log(output);  
-  ADForm.reset();
-};
+  console.log(output);
+  new FightLogic();
+
+  console.log(output);
+  let i = 0;
+  const byLatId = setInterval(function () {
+    if (i < output.length) {
+      document.querySelector('.output').append(output[i]);
+      i++;
+      console.log(i);
+    }
+  }, 40)
+  clearInterval(byLatId);
+}
+ADForm.reset();
 ADForm.addEventListener('submit', fightFunc);
+
+function gifFunc() {
+
+}
 // punchBut.addEventListener('click', resetTimerBut);
+//call resetTimer() when animation is ended

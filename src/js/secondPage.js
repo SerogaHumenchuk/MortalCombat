@@ -232,6 +232,7 @@ class ChangePageToFightPage {
     (this.secondWrapper = document.querySelector('.secondPageWrapp')),
       (this.thirdWrapper = document.querySelector('.thirdPageWrapp')),
       (this.btn = document.querySelector('.secondPage__submit')),
+      (this.gifPage = document.querySelector('.gifPage')),
       this.listener();
   }
 
@@ -241,7 +242,7 @@ class ChangePageToFightPage {
       document.querySelector('input[name="field-radio"]:checked')
     ) {
       this.secondWrapper.classList.add('hide');
-      this.thirdWrapper.classList.remove('hide');
+      this.gifPage.classList.remove('hide');
     } else {
       alert('Choose your fighter and field!');
     }
@@ -250,7 +251,8 @@ class ChangePageToFightPage {
   listener() {
     const $this = this;
     this.btn.addEventListener( 'click', this.change.bind($this) );
-    this.btn.addEventListener( 'click', resetTimer);
+    this.btn.addEventListener( 'click', gifFunc);
+    this.btn.addEventListener( 'click', resetGif);
   }
 }
 

@@ -104,6 +104,13 @@ class StartMusic {
 }
 
 new StartMusic();
+function resetGif() {
+  setTimeout(function () {
+    document.querySelector('.thirdPageWrapp').classList.remove('hide');
+    document.querySelector('.gifPage').classList.add('hide');
+    resetTimer();
+  }, 3000);
+}
 
 const MyLives = document.querySelector('.My__Lives');
 const EnemyLives = document.querySelector('.Enemy__Lives');
@@ -215,125 +222,104 @@ let defchecks = document.querySelectorAll('[name="defense"]');
 
 function fightFunc(e) {
   e.preventDefault();
-  atchecks.forEach(input => {
-    if (input.checked) {
-      input.nextElementSibling.classList.remove('chIcon');
-      input.nextElementSibling.classList.add('atIcon');
-    }
-  });
-  defchecks.forEach(input => {
-    if (input.checked) {
-      input.nextElementSibling.classList.remove('chIcon');
-      input.nextElementSibling.classList.add('atIcon');
-    }
-  });
-  let attack = document.querySelector('[name="attack"]:checked').value;
-  let defense = document.querySelector('[name="defense"]:checked').value;
-  globalObj.user.attackPart = attack;
-  globalObj.user.defencePart = defense;
+  let attack = document.querySelector('[name="attack"]:checked');
+  let defense = document.querySelector('[name="defense"]:checked');
 
-  if (attack === null || defense === null) {
+  if (attack == null || defense == null) {
     output = 'MAKE A CHOISE';
-    console.log(output);
   } else {
-    output = `You hit ${globalObj.computer.name} in ${attack} and protect your ${defense}`;
+    output = `You hit ${globalObj.computer.name} in ${attack.value} and protect your ${defense.value}`;
+    resetTimer();
   }
 
+  attack = null;
+  defense = null;
   new RandomPart();
   new FightLogic();
   console.log(output);
-  ADForm.reset();
+  let i = 0;
+  const byLatId = setInterval(function () {
+    if (i < output.length) {
+      document.querySelector('.output').append(output[i]);
+      i++;
+      console.log(i);
+    }
+  }, 40);
+  clearInterval(byLatId);
 }
 
-ADForm.addEventListener('click', () => {
-  atchecks.forEach(input => {
-    if (input.checked) {
-      input.nextElementSibling.classList.add('chIcon');
-      input.nextElementSibling.classList.remove('atIcon');
-    } else {
-      input.nextElementSibling.classList.remove('chIcon');
-      input.nextElementSibling.classList.add('atIcon');
-    }
-  });
-  defchecks.forEach(input => {
-    if (input.checked) {
-      input.nextElementSibling.classList.add('chIcon');
-      input.nextElementSibling.classList.remove('atIcon');
-    } else {
-      input.nextElementSibling.classList.remove('chIcon');
-      input.nextElementSibling.classList.add('atIcon');
-    }
-  });
-});
+ADForm.reset();
 ADForm.addEventListener('submit', fightFunc);
-punchBut.addEventListener('click', resetTimerBut);
+
+function gifFunc() {} // punchBut.addEventListener('click', resetTimerBut);
+//call resetTimer() when animation is ended
 const heroes = [{
-  "name": "redskull",
-  "attack": 15,
-  "defence": 8,
-  "url": "./images/hero/redskull/user-redskull",
-  "standURL": ".gif",
-  "walkURL": "_walk.gif",
-  "runURL": "_run.gif",
-  "attackURL": "_attack.gif",
-  "blockURL": "_block.gif",
-  "hitURL": "_hit.gif",
-  "dieURL": "_die.gif"
+  name: 'redskull',
+  attack: 15,
+  defence: 8,
+  url: './images/hero/redskull/user-redskull',
+  standURL: '.gif',
+  walkURL: '_walk.gif',
+  runURL: '_run.gif',
+  attackURL: '_attack.gif',
+  blockURL: '_block.gif',
+  hitURL: '_hit.gif',
+  dieURL: '_die.gif'
 }, {
-  "name": "colossus",
-  "attack": 13,
-  "defence": 10,
-  "url": "./images/hero/colossus/user-colossus",
-  "standURL": ".gif",
-  "walkURL": "_walk.gif",
-  "runURL": "_run.gif",
-  "attackURL": "_attack.gif",
-  "blockURL": "_block.gif",
-  "hitURL": "_hit.gif",
-  "dieURL": "_die.gif"
+  name: 'colossus',
+  attack: 13,
+  defence: 10,
+  url: './images/hero/colossus/user-colossus',
+  standURL: '.gif',
+  walkURL: '_walk.gif',
+  runURL: '_run.gif',
+  attackURL: '_attack.gif',
+  blockURL: '_block.gif',
+  hitURL: '_hit.gif',
+  dieURL: '_die.gif'
 }, {
-  "name": "mystique",
-  "attack": 10,
-  "defence": 13,
-  "url": "./images/hero/mystique/user-mystique",
-  "standURL": ".gif",
-  "walkURL": "_walk.gif",
-  "runURL": "_run.gif",
-  "attackURL": "_attack.gif",
-  "blockURL": "_block.gif",
-  "hitURL": "_hit.gif",
-  "dieURL": "_die.gif"
+  name: 'mystique',
+  attack: 10,
+  defence: 13,
+  url: './images/hero/mystique/user-mystique',
+  standURL: '.gif',
+  walkURL: '_walk.gif',
+  runURL: '_run.gif',
+  attackURL: '_attack.gif',
+  blockURL: '_block.gif',
+  hitURL: '_hit.gif',
+  dieURL: '_die.gif'
 }, {
-  "name": "starlord",
-  "attack": 9,
-  "defence": 14,
-  "url": "./images/hero/starlord/user-starlord",
-  "standURL": ".gif",
-  "walkURL": "_walk.gif",
-  "runURL": "_run.gif",
-  "attackURL": "_attack.gif",
-  "blockURL": "_block.gif",
-  "hitURL": "_block.gif",
-  "dieURL": "_die.gif"
+  name: 'starlord',
+  attack: 9,
+  defence: 14,
+  url: './images/hero/starlord/user-starlord',
+  standURL: '.gif',
+  walkURL: '_walk.gif',
+  runURL: '_run.gif',
+  attackURL: '_attack.gif',
+  blockURL: '_block.gif',
+  hitURL: '_block.gif',
+  dieURL: '_die.gif'
 }];
 const fields = [{
-  "name": "boat",
-  "url": "./images/arena/boat.gif"
+  name: 'boat',
+  url: './images/arena/boat.gif'
 }, {
-  "name": "light",
-  "url": "./images/arena/light.gif"
+  name: 'light',
+  url: './images/arena/light.gif'
 }, {
-  "name": "main",
-  "url": "./images/arena/main.gif"
+  name: 'main',
+  url: './images/arena/main.gif'
 }, {
-  "name": "train",
-  "url": "./images/arena/train.gif"
+  name: 'train',
+  url: './images/arena/train.gif'
 }, {
-  "name": "waterfall",
-  "url": "./images/arena/waterfall.gif"
+  name: 'waterfall',
+  url: './images/arena/waterfall.gif'
 }, {
-  "name": "wind",
-  "url": "./images/arena/wind.gif"
+  name: 'wind',
+  url: './images/arena/wind.gif'
 }];
 
 class BuildHeroes {
@@ -473,13 +459,13 @@ class SubmitAction {
 
 class ChangePageToFightPage {
   constructor() {
-    this.secondWrapper = document.querySelector('.secondPageWrapp'), this.thirdWrapper = document.querySelector('.thirdPageWrapp'), this.btn = document.querySelector('.secondPage__submit'), this.listener();
+    this.secondWrapper = document.querySelector('.secondPageWrapp'), this.thirdWrapper = document.querySelector('.thirdPageWrapp'), this.btn = document.querySelector('.secondPage__submit'), this.gifPage = document.querySelector('.gifPage'), this.listener();
   }
 
   change() {
     if (document.querySelector('input[name="hero-radio"]:checked') !== null && document.querySelector('input[name="field-radio"]:checked')) {
       this.secondWrapper.classList.add('hide');
-      this.thirdWrapper.classList.remove('hide');
+      this.gifPage.classList.remove('hide');
     } else {
       alert('Choose your fighter and field!');
     }
@@ -488,6 +474,8 @@ class ChangePageToFightPage {
   listener() {
     const $this = this;
     this.btn.addEventListener('click', this.change.bind($this));
+    this.btn.addEventListener('click', gifFunc);
+    this.btn.addEventListener('click', resetGif);
   }
 
 }
@@ -512,6 +500,37 @@ class ClickSound {
 
 }
 
+class ReturnInfoCard {
+  constructor() {
+    this.labelsWrapper = document.querySelector('.fighters-section'), this.hero_name = document.querySelector('.hero__name'), this.hero_url = document.querySelector('.hero__img'), this.hero_attack = document.querySelector('.hero__attack'), this.hero_Defence = document.querySelector('.hero__defence'), this.obj = null;
+    this.listeners();
+  }
+
+  listeners() {
+    const $this = this;
+    this.labelsWrapper.addEventListener('click', this.returnObj.bind($this));
+  }
+
+  returnObj(e) {
+    if (e.target.nodeName === 'IMG') {
+      let imgAlt = e.target.getAttribute('alt');
+      const obj = heroes.find(hero => hero.name === imgAlt);
+      this.obj = obj;
+      this.show();
+    }
+  }
+
+  show() {
+    if (this.obj) {
+      this.hero_name.textContent = this.obj.name;
+      this.hero_url.setAttribute('src', `${this.obj.url}_run.gif`);
+      this.hero_attack.textContent = 'Attack: ' + this.obj.attack;
+      this.hero_Defence.textContent = 'Defence: ' + this.obj.defence;
+    }
+  }
+
+}
+
 new BuildHeroes(heroes);
 new BuildFields(fields);
 new BuildRandomBtn(document.querySelector('.fighters-section'), 'hero');
@@ -519,6 +538,7 @@ new BuildRandomBtn(document.querySelector('.fields-section'), 'field');
 new SubmitAction(document.querySelector('.secondPage__submit'));
 new ClickSound();
 new ChangePageToFightPage();
+new ReturnInfoCard();
 // (function(){
 let progressBar = document.querySelector('.e-c-progress'); // let indicator = document.getElementById('e-indicator');
 
@@ -603,31 +623,6 @@ function resetTimer() {
     remainTime = 10;
     clearInterval(intervalTimer);
     isPaused = isPaused ? false : true;
-  }
-}
-
-function resetTimerBut() {
-  if (attack !== null && defense !== null) {
-    if (isStarted === false) {
-      timeLeft = 10;
-      remainTime = 10;
-      timer(wholeTime);
-      isStarted = true;
-      setterBtns.forEach(function (btn) {
-        btn.disabled = true;
-        btn.style.opacity = 0.5;
-      });
-    } else if (isPaused) {
-      timeLeft = 10;
-      remainTime = 10;
-      timer(timeLeft);
-      isPaused = isPaused ? false : true;
-    } else {
-      timeLeft = 10;
-      remainTime = 10;
-      clearInterval(intervalTimer);
-      isPaused = isPaused ? false : true;
-    }
   }
 }
 class RandomPart {
