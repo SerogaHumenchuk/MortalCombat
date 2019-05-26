@@ -44,6 +44,37 @@ class DefaultStart {
 }
 
 ;
+
+class FightAnimation {
+  constructor() {
+    this.userHero = document.querySelector('img.user-hero'), this.computerHero = document.querySelector('img.computer-hero');
+  }
+
+  runUser() {
+    let left = 9;
+    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
+    const intervalUser = setInterval(() => this.userHero.style.left = `${left += 0.4}%`, 1000 / 60);
+    setTimeout(() => clearInterval(intervalUser), 1188);
+  }
+
+  runComputer() {
+    let right = 9;
+    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
+    const intervalComputer = setInterval(() => this.computerHero.style.right = `${right += 0.4}%`, 1000 / 60);
+    setTimeout(() => clearInterval(intervalComputer), 1188);
+  }
+
+  attackUser() {
+    setTimeout(() => this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.attackURL}`), 1188);
+  }
+
+  attackComputer() {
+    setTimeout(() => this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.attackURL}`), 1188);
+  }
+
+  runBack() {}
+
+}
 class ComputerRandomHero {
   constructor() {
     this.heroes = heroes, this.random();
@@ -136,8 +167,8 @@ class Livesbar {
     this.container.style.width = `${+this.lifeAmount}%`;
   }
 
-  changeHP(damage) {
-    this.lifeAmount -= damage;
+  changeHP(life) {
+    this.lifeAmount = life;
     this.changeColor();
     this.changeWidth();
   }
@@ -146,8 +177,6 @@ class Livesbar {
 
 const heroLifeBar = new Livesbar(MyLives, 100);
 const enemyLifeBar = new Livesbar(EnemyLives, 100);
-heroLifeBar.changeHP(20);
-enemyLifeBar.changeHP(80);
 function playClickMusic() {
   const audio = document.getElementById('music_start');
   audio.play();
@@ -219,6 +248,7 @@ const punchBut = document.querySelector('.punch-button');
 let attack, defense, output;
 let atchecks = document.querySelectorAll('[name="attack"]');
 let defchecks = document.querySelectorAll('[name="defense"]');
+let checkerr = false;
 
 function fightFunc(e) {
   e.preventDefault();
@@ -235,9 +265,20 @@ function fightFunc(e) {
   attack = null;
   defense = null;
   new RandomPart();
-  new FightLogic();
+  const fight = new FightLogic();
+  const fightAnim = new FightAnimation();
+  fightAnim.runUser();
+  fightAnim.runComputer();
+  fightAnim.attackUser();
+  fightAnim.attackComputer(); // fightAnim.runBack();
+
+  fight.healthUserLogic();
+  fight.healthComputerLogic();
+  heroLifeBar.changeHP(globalObj.lifeUser);
+  enemyLifeBar.changeHP(globalObj.lifeComputer);
   console.log(output);
   let i = 0;
+<<<<<<< HEAD
   const byLatId = setInterval(function () {
     if (i < output.length) {
       document.querySelector('.output').append(output[i]);
@@ -253,6 +294,25 @@ ADForm.addEventListener('submit', fightFunc);
 
 function gifFunc() {} // punchBut.addEventListener('click', resetTimerBut);
 //call resetTimer() when animation is ended
+=======
+
+  if (!checkerr) {
+    const byLatId = setInterval(function () {
+      if (i < output.length) {
+        document.querySelector('.output').append(output[i]);
+        i++;
+      }
+    }, 40);
+    checker = true;
+    clearInterval(byLatId);
+  }
+
+  ADForm.reset();
+}
+
+;
+ADForm.addEventListener('submit', fightFunc); // punchBut.addEventListener('click', resetTimerBut);
+>>>>>>> liteChange
 const heroes = [{
   name: 'redskull',
   attack: 15,
@@ -389,6 +449,10 @@ class BuildRandomBtn {
 class SubmitAction {
   constructor(btn) {
     this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.events();
+    this.hero_name = document.querySelector('.hero__name');
+    this.hero_url = document.querySelector('.hero__img');
+    this.hero_attack = document.querySelector('.hero__attack');
+    this.hero_Defence = document.querySelector('.hero__defence');
   }
 
   checkAction(e) {
@@ -418,7 +482,9 @@ class SubmitAction {
         globalObj.user.defence = globalObj.user.obj.defence;
         console.log(globalObj);
       } else {
-        this.randomHero();
+        setTimeout(function () {
+          this.randomHero();
+        }, 0);
       }
     }
   }
@@ -443,6 +509,7 @@ class SubmitAction {
     globalObj.user.obj = heroes[num];
     globalObj.user.attack = heroes[num].attack;
     globalObj.user.defence = heroes[num].defence;
+    this.name.textContent = 'Random hero';
   }
 
   randomField() {
@@ -474,8 +541,12 @@ class ChangePageToFightPage {
   listener() {
     const $this = this;
     this.btn.addEventListener('click', this.change.bind($this));
+<<<<<<< HEAD
     this.btn.addEventListener('click', gifFunc);
     this.btn.addEventListener('click', resetGif);
+=======
+    this.btn.addEventListener('click', resetTimer);
+>>>>>>> liteChange
   }
 
 }
@@ -640,39 +711,24 @@ class RandomPart {
 }
 
 class FightLogic {
-  constructor() {
-    this.obj = globalObj, this.userAttack = this.obj.user.attack, this.userDefence = this.obj.user.defence, this.userHealth = this.obj.lifeUser, this.userAttackPart = this.obj.user.attackPart, this.userDefencePart = this.obj.user.defencePart, this.computerAttack = this.obj.computer.attack, this.computerDefence = this.obj.computer.defence, this.computerHealth = this.obj.lifeComputer, this.computerAttackPart = this.obj.computer.attackPart, this.computerDefencePart = this.obj.computer.defencePart;
-  }
+  constructor() {}
 
   healthUserLogic() {
-    if (this.userDefencePart !== this.computerAttackPart) {
-      this.userHealth -= this.computerAttack;
-    } else if (this.userDefencePart === this.computerAttackPart) {
-      const damage = this.userDefence - this.computerAttack;
-      if (damage > 0) this.userHealth -= damage;
+    if (globalObj.user.defencePart !== globalObj.computer.attackPart) {
+      globalObj.lifeUser -= globalObj.computer.attack;
+    } else if (globalObj.user.defencePart === globalObj.computer.attackPart) {
+      const damage = globalObj.user.defence - globalObj.computer.attack;
+      if (damage > 0) globalObj.lifeUser -= damage;
     }
   }
 
-  healthUserLogic() {
-    if (this.computerDefencePart !== this.userAttackPart) {
-      this.computerHealth -= this.userAttack;
-    } else if (this.userDefencePart === this.computerAttackPart) {
-      const damage = this.computerDefence - this.userAttack;
-      if (damage > 0) this.userHealth -= damage;
+  healthComputerLogic() {
+    if (globalObj.computer.defencePart !== globalObj.user.attackPart) {
+      globalObj.lifeComputer -= globalObj.user.attack;
+    } else if (globalObj.user.defencePart === globalObj.computer.attackPart) {
+      const damage = globalObj.computer.defence - globalObj.user.attack;
+      if (damage > 0) globalObj.lifeComputer -= damage;
     }
-  }
-
-}
-
-new FightLogic(); //user makes damage to computer
-
-class userHit {
-  constructor(xp, attack) {
-    this.attack = attack, this.computerXP = xp, this.damage();
-  }
-
-  damage() {
-    return this.computerXP = this.computerXP - this.attack;
   }
 
 } //return alert when user wasn't make a choose

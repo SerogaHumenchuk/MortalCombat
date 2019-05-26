@@ -1,6 +1,11 @@
 /*
   Import partials below
 */
+
+input {
+  display: none;
+}
+
 @import './normalize';
 @import './firstPage.scss';
 @import './secondPage';
