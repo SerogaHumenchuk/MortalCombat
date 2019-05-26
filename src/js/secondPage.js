@@ -1,100 +1,100 @@
 const heroes = [
   {
-    "name": "redskull",
-    "attack": 15,
-    "defence": 8,
-    "url": "./images/hero/redskull/user-redskull",
-    "standURL": ".gif",
-    "walkURL": "_walk.gif",
-    "runURL": "_run.gif",
-    "attackURL": "_attack.gif",
-    "blockURL": "_block.gif",
-    "hitURL": "_hit.gif",
-    "dieURL": "_die.gif"
+    name: 'redskull',
+    attack: 15,
+    defence: 8,
+    url: './images/hero/redskull/user-redskull',
+    standURL: '.gif',
+    walkURL: '_walk.gif',
+    runURL: '_run.gif',
+    attackURL: '_attack.gif',
+    blockURL: '_block.gif',
+    hitURL: '_hit.gif',
+    dieURL: '_die.gif'
   },
   {
-    "name": "colossus",
-    "attack": 13,
-    "defence": 10,
-    "url": "./images/hero/colossus/user-colossus",
-    "standURL": ".gif",
-    "walkURL": "_walk.gif",
-    "runURL": "_run.gif",
-    "attackURL": "_attack.gif",
-    "blockURL": "_block.gif",
-    "hitURL": "_hit.gif",
-    "dieURL": "_die.gif"
+    name: 'colossus',
+    attack: 13,
+    defence: 10,
+    url: './images/hero/colossus/user-colossus',
+    standURL: '.gif',
+    walkURL: '_walk.gif',
+    runURL: '_run.gif',
+    attackURL: '_attack.gif',
+    blockURL: '_block.gif',
+    hitURL: '_hit.gif',
+    dieURL: '_die.gif'
   },
   {
-    "name": "mystique",
-    "attack": 10,
-    "defence": 13,
-    "url": "./images/hero/mystique/user-mystique",
-    "standURL": ".gif",
-    "walkURL": "_walk.gif",
-    "runURL": "_run.gif",
-    "attackURL": "_attack.gif",
-    "blockURL": "_block.gif",
-    "hitURL": "_hit.gif",
-    "dieURL": "_die.gif"
+    name: 'mystique',
+    attack: 10,
+    defence: 13,
+    url: './images/hero/mystique/user-mystique',
+    standURL: '.gif',
+    walkURL: '_walk.gif',
+    runURL: '_run.gif',
+    attackURL: '_attack.gif',
+    blockURL: '_block.gif',
+    hitURL: '_hit.gif',
+    dieURL: '_die.gif'
   },
   {
-    "name": "starlord",
-    "attack": 9,
-    "defence": 14,
-    "url": "./images/hero/starlord/user-starlord",
-    "standURL": ".gif",
-    "walkURL": "_walk.gif",
-    "runURL": "_run.gif",
-    "attackURL": "_attack.gif",
-    "blockURL": "_block.gif",
-    "hitURL": "_block.gif",
-    "dieURL": "_die.gif"
+    name: 'starlord',
+    attack: 9,
+    defence: 14,
+    url: './images/hero/starlord/user-starlord',
+    standURL: '.gif',
+    walkURL: '_walk.gif',
+    runURL: '_run.gif',
+    attackURL: '_attack.gif',
+    blockURL: '_block.gif',
+    hitURL: '_block.gif',
+    dieURL: '_die.gif'
   }
 ];
 
 const fields = [
   {
-    "name": "boat",
-    "url": "./images/arena/boat.gif"
+    name: 'boat',
+    url: './images/arena/boat.gif'
   },
   {
-    "name": "light",
-    "url": "./images/arena/light.gif"
+    name: 'light',
+    url: './images/arena/light.gif'
   },
   {
-    "name": "main",
-    "url": "./images/arena/main.gif"
+    name: 'main',
+    url: './images/arena/main.gif'
   },
   {
-    "name": "train",
-    "url": "./images/arena/train.gif"
+    name: 'train',
+    url: './images/arena/train.gif'
   },
   {
-    "name": "waterfall",
-    "url": "./images/arena/waterfall.gif"
+    name: 'waterfall',
+    url: './images/arena/waterfall.gif'
   },
   {
-    "name": "wind",
-    "url": "./images/arena/wind.gif"
+    name: 'wind',
+    url: './images/arena/wind.gif'
   }
 ];
 
 class BuildHeroes {
-  constructor (heroes) {
-    this.wrapper = document.querySelector('.fighters-section'),
-    this.heroes = heroes, 
-    this.build();
+  constructor(heroes) {
+    (this.wrapper = document.querySelector('.fighters-section')),
+      (this.heroes = heroes),
+      this.build();
   }
 
-  build () {
-    this.heroes.map( hero => {
+  build() {
+    this.heroes.map(hero => {
       const label = document.createElement('label');
       const radio = document.createElement('input');
       const img = document.createElement('img');
 
       label.classList.add('fighter');
-      label.classList.add(`fighter__${hero.name}`)
+      label.classList.add(`fighter__${hero.name}`);
 
       radio.setAttribute('type', 'radio');
       radio.setAttribute('name', 'hero-radio');
@@ -110,14 +110,14 @@ class BuildHeroes {
 }
 
 class BuildFields {
-  constructor (fields) {
-    this.wrapper = document.querySelector('.fields-section'),
-    this.fields = fields, 
-    this.build();
+  constructor(fields) {
+    (this.wrapper = document.querySelector('.fields-section')),
+      (this.fields = fields),
+      this.build();
   }
 
-  build () {
-    this.fields.map( field => {
+  build() {
+    this.fields.map(field => {
       const label = document.createElement('label');
       const radio = document.createElement('input');
 
@@ -134,13 +134,11 @@ class BuildFields {
 }
 
 class BuildRandomBtn {
-  constructor (wrapper, radioName) {
-    this.wrapper = wrapper, 
-    this.name = radioName, 
-    this.buildBtn();
+  constructor(wrapper, radioName) {
+    (this.wrapper = wrapper), (this.name = radioName), this.buildBtn();
   }
 
-  buildBtn () {
+  buildBtn() {
     const label = document.createElement('label');
     const radio = document.createElement('input');
     const img = document.createElement('img');
@@ -155,16 +153,14 @@ class BuildRandomBtn {
     label.append(radio, img);
     this.wrapper.appendChild(label);
   }
-} 
+}
 
 class SubmitAction {
-  constructor (btn) {
-    this.block = document.querySelector('.fightPage__container'),
-    this.btn = btn,
-    this.events();
+  constructor(btn) {
+    (this.block = document.querySelector('.fightPage__container')), (this.btn = btn), this.events();
   }
 
-  checkAction (e) {
+  checkAction(e) {
     e.preventDefault();
     this.getHero();
     this.getField();
@@ -173,11 +169,11 @@ class SubmitAction {
     new DefaultStart();
   }
 
-  changeBackground () {
+  changeBackground() {
     this.block.style.backgroundImage = `url(${globalObj.arena})`;
   }
 
-  getHero () {
+  getHero() {
     const radioHero = document.querySelector('input[name="hero-radio"]:checked');
 
     if (radioHero !== null) {
@@ -186,15 +182,17 @@ class SubmitAction {
       const imgName = img.getAttribute('alt');
 
       if (imgSrc !== './images/dice.png') {
-        globalObj.user.obj = heroes.find( hero => hero.name == imgName);
+        globalObj.user.obj = heroes.find(hero => hero.name == imgName);
         globalObj.user.attack = globalObj.user.obj.attack;
         globalObj.user.defence = globalObj.user.obj.defence;
         console.log(globalObj);
-      } else { this.randomHero() }
+      } else {
+        this.randomHero();
+      }
     }
   }
 
-  getField () {
+  getField() {
     const radioField = document.querySelector('input[name="field-radio"]:checked');
 
     if (radioField !== null) {
@@ -202,7 +200,7 @@ class SubmitAction {
 
       if (img === null) {
         const fieldName = radioField.parentElement.className.slice(13);
-      
+
         globalObj.arena = `./images/arena/${fieldName}.gif`;
       } else {
         this.randomField();
@@ -210,19 +208,19 @@ class SubmitAction {
     }
   }
 
-  randomHero () {
+  randomHero() {
     const num = Math.floor(Math.random() * heroes.length);
     globalObj.user.obj = heroes[num];
     globalObj.user.attack = heroes[num].attack;
     globalObj.user.defence = heroes[num].defence;
   }
 
-  randomField () {
+  randomField() {
     const num = Math.floor(Math.random() * fields.length);
     globalObj.arena = fields[num].url;
   }
 
-  events () {
+  events() {
     const $this = this;
 
     this.btn.addEventListener('click', this.checkAction.bind($this));
@@ -230,52 +228,92 @@ class SubmitAction {
 }
 
 class ChangePageToFightPage {
-  constructor () {
-    this.secondWrapper = document.querySelector('.secondPageWrapp'), 
-    this.thirdWrapper = document.querySelector('.thirdPageWrapp'), 
-    this.btn = document.querySelector('.secondPage__submit'), 
-    this.listener();
+  constructor() {
+    (this.secondWrapper = document.querySelector('.secondPageWrapp')),
+      (this.thirdWrapper = document.querySelector('.thirdPageWrapp')),
+      (this.btn = document.querySelector('.secondPage__submit')),
+      this.listener();
   }
 
-  change () {
-    if ( document.querySelector('input[name="hero-radio"]:checked') !== null 
-    && document.querySelector('input[name="field-radio"]:checked') ) {
+  change() {
+    if (
+      document.querySelector('input[name="hero-radio"]:checked') !== null &&
+      document.querySelector('input[name="field-radio"]:checked')
+    ) {
       this.secondWrapper.classList.add('hide');
       this.thirdWrapper.classList.remove('hide');
-    } else {alert('Choose your fighter and field!')}
+    } else {
+      alert('Choose your fighter and field!');
+    }
   }
 
-  listener () {
+  listener() {
     const $this = this;
-    this.btn.addEventListener( 'click', this.change.bind($this) );
+    this.btn.addEventListener('click', this.change.bind($this));
   }
 }
 
 class ClickSound {
-  constructor () {
-    this.fighterSection = document.querySelector('.fighters-section'),
-    this.fieldSection = document.querySelector('.fields-section'), 
-    this.listeners();
+  constructor() {
+    (this.fighterSection = document.querySelector('.fighters-section')),
+      (this.fieldSection = document.querySelector('.fields-section')),
+      this.listeners();
   }
 
-  click (e) {
-    if ( e.target.nodeName === 'INPUT' || e.target.nodeName === 'LABEL' ) {
+  click(e) {
+    if (e.target.nodeName === 'INPUT' || e.target.nodeName === 'LABEL') {
       const audio = document.getElementById('clickmouse');
       audio.play();
     }
   }
 
-  listeners () {
+  listeners() {
     const $this = this;
-    this.fighterSection.addEventListener( 'click', this.click.bind($this) );
-    this.fieldSection.addEventListener( 'click', this.click.bind($this) );
+    this.fighterSection.addEventListener('click', this.click.bind($this));
+    this.fieldSection.addEventListener('click', this.click.bind($this));
   }
 }
 
-new BuildHeroes( heroes );
-new BuildFields( fields );
-new BuildRandomBtn( document.querySelector('.fighters-section'), 'hero' );
-new BuildRandomBtn( document.querySelector('.fields-section'), 'field' );
-new SubmitAction( document.querySelector('.secondPage__submit') );
+class ReturnInfoCard {
+  constructor() {
+    (this.labelsWrapper = document.querySelector('.fighters-section')),
+      (this.hero_name = document.querySelector('.hero__name')),
+      (this.hero_url = document.querySelector('.hero__img')),
+      (this.hero_attack = document.querySelector('.hero__attack')),
+      (this.hero_Defence = document.querySelector('.hero__defence')),
+      (this.obj = null);
+
+    this.listeners();
+  }
+
+  listeners() {
+    const $this = this;
+    this.labelsWrapper.addEventListener('click', this.returnObj.bind($this));
+  }
+
+  returnObj(e) {
+    if (e.target.nodeName === 'IMG') {
+      let imgAlt = e.target.getAttribute('alt');
+      const obj = heroes.find(hero => hero.name === imgAlt);
+      this.obj = obj;
+      this.show();
+    }
+  }
+  show() {
+    if (this.obj) {
+      this.hero_name.textContent = this.obj.name;
+      this.hero_url.setAttribute('src', `${this.obj.url}_run.gif`);
+      this.hero_attack.textContent = 'Attack: ' + this.obj.attack;
+      this.hero_Defence.textContent = 'Defence: ' + this.obj.defence;
+    }
+  }
+}
+
+new BuildHeroes(heroes);
+new BuildFields(fields);
+new BuildRandomBtn(document.querySelector('.fighters-section'), 'hero');
+new BuildRandomBtn(document.querySelector('.fields-section'), 'field');
+new SubmitAction(document.querySelector('.secondPage__submit'));
 new ClickSound();
 new ChangePageToFightPage();
+new ReturnInfoCard();

@@ -1,12 +1,11 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   user-select: none;
 }
 
-.secondPage{
-
+.secondPage {
   &__submit {
     font-size: 20px;
     border: none;
@@ -23,69 +22,54 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url('../images/bc_im_2nd_page.png');
-    background-size: cover; 
+    background: url('../images/arena/main.gif');
+    background-size: cover;
 
-    .random-btn {
+    .fighters-section {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      width: 10%;
-      max-width: 120px;
-      height: 120px;
-      border: 3px solid #f00;
-      border-radius: 10px;
-      transition: all ease-in-out 200ms;
-      background-color: #333;
+      flex-wrap: wrap;
+      width: 40%;
+      height: 700px;
+      position: relative;
 
-      & img {
-        max-width: 50px;
-      }
-    }
-
-    .fighters-section{
-      display: flex;
-      justify-content: space-evenly;
-      width: 100%;
-
-      .fighter{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 15%;
-        min-width: 100px;
-        height: 120px;
+      .fighter {
+        min-width: 230px;
+        height: 230px;
         border: 3px solid #f00;
         border-radius: 10px;
         transition: all ease-in-out 200ms;
-        background: url('../images/arena/main.gif') 30% bottom, ;
+        background: url('../images/arena/main.gif') 30% bottom;
+        margin: 10px;
 
-        &:hover{
+        &:hover {
           border-color: #a00;
         }
       }
     }
 
-    input[type="radio"] {
+    input[type='radio'] {
       display: none;
 
-      &:checked{
+      &:checked {
         display: flex;
       }
     }
 
-    label{
+    label {
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    
-    .fields-section{
-      display: flex;
-      width: 100%;
-      justify-content: space-around;
 
-      .field{
+    .fields-section {
+      display: flex;
+      width: 90%;
+      justify-content: space-between;
+      position: fixed;
+      bottom: 6vh;
+      .field {
         min-width: 120px;
         width: 10%;
         height: 120px;
@@ -94,7 +78,7 @@
         transition: all ease-in-out 200ms;
         background-size: cover;
 
-        &:hover{
+        &:hover {
           border-color: #a00;
         }
 
@@ -108,15 +92,82 @@
           background-image: url('../images/arena/main.gif');
         }
         &__train {
+          order: 1;
           background-image: url('../images/arena/train.gif');
         }
         &__waterfall {
+          order: 2;
           background-image: url('../images/arena/waterfall.gif');
         }
         &__wind {
+          order: 3;
           background-image: url('../images/arena/wind.gif');
         }
       }
     }
+  }
+}
+.fighter__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+.fighter__card {
+  width: 55%;
+  height: 450px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 25px;
+}
+.hero__name {
+  text-align: center;
+  font-size: 70px;
+  color: rgb(238, 238, 238);
+  letter-spacing: 3px;
+  padding: 10px;
+  margin: 10px;
+}
+.hero__attack {
+  font-size: 30px;
+  user-select: none;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 10px;
+}
+.hero__img {
+  transform: scale(2);
+}
+.hero__defence {
+  font-size: 30px;
+  user-select: none;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 10px;
+}
+.fighters-section > .random-btn {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -60px;
+  margin-top: -60px;
+}
+.secondPage__submit {
+}
+
+.random-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  max-width: 120px;
+  height: 120px;
+  border: 3px solid #f00;
+  border-radius: 10px;
+  transition: all ease-in-out 200ms;
+  background-color: #333;
+  & img {
+    max-width: 50px;
   }
 }
