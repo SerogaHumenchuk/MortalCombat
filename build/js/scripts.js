@@ -149,6 +149,50 @@ class ComputerRandomHero {
   };
 
   firstPageForm.addEventListener('submit', onSubmit);
+  const fullscreen = document.querySelector('.fullscreen');
+  const fullscreenSvg = document.querySelector('.fullscreen__svg');
+
+  open = elem => {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (document.mozRequestFullScreen) {
+      /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (document.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (document.msRequestFullscreen) {
+      /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  };
+
+  close = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      /* IE/Edge */
+      document.msExitFullscreen();
+    }
+  };
+
+  fullscreen.addEventListener('click', () => {
+    fullscreen.classList.toggle('clicked');
+
+    if (fullscreen.classList.contains('clicked')) {
+      open(document.documentElement);
+      fullscreenSvg.setAttribute('src', './images/fullscreen-decrease.svg');
+    } else {
+      close();
+      fullscreenSvg.setAttribute('src', './images/fullscreen-increase.svg');
+    }
+  });
 })();
 
 class StartMusic {
@@ -283,22 +327,11 @@ let atchecks = document.querySelectorAll('[name="attack"]');
 let defchecks = document.querySelectorAll('[name="defense"]');
 let nickname = document.querySelector('.nick_name');
 let botname = document.querySelector('.bot_name');
-console.log(globalObj.computer.name);
 nickname.textContent = globalObj.user.name;
 botname.textContent = globalObj.computer.name;
 
 function fightFunc(e) {
   e.preventDefault();
-  let attack = document.querySelector('[name="attack"]:checked');
-  let defense = document.querySelector('[name="defense"]:checked');
-
-  if (attack == null || defense == null) {
-    output = 'MAKE A CHOISE';
-  } else {
-    output = `You hit ${globalObj.computer.name} in ${attack.value} and protect your ${defense.value}`;
-    resetTimer();
-  }
-
   new RandomPart();
   const fight = new FightLogic();
   const fightAnimation = new FightAnimation();
@@ -328,16 +361,7 @@ function fightFunc(e) {
     heroLifeBar.changeHP(globalObj.lifeUser);
     enemyLifeBar.changeHP(globalObj.lifeComputer);
   }, 1300);
-  new FightLogic(); // console.log(output);
-
-  let i = 0;
-  document.querySelector('.output').innerHTML = '';
-  setInterval(function () {
-    if (i < output.length) {
-      document.querySelector('.output').append(output[i]);
-      i++;
-    }
-  }, 40);
+  new FightLogic();
   ADForm.reset();
 }
 
@@ -609,12 +633,28 @@ class ReturnInfoCard {
   }
 
   returnObj(e) {
-    if (e.target.nodeName === 'IMG') {
+    if (e.target.nodeName === 'IMG' && e.target.classList.contains('random-img')) {
+      this.showRandom();
+    } else if (e.target.nodeName === 'INPUT' && e.target.nextSibling.classList.contains('random-img')) {
+      this.showRandom();
+    } else if (e.target.nodeName === 'IMG') {
       let imgAlt = e.target.getAttribute('alt');
       const obj = heroes.find(hero => hero.name === imgAlt);
       this.obj = obj;
       this.show();
+    } else if (e.target.nodeName === 'INPUT') {
+      let imgAlt = e.target.nextSibling.getAttribute('alt');
+      const obj = heroes.find(hero => hero.name === imgAlt);
+      this.obj = obj;
+      this.show();
     }
+  }
+
+  showRandom() {
+    this.hero_name.textContent = 'RANDOM HERO';
+    this.hero_url.setAttribute('src', '');
+    this.hero_attack.textContent = '';
+    this.hero_Defence.textContent = '';
   }
 
   show() {

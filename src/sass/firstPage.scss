@@ -11,6 +11,7 @@
     top: 2%;
     background: transparent;
     border: none;
+    z-index: 10;
 
     &__svg{
       box-sizing: content-box;
@@ -26,7 +27,7 @@
 
   .fighting {
     display: block;
-    width: 76vh;
+    width: 85vh;
     height: 28vh;
     margin: 0 auto;
   }

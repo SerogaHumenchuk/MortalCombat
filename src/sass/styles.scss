@@ -2,10 +2,6 @@
   Import partials below
 */
 
-input {
-  display: none;
-}
-
 @import './normalize';
 @import './firstPage.scss';
 @import './secondPage';
@@ -22,11 +18,32 @@ input {
     url('../fonts/mkx.woff2') format('woff2');
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  overflow: hidden;
+}
+
+button {
+  outline: 0;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+h1 {
+  margin: 0;
+}
+
 h2 {
   font-size: 45px;
   color: #eee;
-  padding: 10px;
-  margin: 10px;
   letter-spacing: 3px;
 }
 

@@ -24,6 +24,7 @@
   firstPageForm.addEventListener('submit', onSubmit);
 
   const fullscreen = document.querySelector('.fullscreen');
+  const fullscreenSvg = document.querySelector('.fullscreen__svg');
 
   open = elem => {
     if (elem.requestFullscreen) {
@@ -37,7 +38,7 @@
     }
   }
 
-  close = elem => {
+  close = () => {
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.mozCancelFullScreen) { /* Firefox */
@@ -52,9 +53,13 @@
   fullscreen.addEventListener( 'click', () => {
     fullscreen.classList.toggle('clicked');
 
-    fullscreen.classList.contains('clicked') 
-    ? open(document.documentElement)
-    : close(document.documentElement);
+    if ( fullscreen.classList.contains('clicked') ) {
+      open(document.documentElement);
+      fullscreenSvg.setAttribute( 'src', './images/fullscreen-decrease.svg')
+    } else {
+      close();
+      fullscreenSvg.setAttribute( 'src', './images/fullscreen-increase.svg')
+    }
   } );
 })();
 
