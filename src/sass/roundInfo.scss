@@ -67,12 +67,29 @@
         list-style: none;
         font-size: 16px;
         position: absolute;
+        top: 30%;
+    }
+
+    .nick_name {
+        position: absolute;
+        top: 30px;
+        color: red;
+        right: 67%;
+        font-size: 28px;
+    }
+
+    .bot_name {
+        font-size: 28px;
+        left: 67%;
+        position: absolute;
+        top: 30px;
+        color: red;
     }
 
     h3.form-title {
         font-size: 24px;
         position: fixed;
-        bottom: 302px;
+        top: 20%;
         color: #ffffff;
     }
 
@@ -112,7 +129,7 @@
         }
 
         .form-list {
-            bottom: 125px;
+            bottom: 30%;
         }
 
         .atIcon,
@@ -145,6 +162,7 @@
 
         h3.form-title {
             font-size: 40px;
+            top: 20%;
         }
 
         button.punch-button {
