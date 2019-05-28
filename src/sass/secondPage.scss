@@ -149,14 +149,14 @@
         display: flex;
         width: 100%;
         height: 73%;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.7);
         border-radius: 10px;
-        padding: 10px;
+        padding: 2em;
 
         .hero {
-          &__img{
+          &__img {
             height: 100%;
           }
 
@@ -167,7 +167,7 @@
             letter-spacing: 4px;
           }
 
-          &__attack, 
+          &__attack,
           &__defence {
             text-align: right;
             font-size: 1.2em;
@@ -188,5 +188,53 @@
 }
 
 @media (min-width: 1024px) {
-  
+  .secondPage {
+    &__submit {
+      width: 28%;
+    }
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+
+      .info_fields-section {
+        width: 100%;
+        height: 70vh;
+        order: 1;
+
+        .fields-section {
+          height: 30%;
+        }
+
+        .fighter {
+          &__container {
+            flex-direction: row;
+            align-items: center;
+            height: 68%;
+          }
+
+          &__card {
+            width: 70%;
+            height: 100%;
+          }
+        }
+      }
+
+      .fighters-section {
+        flex-direction: row;
+        width: 100vw;
+        height: 30vh;
+        order: 2;
+        overflow-y: hidden;
+        border: none;
+
+        .fighter {
+          width: 20vw;
+          min-height: 100px;
+          height: 28vh;
+        }
+      }
+    }
+  }
 }

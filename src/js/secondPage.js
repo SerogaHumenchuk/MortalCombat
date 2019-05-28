@@ -1,4 +1,5 @@
-const heroes = [{
+const heroes = [
+  {
     name: 'redskull',
     attack: 15,
     defence: 8,
@@ -156,12 +157,12 @@ class BuildRandomBtn {
 class SubmitAction {
   constructor(btn) {
     (this.block = document.querySelector('.fightPage__container')),
-      (this.btn = btn),
-      this.events();
+    this.btn = btn,
     this.hero_name = document.querySelector('.hero__name');
     this.hero_url = document.querySelector('.hero__img');
     this.hero_attack = document.querySelector('.hero__attack');
     this.hero_Defence = document.querySelector('.hero__defence');
+    this.events();
   }
 
   checkAction(e) {
@@ -193,9 +194,7 @@ class SubmitAction {
         globalObj.user.defence = globalObj.user.obj.defence;
         console.log(globalObj);
       } else {
-        setTimeout(function() {
-          this.randomHero();
-        }, 0);
+        this.randomHero();
       }
     }
   }
@@ -223,7 +222,7 @@ class SubmitAction {
     globalObj.user.obj = heroes[num];
     globalObj.user.attack = heroes[num].attack;
     globalObj.user.defence = heroes[num].defence;
-    this.name.textContent = 'Random hero';
+    this.hero_name.textContent = 'Random hero';
   }
 
   randomField() {
