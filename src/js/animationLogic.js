@@ -1,7 +1,6 @@
 const globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
-  round: 1,
   intervalTimer: null,
   arena: null,
 

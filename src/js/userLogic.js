@@ -14,7 +14,14 @@ class RandomPart {
 }
 
 class FightLogic {
-  constructor () {}
+  constructor () {
+    this.attackRadio = document.querySelector('input[name="defense"]:checked'), 
+    this.defenceRadio = document.querySelector('input[name="attack"]:checked');
+  }
+
+  userAttackPart () { globalObj.user.attackPart = this.attackRadio.getAttribute('value') }
+
+  userDefencePart () { globalObj.user.defencePart = this.defenceRadio.getAttribute('value') }
 
   healthUserLogic () {
     if ( globalObj.user.defencePart !== globalObj.computer.attackPart ) {
