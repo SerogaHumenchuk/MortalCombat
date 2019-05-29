@@ -11,6 +11,7 @@ const heroes = [
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
     dieURL: '_die.gif',
+    deadURL: '_dead.png'
   },
   {
     name: 'colossus',
@@ -24,6 +25,7 @@ const heroes = [
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
     dieURL: '_die.gif',
+    deadURL: '_dead.png'
   },
   {
     name: 'mystique',
@@ -37,6 +39,7 @@ const heroes = [
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
     dieURL: '_die.gif',
+    deadURL: '_dead.png'
   },
   {
     name: 'starlord',
@@ -50,6 +53,7 @@ const heroes = [
     blockURL: '_block.gif',
     hitURL: '_block.gif',
     dieURL: '_die.gif',
+    deadURL: '_dead.png'
   },
 ];
 
@@ -339,6 +343,16 @@ class ReturnInfoCard {
     }
   }
 }
+
+// class Hover {
+//   constructor () {
+//     this.chosenInput = document.querySelector('input[name="hero-radio"]:checked');
+//   }
+
+//   hover () {
+//     this.
+//   }
+// }
 
 new BuildHeroes(heroes);
 new BuildFields(fields);

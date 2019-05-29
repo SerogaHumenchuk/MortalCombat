@@ -9,60 +9,58 @@ console.log(globalObj.computer.name);
 nickname.textContent = globalObj.user.name;
 botname.textContent = globalObj.computer.name;
 
-
 function fightFunc(e) {
   e.preventDefault();
 
   let attack = document.querySelector('input[name="attack"]:checked');
   let defense = document.querySelector('input[name="defense"]:checked');
 
-  if (attack !== null && defense !== null) {
-    new RandomPart();
-    const fight = new FightLogic();
-    const fightAnimation = new FightAnimation();
+  function funcIf() {
+    if (attack !== null && defense !== null) {
+      
+      const fight = new FightLogic();
+      const fightAnimation = new FightAnimation();
+      
+      fightAnimation.runUser();
+      fightAnimation.runComputer();
+      new RandomPart();
 
-    fightAnimation.runUser();
-    fightAnimation.runComputer();
+      setTimeout(() => {
+        fightAnimation.attackUser();
+        fightAnimation.attackComputer();
+      }, 1280);
 
-    const timerAttack = setTimeout(() => {
-      fightAnimation.attackUser();
-      fightAnimation.attackComputer();
-    }, 1280);
+      setTimeout( () => {
+        globalObj.lifeUser <= 0 
+        ? fightAnimation.dieUser()
+        : fightAnimation.runBackUser();
 
-    const timerRunBack = setTimeout(() => {
-      if (globalObj.lifeUser <= 0) {
-        fightAnimation.dieUser();
-      } else {
-        fightAnimation.runBackUser();
-      }
+        globalObj.lifeComputer <= 0 
+        ? fightAnimation.dieComputer()
+        : fightAnimation.runBackComputer();
 
-      if (globalObj.lifeComputer <= 0) {
-        fightAnimation.dieComputer();
-      } else {
-        fightAnimation.runBackComputer();
-      }
-    }, 1840);
-    // fightAnim.runBack();
+      }, 1840);
 
-    fight.healthUserLogic();
-    fight.healthComputerLogic();
+      fight.healthUserLogic();
+      fight.healthComputerLogic();
 
-    setTimeout(() => {
-      globalObj.lifeUser >= 0 
-      ? heroLifeBar.changeHP(globalObj.lifeUser)
-      : heroLifeBar.changeHP(0);
-  
-      globalObj.lifeComputer >= 0
-      ? enemyLifeBar.changeHP(globalObj.lifeComputer)
-      : enemyLifeBar.changeHP(0);
-    }, 1300);
+      setTimeout(() => {
+        globalObj.lifeUser >= 0
+          ? heroLifeBar.changeHP(globalObj.lifeUser)
+          : heroLifeBar.changeHP(0);
 
-    resetTimer();
+        globalObj.lifeComputer >= 0
+          ? enemyLifeBar.changeHP(globalObj.lifeComputer)
+          : enemyLifeBar.changeHP(0);
+      }, 1300);
 
-    ADForm.reset();
-  } else {
-    alert('Make a choose');
+      resetTimer();
+      ADForm.reset();
+
+    } else { alert('Make a choose') }
   }
+
+  funcIf();
 }
 
 ADForm.addEventListener('submit', fightFunc);

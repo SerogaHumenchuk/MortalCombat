@@ -191,6 +191,7 @@
   .secondPage {
     &__submit {
       width: 28%;
+      font-size: 2.3em;
     }
 
     &__container {
@@ -204,10 +205,23 @@
         order: 1;
 
         .fields-section {
+          overflow-y: hidden;
+          overflow-x: scroll;
           height: 30%;
         }
+        
+        .level-form{
+          display: flex;
+          flex-direction: column;
+          color: #eee;
 
+          .level{
+            color: #eee;
+          }
+        }
+        
         .fighter {
+
           &__container {
             flex-direction: row;
             align-items: center;
@@ -217,6 +231,7 @@
           &__card {
             width: 70%;
             height: 100%;
+
           }
         }
       }
@@ -230,6 +245,13 @@
         border: none;
 
         .fighter {
+          width: 20vw;
+          min-height: 100px;
+          height: 28vh;
+          background: url('../images/hero-bg.gif') center bottom no-repeat;
+        }
+
+        .random-btn {
           width: 20vw;
           min-height: 100px;
           height: 28vh;

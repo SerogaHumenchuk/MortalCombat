@@ -66,7 +66,7 @@ class FightAnimation {
     let left = 9;
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
 
-    const intervalUser = setInterval(() => this.userHero.style.left = `${left += 0.4}%`, 1000 / 60);
+    const intervalUser = setInterval(() => this.userHero.style.left = `${left += 0.8}%`, 1000 / 30);
 
     setTimeout(() => clearInterval(intervalUser), 1280);
   }
@@ -75,7 +75,7 @@ class FightAnimation {
     let right = 9;
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
 
-    const intervalComputer = setInterval(() => this.computerHero.style.right = `${right += 0.4}%`, 1000 / 60);
+    const intervalComputer = setInterval(() => this.computerHero.style.right = `${right += 0.8}%`, 1000 / 30);
 
     setTimeout(() => clearInterval(intervalComputer), 1280);
   }
@@ -94,8 +94,8 @@ class FightAnimation {
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
     this.userHero.style.transform = 'scaleX(-1)';
     const runBackInterval = setInterval(() => {
-      this.userHero.style.left = `${left -= 0.4}%`
-    }, 1000 / 60);
+      this.userHero.style.left = `${left -= 0.8}%`
+    }, 1000 / 30);
 
     setTimeout(() => {
       clearInterval(runBackInterval);
@@ -108,8 +108,8 @@ class FightAnimation {
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
     this.computerHero.style.transform = 'scaleX(1)';
     const runBackInterval = setInterval(() => {
-      this.computerHero.style.right = `${right -= 0.4}%`
-    }, 1000 / 60);
+      this.computerHero.style.right = `${right -= 0.8}%`
+    }, 1000 / 30);
 
     setTimeout(() => {
       clearInterval(runBackInterval);

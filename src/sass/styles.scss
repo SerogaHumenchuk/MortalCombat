@@ -50,3 +50,23 @@ h2 {
 .hide {
   display: none;
 }
+
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    height: 8px;
+
+    &-track {
+      background: rgba($color: #000000, $alpha: 0.3); 
+      border-radius: 5px;
+    }
+    
+    &-thumb {
+      border-radius: 5px;
+      background: #666; 
+
+      &:hover {
+        background: #555; 
+      }
+    }
+  }
+}
