@@ -1,7 +1,6 @@
 const globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
-  round: 1,
   intervalTimer: null,
   arena: null,
   user: {
@@ -61,14 +60,14 @@ class FightAnimation {
   runUser() {
     let left = 9;
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
-    const intervalUser = setInterval(() => this.userHero.style.left = `${left += 0.4}%`, 1000 / 60);
+    const intervalUser = setInterval(() => this.userHero.style.left = `${left += 0.8}%`, 1000 / 30);
     setTimeout(() => clearInterval(intervalUser), 1280);
   }
 
   runComputer() {
     let right = 9;
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
-    const intervalComputer = setInterval(() => this.computerHero.style.right = `${right += 0.4}%`, 1000 / 60);
+    const intervalComputer = setInterval(() => this.computerHero.style.right = `${right += 0.8}%`, 1000 / 30);
     setTimeout(() => clearInterval(intervalComputer), 1280);
   }
 
@@ -85,8 +84,8 @@ class FightAnimation {
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
     this.userHero.style.transform = 'scaleX(-1)';
     const runBackInterval = setInterval(() => {
-      this.userHero.style.left = `${left -= 0.4}%`;
-    }, 1000 / 60);
+      this.userHero.style.left = `${left -= 0.8}%`;
+    }, 1000 / 30);
     setTimeout(() => {
       clearInterval(runBackInterval);
       this.userHero.style.transform = 'scaleX(1)';
@@ -98,8 +97,8 @@ class FightAnimation {
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
     this.computerHero.style.transform = 'scaleX(1)';
     const runBackInterval = setInterval(() => {
-      this.computerHero.style.right = `${right -= 0.4}%`;
-    }, 1000 / 60);
+      this.computerHero.style.right = `${right -= 0.8}%`;
+    }, 1000 / 30);
     setTimeout(() => {
       clearInterval(runBackInterval);
       this.computerHero.style.transform = 'scaleX(-1)';
@@ -153,14 +152,14 @@ class ComputerRandomHero {
   const fullscreenSvg = document.querySelector('.fullscreen__svg');
 
   open = elem => {
-    if (elem.requestFullscreen) {
+    if (document.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.requestFullscreen) {
       elem.requestFullscreen();
     } else if (document.mozRequestFullScreen) {
       /* Firefox */
       elem.mozRequestFullScreen();
-    } else if (document.webkitRequestFullscreen) {
-      /* Chrome, Safari and Opera */
-      elem.webkitRequestFullscreen();
     } else if (document.msRequestFullscreen) {
       /* IE/Edge */
       elem.msRequestFullscreen();
@@ -224,6 +223,9 @@ const MyLives = document.querySelector('.My__Lives');
 const EnemyLives = document.querySelector('.Enemy__Lives');
 const myLivesContainer = document.querySelector('.MyHealthy__Bar');
 const EnemyLivesContainer = document.querySelector('.EnemyHealthy__Bar');
+const winResultPage = document.querySelector('.winResultWrapp');
+const loseResultPage = document.querySelector('.loseResultWapp');
+const thirdPageWrapp = document.querySelector('.thirdPageWrapp');
 
 class Livesbar {
   constructor(container, lifeAmount) {
@@ -248,6 +250,17 @@ class Livesbar {
     this.lifeAmount = life;
     this.changeColor();
     this.changeWidth();
+    this.selectResultPage();
+  }
+
+  selectResultPage() {
+    if (globalObj.lifeUser <= 0) {
+      loseResultPage.classList.remove('hide');
+      thirdPageWrapp.classList.add('hide');
+    } else if (globalObj.lifeComputer <= 0) {
+      winResultPage.classList.remove('hide');
+      thirdPageWrapp.classList.add('hide');
+    }
   }
 
 }
@@ -322,47 +335,47 @@ function playClickFighterClickMouse() {
 // функция вывода информации о раунде
 const ADForm = document.querySelector('.attack-defense');
 const punchBut = document.querySelector('.punch-button');
-let attack, defense, output;
-let atchecks = document.querySelectorAll('[name="attack"]');
-let defchecks = document.querySelectorAll('[name="defense"]');
+let attack, defense;
 let nickname = document.querySelector('.nick_name');
 let botname = document.querySelector('.bot_name');
+console.log(globalObj.computer.name);
 nickname.textContent = globalObj.user.name;
 botname.textContent = globalObj.computer.name;
 
 function fightFunc(e) {
   e.preventDefault();
-  new RandomPart();
-  const fight = new FightLogic();
-  const fightAnimation = new FightAnimation();
-  fightAnimation.runUser();
-  fightAnimation.runComputer();
-  const timerAttack = setTimeout(() => {
-    fightAnimation.attackUser();
-    fightAnimation.attackComputer();
-  }, 1280);
-  const timerRunBack = setTimeout(() => {
-    if (globalObj.lifeUser <= 0) {
-      fightAnimation.dieUser();
-    } else {
-      fightAnimation.runBackUser();
-    }
+  let attack = document.querySelector('input[name="attack"]:checked');
+  let defense = document.querySelector('input[name="defense"]:checked');
 
-    if (globalObj.lifeComputer <= 0) {
-      fightAnimation.dieComputer();
+  function funcIf() {
+    if (attack !== null && defense !== null) {
+      const fight = new FightLogic();
+      const fightAnimation = new FightAnimation();
+      fightAnimation.runUser();
+      fightAnimation.runComputer();
+      new RandomPart();
+      setTimeout(() => {
+        fightAnimation.attackUser();
+        fightAnimation.attackComputer();
+      }, 1280);
+      setTimeout(() => {
+        globalObj.lifeUser <= 0 ? fightAnimation.dieUser() : fightAnimation.runBackUser();
+        globalObj.lifeComputer <= 0 ? fightAnimation.dieComputer() : fightAnimation.runBackComputer();
+      }, 1840);
+      fight.healthUserLogic();
+      fight.healthComputerLogic();
+      setTimeout(() => {
+        globalObj.lifeUser >= 0 ? heroLifeBar.changeHP(globalObj.lifeUser) : heroLifeBar.changeHP(0);
+        globalObj.lifeComputer >= 0 ? enemyLifeBar.changeHP(globalObj.lifeComputer) : enemyLifeBar.changeHP(0);
+      }, 1300);
+      resetTimer();
+      ADForm.reset();
     } else {
-      fightAnimation.runBackComputer();
+      alert('Make a choose');
     }
-  }, 1840); // fightAnim.runBack();
+  }
 
-  fight.healthUserLogic();
-  fight.healthComputerLogic();
-  setTimeout(() => {
-    heroLifeBar.changeHP(globalObj.lifeUser);
-    enemyLifeBar.changeHP(globalObj.lifeComputer);
-  }, 1300);
-  new FightLogic();
-  ADForm.reset();
+  funcIf();
 }
 
 ADForm.addEventListener('submit', fightFunc); // punchBut.addEventListener('click', resetTimerBut);
@@ -378,7 +391,8 @@ const heroes = [{
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_hit.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }, {
   name: 'colossus',
   attack: 13,
@@ -390,7 +404,8 @@ const heroes = [{
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_hit.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }, {
   name: 'mystique',
   attack: 10,
@@ -402,7 +417,8 @@ const heroes = [{
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_hit.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }, {
   name: 'starlord',
   attack: 9,
@@ -414,7 +430,8 @@ const heroes = [{
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_block.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }];
 const fields = [{
   name: 'boat',
@@ -502,11 +519,11 @@ class BuildRandomBtn {
 
 class SubmitAction {
   constructor(btn) {
-    this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.events();
-    this.hero_name = document.querySelector('.hero__name');
+    this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.hero_name = document.querySelector('.hero__name');
     this.hero_url = document.querySelector('.hero__img');
     this.hero_attack = document.querySelector('.hero__attack');
     this.hero_Defence = document.querySelector('.hero__defence');
+    this.events();
   }
 
   checkAction(e) {
@@ -536,9 +553,7 @@ class SubmitAction {
         globalObj.user.defence = globalObj.user.obj.defence;
         console.log(globalObj);
       } else {
-        setTimeout(function () {
-          this.randomHero();
-        }, 0);
+        this.randomHero();
       }
     }
   }
@@ -563,7 +578,7 @@ class SubmitAction {
     globalObj.user.obj = heroes[num];
     globalObj.user.attack = heroes[num].attack;
     globalObj.user.defence = heroes[num].defence;
-    this.name.textContent = 'Random hero';
+    this.hero_name.textContent = 'Random hero';
   }
 
   randomField() {
@@ -666,7 +681,15 @@ class ReturnInfoCard {
     }
   }
 
-}
+} // class Hover {
+//   constructor () {
+//     this.chosenInput = document.querySelector('input[name="hero-radio"]:checked');
+//   }
+//   hover () {
+//     this.
+//   }
+// }
+
 
 new BuildHeroes(heroes);
 new BuildFields(fields);
@@ -777,7 +800,17 @@ class RandomPart {
 }
 
 class FightLogic {
-  constructor() {}
+  constructor() {
+    this.attackRadio = document.querySelector('input[name="defense"]:checked'), this.defenceRadio = document.querySelector('input[name="attack"]:checked');
+  }
+
+  userAttackPart() {
+    globalObj.user.attackPart = this.attackRadio.getAttribute('value');
+  }
+
+  userDefencePart() {
+    globalObj.user.defencePart = this.defenceRadio.getAttribute('value');
+  }
 
   healthUserLogic() {
     if (globalObj.user.defencePart !== globalObj.computer.attackPart) {

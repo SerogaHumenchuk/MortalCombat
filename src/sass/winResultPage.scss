@@ -1,0 +1,36 @@
+.windowResultPage-victory {
+    width: 100%;
+    height: 100vh; 
+    background-color:black;   
+    background-image: url('../images/won.gif');
+    background-repeat: no-repeat;
+    display: none;
+    position: relative;
+}
+.btn-css{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) ;
+    z-index: 1;
+    }
+    
+    .btn-revenge {
+        font-size: 30px;
+        border-radius: 5px;
+        margin: 100px;
+        border: none;
+        padding: 10px 20px;
+        background-color: grey; 
+        font-family: "Mortal";
+    }
+    .btn-play_again{
+        font-size: 30px;
+        border-radius: 5px;
+        margin: 100px;
+        border: none;
+        padding: 10px 20px;
+        background-color: grey; 
+        font-family: "Mortal";
+    }

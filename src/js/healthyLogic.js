@@ -2,6 +2,10 @@ const MyLives = document.querySelector('.My__Lives');
 const EnemyLives = document.querySelector('.Enemy__Lives');
 const myLivesContainer = document.querySelector('.MyHealthy__Bar');
 const EnemyLivesContainer = document.querySelector('.EnemyHealthy__Bar');
+const winResultPage = document.querySelector('.winResultWrapp');
+const loseResultPage = document.querySelector('.loseResultWapp');
+const thirdPageWrapp = document.querySelector('.thirdPageWrapp');
+
 
 class Livesbar {
   constructor(container, lifeAmount) {
@@ -23,6 +27,17 @@ class Livesbar {
     this.lifeAmount = life;
     this.changeColor();
     this.changeWidth();
+    this.selectResultPage();
+ 
+  }
+  selectResultPage() {
+    if(globalObj.lifeUser <= 0 ) {
+      loseResultPage.classList.remove('hide')
+      thirdPageWrapp.classList.add('hide')
+    }else if (globalObj.lifeComputer <= 0 ) {
+      winResultPage.classList.remove('hide')
+      thirdPageWrapp.classList.add('hide')
+    }
   }
 }
 

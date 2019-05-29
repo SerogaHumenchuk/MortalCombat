@@ -410,15 +410,20 @@ template {
   margin: 0 auto;
 }
 
-.firstPage__wrapper .start {
+.firstPage__form {
+  margin-top: 20px;
+}
+
+.firstPage__form .start {
   font-family: Mortal, sans-serif;
-  font-size: 3.6vh;
+  font-size: 4.3vw;
   font-weight: 700;
   background-color: #fff;
-  margin: 5.5vh auto 0.7vh;
   text-transform: uppercase;
-  width: 27vh;
-  height: 5vh;
+  width: 26%;
+  min-height: 40px;
+  height: 8vh;
+  margin: 16px auto;
   color: #000;
   text-align: center;
   display: block;
@@ -428,33 +433,41 @@ template {
   cursor: pointer;
 }
 
-.firstPage__wrapper .name {
+.firstPage__form .name {
+  width: 28%;
+  height: 8vh;
+  min-height: 40px;
   font-family: Mortal, sans-serif;
+  font-size: 4.3vw;
+  font-weight: 700;
   color: #000;
   text-align: center;
   display: block;
   border: 2px solid #ff4500;
   border-radius: 25px;
-  font-size: 2.8vh;
   font-weight: 400;
   padding: 5px;
-  margin: 0 auto;
+  margin: 16px auto;
   outline: 0;
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
 }
 
-.firstPage__wrapper .name::-webkit-input-placeholder {
+.firstPage__form .name::-webkit-input-placeholder {
   font-family: Mortal, sans-serif;
 }
 
-.firstPage__wrapper .name:-ms-input-placeholder {
+.firstPage__form .name:-ms-input-placeholder {
   font-family: Mortal, sans-serif;
 }
 
-.firstPage__wrapper .name::-ms-input-placeholder {
+.firstPage__form .name::-ms-input-placeholder {
   font-family: Mortal, sans-serif;
 }
 
-.firstPage__wrapper .name::placeholder {
+.firstPage__form .name::placeholder {
   font-family: Mortal, sans-serif;
 }
 
@@ -616,11 +629,11 @@ template {
   display: flex;
   width: 100%;
   height: 73%;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
-  padding: 10px;
+  padding: 2em;
 }
 
 .secondPage__container .fighter__card .hero__img {
@@ -897,12 +910,29 @@ svg.decrease {
   list-style: none;
   font-size: 16px;
   position: absolute;
+  top: 30%;
+}
+
+.fight-round .nick_name {
+  position: absolute;
+  top: 30px;
+  color: red;
+  right: 67%;
+  font-size: 28px;
+}
+
+.fight-round .bot_name {
+  font-size: 28px;
+  left: 67%;
+  position: absolute;
+  top: 30px;
+  color: red;
 }
 
 .fight-round h3.form-title {
   font-size: 24px;
   position: fixed;
-  bottom: 302px;
+  top: 20%;
   color: #ffffff;
 }
 
@@ -921,21 +951,27 @@ svg.decrease {
 .fight-round button.punch-button {
   -webkit-filter: invert(24%) sepia(98%) saturate(7365%) hue-rotate(359deg) brightness(96%) contrast(112%);
   filter: invert(24%) sepia(98%) saturate(7365%) hue-rotate(359deg) brightness(96%) contrast(112%);
-  width: 70px;
-  height: 70px;
+  width: 10vw;
+  height: 10vw;
   border-radius: 50%;
   font-size: 14px;
   position: absolute;
   background-image: url("http://chittagongit.com/download/294339");
   background-repeat: no-repeat;
   background-size: 65px 65px;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  left: 50%;
-  bottom: 0;
+  right: 4%;
+  bottom: 3%;
   background-color: transparent;
   border: none;
   z-index: 100;
+  transition: all ease-in 1s;
+}
+
+.fight-round button.punch-button:hover {
+  -webkit-transform: scale(1.2) rotate(-90deg);
+  transform: scale(1.2) rotate(-90deg);
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
 }
 
 .fightPage__container {
@@ -950,7 +986,7 @@ svg.decrease {
 .computer-hero,
 .user-hero {
   position: absolute;
-  bottom: 20%;
+  bottom: 5%;
   width: 14%;
 }
 
@@ -971,6 +1007,86 @@ svg.decrease {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.windowResultPage-victory {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  background-image: url("../images/won.gif");
+  background-repeat: no-repeat;
+  display: none;
+  position: relative;
+}
+
+.btn-css {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  margin-right: -50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.btn-revenge {
+  font-size: 30px;
+  border-radius: 5px;
+  margin: 100px;
+  border: none;
+  padding: 10px 20px;
+  background-color: grey;
+  font-family: "Mortal";
+}
+
+.btn-play_again {
+  font-size: 30px;
+  border-radius: 5px;
+  margin: 100px;
+  border: none;
+  padding: 10px 20px;
+  background-color: grey;
+  font-family: "Mortal";
+}
+
+.windowResultPage-defeat {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  background-image: url("../images/lose.gif");
+  background-repeat: no-repeat;
+  position: relative;
+  display: none;
+}
+
+.btn-css {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  margin-right: -50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.btn-revenge {
+  font-size: 30px;
+  border-radius: 5px;
+  margin: 100px;
+  border: none;
+  padding: 10px 20px;
+  background-color: grey;
+  font-family: "Mortal";
+}
+
+.btn-play_again {
+  font-size: 30px;
+  border-radius: 5px;
+  margin: 100px;
+  border: none;
+  padding: 10px 20px;
+  background-color: grey;
+  font-family: "Mortal";
 }
 
 @font-face {
@@ -1031,7 +1147,7 @@ h2 {
   }
 
   .fight-round .form-list {
-    bottom: 125px;
+    bottom: 30%;
   }
 
   .fight-round .atIcon,
@@ -1060,6 +1176,80 @@ h2 {
 }
 
 @media (min-width: 1024px) {
+  .firstPage__form .name {
+    font-size: 5.6vh;
+  }
+
+  .firstPage__form .start {
+    font-size: 5.6vh;
+  }
+
+  .secondPage__submit {
+    width: 28%;
+    font-size: 2.3em;
+  }
+
+  .secondPage__container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .secondPage__container .info_fields-section {
+    width: 100%;
+    height: 70vh;
+    order: 1;
+  }
+
+  .secondPage__container .info_fields-section .fields-section {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    height: 30%;
+  }
+
+  .secondPage__container .info_fields-section .level-form {
+    display: flex;
+    flex-direction: column;
+    color: #eee;
+  }
+
+  .secondPage__container .info_fields-section .level-form .level {
+    color: #eee;
+  }
+
+  .secondPage__container .info_fields-section .fighter__container {
+    flex-direction: row;
+    align-items: center;
+    height: 68%;
+  }
+
+  .secondPage__container .info_fields-section .fighter__card {
+    width: 70%;
+    height: 100%;
+  }
+
+  .secondPage__container .fighters-section {
+    flex-direction: row;
+    width: 100vw;
+    height: 30vh;
+    order: 2;
+    overflow-y: hidden;
+    border: none;
+  }
+
+  .secondPage__container .fighters-section .fighter {
+    width: 20vw;
+    min-height: 100px;
+    height: 28vh;
+    background: url("../images/hero-bg.gif") center bottom no-repeat;
+  }
+
+  .secondPage__container .fighters-section .random-btn {
+    width: 20vw;
+    min-height: 100px;
+    height: 28vh;
+  }
+
   .EnemyHealthy__Bar {
     width: 350px;
     height: 31px;
@@ -1084,6 +1274,7 @@ h2 {
 
   .fight-round h3.form-title {
     font-size: 40px;
+    top: 20%;
   }
 
   .fight-round button.punch-button {
@@ -1098,6 +1289,24 @@ h2 {
 
   .fight-round button.punch-button {
     background-size: 75px 75px;
+  }
+
+  ::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #666;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 }
 
