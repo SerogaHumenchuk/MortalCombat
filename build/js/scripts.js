@@ -1,7 +1,6 @@
 const globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
-  round: 1,
   intervalTimer: null,
   arena: null,
   user: {
@@ -322,49 +321,63 @@ function playClickFighterClickMouse() {
 // функция вывода информации о раунде
 const ADForm = document.querySelector('.attack-defense');
 const punchBut = document.querySelector('.punch-button');
-let attack, defense, output;
-let atchecks = document.querySelectorAll('[name="attack"]');
-let defchecks = document.querySelectorAll('[name="defense"]');
+let attack, defense;
 let nickname = document.querySelector('.nick_name');
 let botname = document.querySelector('.bot_name');
 nickname.textContent = globalObj.user.name;
-botname.textContent = globalObj.computer.name;
 
 function fightFunc(e) {
   e.preventDefault();
-  new RandomPart();
-  const fight = new FightLogic();
-  const fightAnimation = new FightAnimation();
-  fightAnimation.runUser();
-  fightAnimation.runComputer();
-  const timerAttack = setTimeout(() => {
-    fightAnimation.attackUser();
-    fightAnimation.attackComputer();
-  }, 1280);
-  const timerRunBack = setTimeout(() => {
-    if (globalObj.lifeUser <= 0) {
-      fightAnimation.dieUser();
-    } else {
-      fightAnimation.runBackUser();
-    }
+  let attack = document.querySelector('input[name="attack"]:checked');
+  let defense = document.querySelector('input[name="defense"]:checked');
 
-    if (globalObj.lifeComputer <= 0) {
-      fightAnimation.dieComputer();
-    } else {
-      fightAnimation.runBackComputer();
-    }
-  }, 1840); // fightAnim.runBack();
+  if (attack !== null && defense !== null) {
+    new RandomPart();
+    const fight = new FightLogic();
+    const fightAnimation = new FightAnimation();
+    setTimeout(function () {
+      resetTimer();
+    }, 3000);
+    fightAnimation.runUser();
+    fightAnimation.runComputer();
+    const timerAttack = setTimeout(() => {
+      fightAnimation.attackUser();
+      fightAnimation.attackComputer();
+    }, 1280);
+    const timerRunBack = setTimeout(() => {
+      if (globalObj.lifeUser <= 0) {
+        fightAnimation.dieUser();
+      } else {
+        fightAnimation.runBackUser();
+      }
 
-  fight.healthUserLogic();
-  fight.healthComputerLogic();
-  setTimeout(() => {
-    heroLifeBar.changeHP(globalObj.lifeUser);
-    enemyLifeBar.changeHP(globalObj.lifeComputer);
-  }, 1300);
-  new FightLogic();
-  ADForm.reset();
+      if (globalObj.lifeComputer <= 0) {
+        fightAnimation.dieComputer();
+      } else {
+        fightAnimation.runBackComputer();
+      }
+    }, 1840); // fightAnim.runBack();
+
+    fight.healthUserLogic();
+    fight.healthComputerLogic();
+    setTimeout(() => {
+      globalObj.lifeUser >= 0 ? heroLifeBar.changeHP(globalObj.lifeUser) : heroLifeBar.changeHP(0);
+      globalObj.lifeComputer >= 0 ? enemyLifeBar.changeHP(globalObj.lifeComputer) : enemyLifeBar.changeHP(0);
+    }, 1300);
+    resetTimer();
+    ADForm.reset();
+  } else {
+    document.querySelector('.makeACh').textContent = 'MAKE A CHOISE!!!';
+  }
 }
 
+let nullChecker = setInterval(function () {
+  if (timeLeft === 0) {
+    resetTimer();
+    document.querySelector('.makeACh').textContent = 'MAKE A CHOISE!!!';
+    resetTimer();
+  }
+}, 1000);
 ADForm.addEventListener('submit', fightFunc); // punchBut.addEventListener('click', resetTimerBut);
 //call resetTimer() when animation is ended
 const heroes = [{
@@ -502,11 +515,11 @@ class BuildRandomBtn {
 
 class SubmitAction {
   constructor(btn) {
-    this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.events();
-    this.hero_name = document.querySelector('.hero__name');
+    this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.hero_name = document.querySelector('.hero__name');
     this.hero_url = document.querySelector('.hero__img');
     this.hero_attack = document.querySelector('.hero__attack');
     this.hero_Defence = document.querySelector('.hero__defence');
+    this.events();
   }
 
   checkAction(e) {
@@ -535,10 +548,9 @@ class SubmitAction {
         globalObj.user.attack = globalObj.user.obj.attack;
         globalObj.user.defence = globalObj.user.obj.defence;
         console.log(globalObj);
+        botname.textContent = globalObj.computer.name; // console.log(globalObj[0]);
       } else {
-        setTimeout(function () {
-          this.randomHero();
-        }, 0);
+        this.randomHero();
       }
     }
   }
@@ -563,7 +575,7 @@ class SubmitAction {
     globalObj.user.obj = heroes[num];
     globalObj.user.attack = heroes[num].attack;
     globalObj.user.defence = heroes[num].defence;
-    this.name.textContent = 'Random hero';
+    this.hero_name.textContent = 'Random hero';
   }
 
   randomField() {
@@ -777,10 +789,20 @@ class RandomPart {
 }
 
 class FightLogic {
-  constructor() {}
+  constructor() {
+    this.attackRadio = document.querySelector('input[name="defense"]:checked'), this.defenceRadio = document.querySelector('input[name="attack"]:checked');
+  }
+
+  userAttackPart() {
+    globalObj.user.attackPart = this.attackRadio.getAttribute('value');
+  }
+
+  userDefencePart() {
+    globalObj.user.defencePart = this.defenceRadio.getAttribute('value');
+  }
 
   healthUserLogic() {
-    if (globalObj.user.defencePart !== globalObj.computer.attackPart) {
+    if (globalObj.user.defencePart !== globalObj.computer.attackPart && globalObj.user.defencePart === null) {
       globalObj.lifeUser -= globalObj.computer.attack;
     } else if (globalObj.user.defencePart === globalObj.computer.attackPart) {
       const damage = globalObj.user.defence - globalObj.computer.attack;

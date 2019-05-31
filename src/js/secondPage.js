@@ -193,6 +193,8 @@ class SubmitAction {
         globalObj.user.attack = globalObj.user.obj.attack;
         globalObj.user.defence = globalObj.user.obj.defence;
         console.log(globalObj);
+        botname.textContent = globalObj.computer.name;
+        // console.log(globalObj[0]);
       } else {
         this.randomHero();
       }

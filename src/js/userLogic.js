@@ -24,14 +24,14 @@ class FightLogic {
   userDefencePart () { globalObj.user.defencePart = this.defenceRadio.getAttribute('value') }
 
   healthUserLogic () {
-    if ( globalObj.user.defencePart !== globalObj.computer.attackPart ) {
+    if ( globalObj.user.defencePart !== globalObj.computer.attackPart && globalObj.user.defencePart === null ) {
       globalObj.lifeUser -= globalObj.computer.attack;
     } else if ( globalObj.user.defencePart === globalObj.computer.attackPart ) {
       const damage = globalObj.user.defence - globalObj.computer.attack;
 
       if (damage > 0) globalObj.lifeUser -= damage;
     }
-  }
+}
 
   healthComputerLogic () {
     if ( globalObj.computer.defencePart !== globalObj.user.attackPart ) {

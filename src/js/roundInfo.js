@@ -5,10 +5,7 @@ let attack, defense;
 let nickname = document.querySelector('.nick_name');
 let botname = document.querySelector('.bot_name');
 
-console.log(globalObj.computer.name);
 nickname.textContent = globalObj.user.name;
-botname.textContent = globalObj.computer.name;
-
 
 function fightFunc(e) {
   e.preventDefault();
@@ -20,6 +17,10 @@ function fightFunc(e) {
     new RandomPart();
     const fight = new FightLogic();
     const fightAnimation = new FightAnimation();
+
+    setTimeout(function () {
+      resetTimer();
+    }, 3000)
 
     fightAnimation.runUser();
     fightAnimation.runComputer();
@@ -48,22 +49,30 @@ function fightFunc(e) {
     fight.healthComputerLogic();
 
     setTimeout(() => {
-      globalObj.lifeUser >= 0 
-      ? heroLifeBar.changeHP(globalObj.lifeUser)
-      : heroLifeBar.changeHP(0);
-  
-      globalObj.lifeComputer >= 0
-      ? enemyLifeBar.changeHP(globalObj.lifeComputer)
-      : enemyLifeBar.changeHP(0);
+      globalObj.lifeUser >= 0 ?
+        heroLifeBar.changeHP(globalObj.lifeUser) :
+        heroLifeBar.changeHP(0);
+
+      globalObj.lifeComputer >= 0 ?
+        enemyLifeBar.changeHP(globalObj.lifeComputer) :
+        enemyLifeBar.changeHP(0);
     }, 1300);
 
     resetTimer();
 
     ADForm.reset();
   } else {
-    alert('Make a choose');
+    document.querySelector('.makeACh').textContent = 'MAKE A CHOISE!!!'
   }
 }
+
+let nullChecker = setInterval(function () {
+  if (timeLeft === 0) {
+    resetTimer();
+    document.querySelector('.makeACh').textContent = 'MAKE A CHOISE!!!'
+    resetTimer();
+  }
+}, 1000)
 
 ADForm.addEventListener('submit', fightFunc);
 // punchBut.addEventListener('click', resetTimerBut);
