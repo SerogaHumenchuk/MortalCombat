@@ -1,167 +1,161 @@
 .fight-round {
-  font-family: 'Mortal';
-
-  .fightPage_wrapper {
-    height: 100vh;
-  }
-
-  .atIcon {
-    fill: #ffffff;
-    width: 30px;
-    transition: fill ease-in 200ms;
-
-    &:hover {
-      fill: #ff0000;
+    font-family: 'Mortal';
+  
+    .fightPage_wrapper {
+      height: 100vh;
+    }
+  
+    .atIcon {
+      fill: #ffffff;
+      width: 30px;
       transition: fill ease-in 200ms;
+  
+      &:hover {
+        fill: #ff0000;
+        transition: fill ease-in 200ms;
+      }
     }
-  }
-
-  input {
-    display: none;
-
-    &:checked ~ .atIcon {
-      fill: #ff0000;
+  
+    input {
+      display: none;
+  
+      &:checked ~ .atIcon {
+        fill: #ff0000;
+      }
     }
-  }
-
-  .chIcon {
-    fill: #000;
-    width: 30px;
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-  }
-
-  .form-attack-list {
-    position: fixed;
-    left: 15px;
-    bottom: 200px;
-  }
-
-  .form-defense-list {
-    position: fixed;
-    right: 15px;
-    bottom: 200px;
-  }
-
-  form.attack-defense {
-    display: flex;
-    margin-left: 5%;
-  }
-
-  .form-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    list-style: none;
-    font-size: 16px;
-    position: absolute;
-    top: 30%;
-  }
-
-  .nick_name {
-    position: absolute;
-    font-size: 28px;
-    color: green;
-    top: 10%;
-    right: 67%;
-    will-change: contents;
-  }
-
-  .bot_name {
-    position: absolute;
-    font-size: 28px;
-    color: red;
-    top: 10%;
-    left: 67%;
-    will-change: contents;
-  }
-
-  h3.form-title {
-    font-size: 24px;
-    position: fixed;
-    top: 20%;
-    color: #ffffff;
-  }
-
-  .attack-title {
-    left: 1%;
-  }
-
-  .defense-title {
-    right: 1%;
-  }
-
-  div.defense {
-    left: 40%;
-  }
-
-  button.punch-button {
-    filter: invert(24%) sepia(98%) saturate(7365%) hue-rotate(359deg) brightness(96%) contrast(112%);
-    width: 10vw;
-    height: 10vw;
-    font-size: 14px;
-    position: absolute;
-    right: 4%;
-    bottom: 3%;
-    background-color: transparent;
-    border: none;
-    z-index: 100;
-    will-change: transform;
-    transition: transform ease-in 1s;
-    transform-origin: 50% 50%;
-
-    & > img {
-      width: 100%;
-      height: 100%;
+  
+    .form-attack-list {
+      position: fixed;
+      left: 15px;
+      bottom: 200px;
     }
-
-    &:hover {
-			transform: scale(1.2) rotate(-90deg);
+  
+    .form-defense-list {
+      position: fixed;
+      right: 15px;
+      bottom: 200px;
     }
-  }
-
-  @media (min-width: 768px) {
-    .output {
-      font-size: 40px;
-    }
-
-    .form-list {
-      bottom: 30%;
-    }
-
-    .atIcon,
-    .chIcon {
-      width: 50px;
-    }
-
-    button.punch-button {
-      width: 75px;
-      height: 75px;
-    }
-
-    .form-list {
-      font-size: 23px;
+  
+    form.attack-defense {
       display: flex;
+      margin-left: 5%;
     }
-
-    h3.form-title {
-      font-size: 28px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    h3.form-title {
-      font-size: 40px;
-      top: 20%;
-    }
-
-    button.punch-button {
-      width: 80px;
-      height: 80px;
-      font-size: 24px;
-    }
-
+  
     .form-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      list-style: none;
+      font-size: 16px;
+      position: absolute;
+      top: 30%;
+    }
+  
+    .nick_name {
+      position: absolute;
       font-size: 28px;
+      color: green;
+      top: 10%;
+      right: 67%;
+      will-change: contents;
+    }
+  
+    .bot_name {
+      position: absolute;
+      font-size: 28px;
+      color: red;
+      top: 10%;
+      left: 67%;
+      will-change: contents;
+    }
+  
+    h3.form-title {
+      font-size: 24px;
+      position: fixed;
+      top: 20%;
+      color: #ffffff;
+    }
+  
+    .attack-title {
+      left: 1%;
+    }
+  
+    .defense-title {
+      right: 1%;
+    }
+  
+    div.defense {
+      left: 40%;
+    }
+  
+    button.punch-button {
+      filter: invert(24%) sepia(98%) saturate(7365%) hue-rotate(359deg) brightness(96%) contrast(112%);
+      width: 10vw;
+      height: 10vw;
+      font-size: 14px;
+      position: absolute;
+      right: 4%;
+      bottom: 3%;
+      background-color: transparent;
+      border: none;
+      z-index: 100;
+      will-change: transform;
+      transition: transform ease-in 1s;
+      transform-origin: 50% 50%;
+  
+      & > img {
+        width: 100%;
+        height: 100%;
+      }
+  
+      &:hover {
+        transform: scale(1.2) rotate(-90deg);
+      }
+    }
+  
+    @media (min-width: 768px) {
+      .output {
+        font-size: 40px;
+      }
+  
+      .form-list {
+        bottom: 30%;
+      }
+  
+      .atIcon,
+      .chIcon {
+        width: 50px;
+      }
+  
+      button.punch-button {
+        width: 75px;
+        height: 75px;
+      }
+  
+      .form-list {
+        font-size: 23px;
+        display: flex;
+      }
+  
+      h3.form-title {
+        font-size: 28px;
+      }
+    }
+  
+    @media (min-width: 1024px) {
+      h3.form-title {
+        font-size: 40px;
+        top: 20%;
+      }
+  
+      button.punch-button {
+        width: 80px;
+        height: 80px;
+        font-size: 24px;
+      }
+  
+      .form-list {
+        font-size: 28px;
+      }
     }
   }
-}

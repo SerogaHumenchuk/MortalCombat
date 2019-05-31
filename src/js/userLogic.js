@@ -35,7 +35,7 @@ class FightLogic {
 
       if (damage > 0) globalObj.lifeUser -= damage;
     }
-  }
+}
 
   healthComputerLogic () {
     if ( globalObj.computer.defencePart !== globalObj.user.attackPart ) {

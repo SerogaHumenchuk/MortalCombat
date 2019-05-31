@@ -4,7 +4,6 @@ const punchBut = document.querySelector('.punch-button');
 let attack, defense;
 
 
-
 function fightFunc(e) {
   e.preventDefault();
 
@@ -53,7 +52,9 @@ function fightFunc(e) {
       // resetTimer();
       ADForm.reset();
 
-    } else { alert('Make a choose') }
+    } else {
+      document.querySelector('.makeACh').textContent = 'MAKE A CHOISE!!!';
+    }
   }
 
   if ( globalObj.lifeUser > 0 && globalObj.lifeComputer > 0 ) {
@@ -64,6 +65,14 @@ function fightFunc(e) {
     alert('You\'re a looser!');
   }
 }
+
+let nullChecker = setInterval(function () {
+  if (timeLeft === 0) {
+    resetTimer();
+    document.querySelector('.makeACh').textContent = 'MAKE A CHOISE!!!'
+    resetTimer();
+  }
+}, 1000)
 
 ADForm.addEventListener('submit', fightFunc);
 // punchBut.addEventListener('click', resetTimerBut);
