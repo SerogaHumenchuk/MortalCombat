@@ -10,5 +10,7 @@ class ComputerRandomHero {
     globalObj.computer.name = heroes[num].name;
     globalObj.computer.attack = heroes[num].attack;
     globalObj.computer.defence = heroes[num].defence;
+
+    botname.textContent = globalObj.computer.name;
   }
 }

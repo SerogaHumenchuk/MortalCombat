@@ -1,7 +1,6 @@
 const globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
-  round: 1,
   intervalTimer: null,
   arena: null,
   user: {
@@ -21,6 +20,8 @@ const globalObj = {
     defencePart: null
   }
 };
+const botname = document.querySelector('.bot_name');
+const nickname = document.querySelector('.nick_name');
 
 class DefaultStart {
   constructor() {
@@ -52,28 +53,31 @@ class FightAnimation {
 
   dieUser() {
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.dieURL}`);
+    setTimeout(() => {
+      this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.deadURL}`);
+    }, 280);
   }
 
   dieComputer() {
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.dieURL}`);
+    setTimeout(() => {
+      this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.deadURL}`);
+    }, 280);
   }
 
   runUser() {
-    let left = 9;
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
-    const intervalUser = setInterval(() => this.userHero.style.left = `${left += 0.4}%`, 1000 / 60);
-    setTimeout(() => clearInterval(intervalUser), 1280);
+    this.userHero.style.transform = 'translateX(200%)';
   }
 
   runComputer() {
-    let right = 9;
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
-    const intervalComputer = setInterval(() => this.computerHero.style.right = `${right += 0.4}%`, 1000 / 60);
-    setTimeout(() => clearInterval(intervalComputer), 1280);
+    this.computerHero.style.transform = 'scaleX(-1) translateX(200%)';
   }
 
   attackUser() {
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.attackURL}`);
+    playClickKick();
   }
 
   attackComputer() {
@@ -81,29 +85,19 @@ class FightAnimation {
   }
 
   runBackUser() {
-    let left = parseFloat(this.userHero.style.left);
-    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
-    this.userHero.style.transform = 'scaleX(-1)';
-    const runBackInterval = setInterval(() => {
-      this.userHero.style.left = `${left -= 0.4}%`;
-    }, 1000 / 60);
+    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.run_backURL}`);
+    this.userHero.style.transform = 'translateX(0%)';
     setTimeout(() => {
-      clearInterval(runBackInterval);
-      this.userHero.style.transform = 'scaleX(1)';
-    }, 1280);
+      this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.standURL}`);
+    }, 1000);
   }
 
   runBackComputer() {
-    let right = parseFloat(this.computerHero.style.right);
-    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
-    this.computerHero.style.transform = 'scaleX(1)';
-    const runBackInterval = setInterval(() => {
-      this.computerHero.style.right = `${right -= 0.4}%`;
-    }, 1000 / 60);
+    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.run_backURL}`);
+    this.computerHero.style.transform = 'scaleX(-1) translateX(0%)';
     setTimeout(() => {
-      clearInterval(runBackInterval);
-      this.computerHero.style.transform = 'scaleX(-1)';
-    }, 1280);
+      this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.standURL}`);
+    }, 1000);
   }
 
 }
@@ -118,6 +112,7 @@ class ComputerRandomHero {
     globalObj.computer.name = heroes[num].name;
     globalObj.computer.attack = heroes[num].attack;
     globalObj.computer.defence = heroes[num].defence;
+    botname.textContent = globalObj.computer.name;
   }
 
 }
@@ -153,14 +148,14 @@ class ComputerRandomHero {
   const fullscreenSvg = document.querySelector('.fullscreen__svg');
 
   open = elem => {
-    if (elem.requestFullscreen) {
+    if (document.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.requestFullscreen) {
       elem.requestFullscreen();
     } else if (document.mozRequestFullScreen) {
       /* Firefox */
       elem.mozRequestFullScreen();
-    } else if (document.webkitRequestFullscreen) {
-      /* Chrome, Safari and Opera */
-      elem.webkitRequestFullscreen();
     } else if (document.msRequestFullscreen) {
       /* IE/Edge */
       elem.msRequestFullscreen();
@@ -197,7 +192,7 @@ class ComputerRandomHero {
 
 class StartMusic {
   constructor() {
-    this.secondPageWrapp = document.querySelector('.secondPageWrapp').classList.contains('hide'), this.btnStart = document.querySelector('.start'), this.listener();
+    this.btnStart = document.querySelector('.start'), this.listener();
   }
 
   musicFirstPage() {
@@ -216,6 +211,10 @@ function resetGif() {
   setTimeout(function () {
     document.querySelector('.thirdPageWrapp').classList.remove('hide');
     document.querySelector('.gifPage').classList.add('hide');
+    playClickFightSound();
+    setTimeout(() => {
+      playClickFight();
+    }, 1500);
     resetTimer();
   }, 3000);
 }
@@ -261,7 +260,14 @@ function playClickMusic() {
 
 function playClickFightSound() {
   const audio = document.getElementById('fight-sound');
+  audio.volume = 0.7;
   audio.play();
+}
+
+function stopClickFightSound() {
+  const audio = document.getElementById('fight-sound');
+  audio.pause();
+  audio.currentTime = 0;
 }
 
 function playClickWinner() {
@@ -304,6 +310,12 @@ function playClickFighterSelection() {
   audio.play();
 }
 
+function stopClickFighterSelection() {
+  const audio = document.getElementById('fighter-selection');
+  audio.pause();
+  audio.currentTime = 0;
+}
+
 function playClickFighterPlay() {
   const audio = document.getElementById('play');
   audio.play();
@@ -322,47 +334,48 @@ function playClickFighterClickMouse() {
 // функция вывода информации о раунде
 const ADForm = document.querySelector('.attack-defense');
 const punchBut = document.querySelector('.punch-button');
-let attack, defense, output;
-let atchecks = document.querySelectorAll('[name="attack"]');
-let defchecks = document.querySelectorAll('[name="defense"]');
-let nickname = document.querySelector('.nick_name');
-let botname = document.querySelector('.bot_name');
-nickname.textContent = globalObj.user.name;
-botname.textContent = globalObj.computer.name;
+let attack, defense;
 
 function fightFunc(e) {
   e.preventDefault();
-  new RandomPart();
-  const fight = new FightLogic();
-  const fightAnimation = new FightAnimation();
-  fightAnimation.runUser();
-  fightAnimation.runComputer();
-  const timerAttack = setTimeout(() => {
-    fightAnimation.attackUser();
-    fightAnimation.attackComputer();
-  }, 1280);
-  const timerRunBack = setTimeout(() => {
-    if (globalObj.lifeUser <= 0) {
-      fightAnimation.dieUser();
-    } else {
-      fightAnimation.runBackUser();
-    }
+  let attack = document.querySelector('input[name="attack"]:checked');
+  let defense = document.querySelector('input[name="defense"]:checked');
 
-    if (globalObj.lifeComputer <= 0) {
-      fightAnimation.dieComputer();
-    } else {
-      fightAnimation.runBackComputer();
-    }
-  }, 1840); // fightAnim.runBack();
+  function funcIf() {
+    if (attack !== null && defense !== null) {
+      const fight = new FightLogic();
+      const fightAnimation = new FightAnimation();
+      fightAnimation.runUser();
+      fightAnimation.runComputer();
+      new RandomPart();
+      setTimeout(() => {
+        fightAnimation.attackUser();
+        fightAnimation.attackComputer();
+      }, 1280);
+      setTimeout(() => {
+        globalObj.lifeUser <= 0 ? fightAnimation.dieUser() : fightAnimation.runBackUser();
+        globalObj.lifeComputer <= 0 ? fightAnimation.dieComputer() : fightAnimation.runBackComputer();
+      }, 1840);
+      fight.healthUserLogic();
+      fight.healthComputerLogic();
+      setTimeout(() => {
+        globalObj.lifeUser >= 0 ? heroLifeBar.changeHP(globalObj.lifeUser) : heroLifeBar.changeHP(0);
+        globalObj.lifeComputer >= 0 ? enemyLifeBar.changeHP(globalObj.lifeComputer) : enemyLifeBar.changeHP(0);
+      }, 1300); // resetTimer();
 
-  fight.healthUserLogic();
-  fight.healthComputerLogic();
-  setTimeout(() => {
-    heroLifeBar.changeHP(globalObj.lifeUser);
-    enemyLifeBar.changeHP(globalObj.lifeComputer);
-  }, 1300);
-  new FightLogic();
-  ADForm.reset();
+      ADForm.reset();
+    } else {
+      alert('Make a choose');
+    }
+  }
+
+  if (globalObj.lifeUser > 0 && globalObj.lifeComputer > 0) {
+    funcIf();
+  } else if (globalObj.lifeUser > 0 && globalObj.lifeComputer <= 0) {
+    alert('You\'re a winner!');
+  } else if (globalObj.lifeComputer > 0 && globalObj.lifeUser <= 0) {
+    alert('You\'re a looser!');
+  }
 }
 
 ADForm.addEventListener('submit', fightFunc); // punchBut.addEventListener('click', resetTimerBut);
@@ -375,10 +388,12 @@ const heroes = [{
   standURL: '.gif',
   walkURL: '_walk.gif',
   runURL: '_run.gif',
+  run_backURL: '_run-back.gif',
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_hit.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }, {
   name: 'colossus',
   attack: 13,
@@ -387,10 +402,12 @@ const heroes = [{
   standURL: '.gif',
   walkURL: '_walk.gif',
   runURL: '_run.gif',
+  run_backURL: '_run-back.gif',
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_hit.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }, {
   name: 'mystique',
   attack: 10,
@@ -399,10 +416,12 @@ const heroes = [{
   standURL: '.gif',
   walkURL: '_walk.gif',
   runURL: '_run.gif',
+  run_backURL: '_run-back.gif',
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_hit.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }, {
   name: 'starlord',
   attack: 9,
@@ -411,10 +430,12 @@ const heroes = [{
   standURL: '.gif',
   walkURL: '_walk.gif',
   runURL: '_run.gif',
+  run_backURL: '_run-back.gif',
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_block.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }];
 const fields = [{
   name: 'boat',
@@ -502,11 +523,11 @@ class BuildRandomBtn {
 
 class SubmitAction {
   constructor(btn) {
-    this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.events();
-    this.hero_name = document.querySelector('.hero__name');
+    this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.hero_name = document.querySelector('.hero__name');
     this.hero_url = document.querySelector('.hero__img');
     this.hero_attack = document.querySelector('.hero__attack');
     this.hero_Defence = document.querySelector('.hero__defence');
+    this.events();
   }
 
   checkAction(e) {
@@ -534,11 +555,9 @@ class SubmitAction {
         globalObj.user.obj = heroes.find(hero => hero.name == imgName);
         globalObj.user.attack = globalObj.user.obj.attack;
         globalObj.user.defence = globalObj.user.obj.defence;
-        console.log(globalObj);
+        nickname.textContent = globalObj.user.name;
       } else {
-        setTimeout(function () {
-          this.randomHero();
-        }, 0);
+        this.randomHero();
       }
     }
   }
@@ -563,7 +582,7 @@ class SubmitAction {
     globalObj.user.obj = heroes[num];
     globalObj.user.attack = heroes[num].attack;
     globalObj.user.defence = heroes[num].defence;
-    this.name.textContent = 'Random hero';
+    this.hero_name.textContent = 'Random hero';
   }
 
   randomField() {
@@ -587,6 +606,7 @@ class ChangePageToFightPage {
     if (document.querySelector('input[name="hero-radio"]:checked') !== null && document.querySelector('input[name="field-radio"]:checked')) {
       this.secondWrapper.classList.add('hide');
       this.gifPage.classList.remove('hide');
+      stopClickFighterSelection();
     } else {
       alert('Choose your fighter and field!');
     }
@@ -666,7 +686,15 @@ class ReturnInfoCard {
     }
   }
 
-}
+} // class Hover {
+//   constructor () {
+//     this.chosenInput = document.querySelector('input[name="hero-radio"]:checked');
+//   }
+//   hover () {
+//     this.
+//   }
+// }
+
 
 new BuildHeroes(heroes);
 new BuildFields(fields);
@@ -777,7 +805,17 @@ class RandomPart {
 }
 
 class FightLogic {
-  constructor() {}
+  constructor() {
+    this.attackRadio = document.querySelector('input[name="defense"]:checked'), this.defenceRadio = document.querySelector('input[name="attack"]:checked');
+  }
+
+  userAttackPart() {
+    globalObj.user.attackPart = this.attackRadio.getAttribute('value');
+  }
+
+  userDefencePart() {
+    globalObj.user.defencePart = this.defenceRadio.getAttribute('value');
+  }
 
   healthUserLogic() {
     if (globalObj.user.defencePart !== globalObj.computer.attackPart) {

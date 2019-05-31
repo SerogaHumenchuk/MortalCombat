@@ -2,12 +2,8 @@
 const ADForm = document.querySelector('.attack-defense');
 const punchBut = document.querySelector('.punch-button');
 let attack, defense;
-let nickname = document.querySelector('.nick_name');
-let botname = document.querySelector('.bot_name');
 
-console.log(globalObj.computer.name);
-nickname.textContent = globalObj.user.name;
-botname.textContent = globalObj.computer.name;
+
 
 function fightFunc(e) {
   e.preventDefault();
@@ -54,13 +50,19 @@ function fightFunc(e) {
           : enemyLifeBar.changeHP(0);
       }, 1300);
 
-      resetTimer();
+      // resetTimer();
       ADForm.reset();
 
     } else { alert('Make a choose') }
   }
 
-  funcIf();
+  if ( globalObj.lifeUser > 0 && globalObj.lifeComputer > 0 ) {
+    funcIf();
+  } else if (globalObj.lifeUser > 0 && globalObj.lifeComputer <= 0) {
+    alert('You\'re a winner!');
+  } else if (globalObj.lifeComputer > 0 && globalObj.lifeUser <= 0) {
+    alert('You\'re a looser!');
+  }
 }
 
 ADForm.addEventListener('submit', fightFunc);

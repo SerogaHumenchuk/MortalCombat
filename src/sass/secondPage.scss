@@ -16,6 +16,28 @@
     background-size: cover;
     font-family: Mortal;
 
+    .level-form{
+      display: flex;
+      flex-direction: column;
+      color: #eee;
+      
+      // #1:checked ~ #label-1 {
+      //   color: rebeccapurple;
+      // }
+
+      // #2:checked ~ #label-2 {
+      //   color: rebeccapurple;
+      // }
+
+      // #3:checked ~ #label-3 {
+      //   color: rebeccapurple;
+      // }
+
+      .level{
+        color: #eee;
+      }
+    }
+
     .info_fields-section {
       display: flex;
       width: 60%;
@@ -209,17 +231,7 @@
           overflow-x: scroll;
           height: 30%;
         }
-        
-        .level-form{
-          display: flex;
-          flex-direction: column;
-          color: #eee;
 
-          .level{
-            color: #eee;
-          }
-        }
-        
         .fighter {
 
           &__container {
