@@ -1,3 +1,14 @@
+@media screen and (orientation:portrait) {
+  .land {
+    display: none;
+    background: url('../images/')
+  }
+}
+
+@media screen and (orientation:landscape) {
+  // CSS applied when the device is in landscape mode
+}
+
 .fightPage {
   &__container {
     height: 100vh;
