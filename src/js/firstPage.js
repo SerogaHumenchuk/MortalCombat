@@ -27,12 +27,12 @@
   const fullscreenSvg = document.querySelector('.fullscreen__svg');
 
   open = elem => {
-    if (elem.requestFullscreen) {
+    if (document.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+    } else if (elem.requestFullscreen) {
       elem.requestFullscreen();
     } else if (document.mozRequestFullScreen) { /* Firefox */
       elem.mozRequestFullScreen();
-    } else if (document.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-      elem.webkitRequestFullscreen();
     } else if (document.msRequestFullscreen) { /* IE/Edge */
       elem.msRequestFullscreen();
     }
@@ -65,7 +65,6 @@
 
 class StartMusic {
   constructor () {
-    this.secondPageWrapp = document.querySelector('.secondPageWrapp').classList.contains('hide'), 
     this.btnStart = document.querySelector('.start'), 
     this.listener();
   }

@@ -7,10 +7,12 @@ const heroes = [
     standURL: '.gif',
     walkURL: '_walk.gif',
     runURL: '_run.gif',
+    run_backURL: '_run-back.gif',
     attackURL: '_attack.gif',
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
     dieURL: '_die.gif',
+    deadURL: '_dead.png'
   },
   {
     name: 'colossus',
@@ -20,10 +22,12 @@ const heroes = [
     standURL: '.gif',
     walkURL: '_walk.gif',
     runURL: '_run.gif',
+    run_backURL: '_run-back.gif',
     attackURL: '_attack.gif',
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
     dieURL: '_die.gif',
+    deadURL: '_dead.png'
   },
   {
     name: 'mystique',
@@ -33,10 +37,12 @@ const heroes = [
     standURL: '.gif',
     walkURL: '_walk.gif',
     runURL: '_run.gif',
+    run_backURL: '_run-back.gif',
     attackURL: '_attack.gif',
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
     dieURL: '_die.gif',
+    deadURL: '_dead.png'
   },
   {
     name: 'starlord',
@@ -46,10 +52,12 @@ const heroes = [
     standURL: '.gif',
     walkURL: '_walk.gif',
     runURL: '_run.gif',
+    run_backURL: '_run-back.gif',
     attackURL: '_attack.gif',
     blockURL: '_block.gif',
     hitURL: '_block.gif',
     dieURL: '_die.gif',
+    deadURL: '_dead.png'
   },
 ];
 
@@ -192,9 +200,7 @@ class SubmitAction {
         globalObj.user.obj = heroes.find(hero => hero.name == imgName);
         globalObj.user.attack = globalObj.user.obj.attack;
         globalObj.user.defence = globalObj.user.obj.defence;
-        console.log(globalObj);
-        botname.textContent = globalObj.computer.name;
-        // console.log(globalObj[0]);
+        nickname.textContent = globalObj.user.name;
       } else {
         this.randomHero();
       }
@@ -255,6 +261,7 @@ class ChangePageToFightPage {
     ) {
       this.secondWrapper.classList.add('hide');
       this.gifPage.classList.remove('hide');
+      stopClickFighterSelection();
     } else {
       alert('Choose your fighter and field!');
     }
@@ -341,6 +348,16 @@ class ReturnInfoCard {
     }
   }
 }
+
+// class Hover {
+//   constructor () {
+//     this.chosenInput = document.querySelector('input[name="hero-radio"]:checked');
+//   }
+
+//   hover () {
+//     this.
+//   }
+// }
 
 new BuildHeroes(heroes);
 new BuildFields(fields);

@@ -28,11 +28,11 @@
     font-family: Mortal;
     font-weight: 100;
     color: rgb(247, 31, 16);
+    will-change: transform, contents;
     animation: fontbulger 1s infinite;
     transform: translate(-50%, 0);
     text-align: center;
     position: absolute;
-    transform: translate(-50%,0);
     left: 50%;
     top: 8vh;
   }

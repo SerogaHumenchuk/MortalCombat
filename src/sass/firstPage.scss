@@ -10,18 +10,19 @@
       position: absolute;
       left: 1%;
       top: 2%;
-      background: transparent;
+      background: none;
       border: none;
       z-index: 10;
 
       &__svg {
         box-sizing: content-box;
         width: 3vw;
-        padding: 4px;
+        padding: 5px;
         transition: all ease-in 200ms;
+        will-change: transform;
 
         &:hover {
-          width: 4vw;
+          transform: scale(1.5);
         }
       }
     }
@@ -39,11 +40,12 @@
 
     .start {
       font-family: Mortal, sans-serif;
-      font-size: 5.6vh;
+      font-size: 4.3vw;
       font-weight: 700;
       background-color: #fff;
       text-transform: uppercase;
       width: 26%;
+      min-height: 40px;
       height: 8vh;
       margin: 16px auto;
       color: #000;
@@ -58,8 +60,9 @@
     .name {
       width: 28%;
       height: 8vh;
+      min-height: 40px;
       font-family: Mortal, sans-serif;
-      font-size: 5.6vh;
+      font-size: 4.3vw;
       font-weight: 700;
       color: #000;
       text-align: center;
@@ -70,9 +73,24 @@
       padding: 5px;
       margin: 16px auto;
       outline: 0;
+      user-select: all;
 
       &::placeholder {
         font-family: Mortal, sans-serif;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .firstPage {
+    &__form {
+      .name {
+        font-size: 5.6vh;
+      }
+
+      .start {
+        font-size: 5.6vh;
       }
     }
   }

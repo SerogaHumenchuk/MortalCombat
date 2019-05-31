@@ -15,8 +15,8 @@ class RandomPart {
 
 class FightLogic {
   constructor () {
-    this.attackRadio = document.querySelector('input[name="defense"]:checked'), 
-    this.defenceRadio = document.querySelector('input[name="attack"]:checked');
+    this.attackRadio = document.querySelector('input[name="attack"]:checked'), 
+    this.defenceRadio = document.querySelector('input[name="defense"]:checked');
   }
 
   userAttackPart () { globalObj.user.attackPart = this.attackRadio.getAttribute('value') }
@@ -24,7 +24,11 @@ class FightLogic {
   userDefencePart () { globalObj.user.defencePart = this.defenceRadio.getAttribute('value') }
 
   healthUserLogic () {
-    if ( globalObj.user.defencePart !== globalObj.computer.attackPart && globalObj.user.defencePart === null ) {
+
+    this.userAttackPart();
+    this.userDefencePart();
+
+    if ( globalObj.user.defencePart !== globalObj.computer.attackPart ) {
       globalObj.lifeUser -= globalObj.computer.attack;
     } else if ( globalObj.user.defencePart === globalObj.computer.attackPart ) {
       const damage = globalObj.user.defence - globalObj.computer.attack;
@@ -42,14 +46,4 @@ class FightLogic {
       if (damage > 0) globalObj.lifeComputer -= damage;
     }
   }
-}
-
-//return alert when user wasn't make a choose
-class ModalMakeChoose {
-  constructor () {
-    this.message = 'Make a choose!!!',
-    this.alert();
-  }
-
-  alert () {alert(this.message)}
 }

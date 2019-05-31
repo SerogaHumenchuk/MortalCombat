@@ -16,6 +16,7 @@
   border: 2px solid black;
   border-radius: 3px;
   margin-top: 5px;
+  z-index: 10;
 }
 .EnemyHealthy__Bar {
   width: 150px;
@@ -24,20 +25,23 @@
   border: 2px solid black;
   border-radius: 3px;
   margin-top: 5px;
+  z-index: 10;
 }
 .My__Lives {
   width: 100%;
   min-width: 0;
-  height: 15px;
+  height: 100%;
   background-color: green;
-  transition: all ease-in 300ms;
+  transition: all ease-in 200ms;
+  z-index: 9;
 }
 .Enemy__Lives {
   width: 100%;
   min-width: 0;
-  height: 15px;
+  height: 100%;
   background-color: green;
-  transition: all ease-in 300ms;
+  transition: all ease-in 200ms;
+  z-index: 9;
 }
 
 @media (min-width: 768px) {
@@ -64,12 +68,6 @@
     margin-top: 30px;
     border: 2px solid black;
   }
-  .My__Lives {
-    height: 25px;
-  }
-  .Enemy__Lives {
-    height: 25px;
-  }
 }
 
 @media (min-width: 1440px) {
@@ -84,11 +82,5 @@
     height: 31px;
     margin-top: 30px;
     border: 2px solid black;
-  }
-  .My__Lives {
-    height: 25px;
-  }
-  .Enemy__Lives {
-    height: 25px;
   }
 }

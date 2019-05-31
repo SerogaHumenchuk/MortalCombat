@@ -16,6 +16,28 @@
     background-size: cover;
     font-family: Mortal;
 
+    .level-form{
+      display: flex;
+      flex-direction: column;
+      color: #eee;
+      
+      // #1:checked ~ #label-1 {
+      //   color: rebeccapurple;
+      // }
+
+      // #2:checked ~ #label-2 {
+      //   color: rebeccapurple;
+      // }
+
+      // #3:checked ~ #label-3 {
+      //   color: rebeccapurple;
+      // }
+
+      .level{
+        color: #eee;
+      }
+    }
+
     .info_fields-section {
       display: flex;
       width: 60%;
@@ -191,6 +213,7 @@
   .secondPage {
     &__submit {
       width: 28%;
+      font-size: 2.3em;
     }
 
     &__container {
@@ -204,10 +227,13 @@
         order: 1;
 
         .fields-section {
+          overflow-y: hidden;
+          overflow-x: scroll;
           height: 30%;
         }
 
         .fighter {
+
           &__container {
             flex-direction: row;
             align-items: center;
@@ -217,6 +243,7 @@
           &__card {
             width: 70%;
             height: 100%;
+
           }
         }
       }
@@ -230,6 +257,13 @@
         border: none;
 
         .fighter {
+          width: 20vw;
+          min-height: 100px;
+          height: 28vh;
+          background: url('../images/hero-bg.gif') center bottom no-repeat;
+        }
+
+        .random-btn {
           width: 20vw;
           min-height: 100px;
           height: 28vh;
