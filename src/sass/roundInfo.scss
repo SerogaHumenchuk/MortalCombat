@@ -5,27 +5,14 @@
     height: 100vh;
   }
 
-  .output {
-    color: red;
-    text-transform: uppercase;
-    position: absolute;
-    top: 150px;
-    transform: translate(-50%, 0);
-    left: 50%;
-    font-size: 28px;
-    text-align: center;
-    max-width: 400px;
-    transition: all 500ms ease-in-out;
-  }
-
   .atIcon {
     fill: #ffffff;
     width: 30px;
-    transition: all ease-in 200ms;
+    transition: fill ease-in 200ms;
 
     &:hover {
       fill: #ff0000;
-      transition: all ease-in 200ms;
+      transition: fill ease-in 200ms;
     }
   }
 
