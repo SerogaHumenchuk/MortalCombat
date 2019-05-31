@@ -22,6 +22,9 @@ const globalObj = {
   },
 };
 
+const botname = document.querySelector('.bot_name');
+const nickname = document.querySelector('.nick_name');
+
 class DefaultStart {
   constructor() {
     this.wrapper = document.querySelector('.fightPage__container'),
@@ -56,32 +59,33 @@ class FightAnimation {
 
   dieUser() {
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.dieURL}`);
+
+    setTimeout( () => {
+      this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.deadURL}`);
+    }, 280 );
   }
 
   dieComputer() {
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.dieURL}`);
+
+    setTimeout( () => {
+      this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.deadURL}`);
+    }, 280 );
   }
 
   runUser() {
-    let left = 9;
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
-
-    const intervalUser = setInterval(() => this.userHero.style.left = `${left += 0.8}%`, 1000 / 30);
-
-    setTimeout(() => clearInterval(intervalUser), 1280);
+    this.userHero.style.transform = 'translateX(200%)';
   }
 
   runComputer() {
-    let right = 9;
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
-
-    const intervalComputer = setInterval(() => this.computerHero.style.right = `${right += 0.8}%`, 1000 / 30);
-
-    setTimeout(() => clearInterval(intervalComputer), 1280);
+    this.computerHero.style.transform = 'scaleX(-1) translateX(200%)';
   }
 
   attackUser() {
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.attackURL}`);
+    playClickKick();
   }
 
   attackComputer() {
@@ -89,31 +93,20 @@ class FightAnimation {
   }
 
   runBackUser() {
-    let left = parseFloat(this.userHero.style.left);
-
-    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
-    this.userHero.style.transform = 'scaleX(-1)';
-    const runBackInterval = setInterval(() => {
-      this.userHero.style.left = `${left -= 0.8}%`
-    }, 1000 / 30);
+    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.run_backURL}`);
+    this.userHero.style.transform = 'translateX(0%)';
 
     setTimeout(() => {
-      clearInterval(runBackInterval);
-      this.userHero.style.transform = 'scaleX(1)';
-    }, 1280);
+      this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.standURL}`);
+    }, 1000);
   }
 
   runBackComputer() {
-    let right = parseFloat(this.computerHero.style.right);
-    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
-    this.computerHero.style.transform = 'scaleX(1)';
-    const runBackInterval = setInterval(() => {
-      this.computerHero.style.right = `${right -= 0.8}%`
-    }, 1000 / 30);
+    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.run_backURL}`);
+    this.computerHero.style.transform = 'scaleX(-1) translateX(0%)';
 
-    setTimeout(() => {
-      clearInterval(runBackInterval);
-      this.computerHero.style.transform = 'scaleX(-1)';
-    }, 1280);
+    setTimeout( () => {
+      this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.standURL}`);
+    }, 1000 );
   }
 }

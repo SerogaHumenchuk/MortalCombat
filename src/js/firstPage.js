@@ -65,7 +65,6 @@
 
 class StartMusic {
   constructor () {
-    this.secondPageWrapp = document.querySelector('.secondPageWrapp').classList.contains('hide'), 
     this.btnStart = document.querySelector('.start'), 
     this.listener();
   }

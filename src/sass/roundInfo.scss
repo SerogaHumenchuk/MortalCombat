@@ -5,27 +5,14 @@
     height: 100vh;
   }
 
-  .output {
-    color: red;
-    text-transform: uppercase;
-    position: absolute;
-    top: 150px;
-    transform: translate(-50%, 0);
-    left: 50%;
-    font-size: 28px;
-    text-align: center;
-    max-width: 400px;
-    transition: all 500ms ease-in-out;
-  }
-
   .atIcon {
     fill: #ffffff;
     width: 30px;
-    transition: all ease-in 200ms;
+    transition: fill ease-in 200ms;
 
     &:hover {
       fill: #ff0000;
-      transition: all ease-in 200ms;
+      transition: fill ease-in 200ms;
     }
   }
 
@@ -72,18 +59,20 @@
 
   .nick_name {
     position: absolute;
-    top: 30px;
-    color: red;
-    right: 67%;
     font-size: 28px;
+    color: red;
+    top: 10%;
+    right: 67%;
+    will-change: contents;
   }
 
   .bot_name {
-    font-size: 28px;
-    left: 67%;
     position: absolute;
-    top: 30px;
+    font-size: 28px;
     color: red;
+    top: 10%;
+    left: 67%;
+    will-change: contents;
   }
 
   h3.form-title {
@@ -94,11 +83,11 @@
   }
 
   .attack-title {
-    left: 15px;
+    left: 1%;
   }
 
   .defense-title {
-    right: 15px;
+    right: 1%;
   }
 
   div.defense {
@@ -109,22 +98,24 @@
     filter: invert(24%) sepia(98%) saturate(7365%) hue-rotate(359deg) brightness(96%) contrast(112%);
     width: 10vw;
     height: 10vw;
-    border-radius: 50%;
     font-size: 14px;
     position: absolute;
-    background-image: url('http://chittagongit.com/download/294339');
-    background-repeat: no-repeat;
-    background-size: 65px 65px;
     right: 4%;
     bottom: 3%;
     background-color: transparent;
     border: none;
     z-index: 100;
-    transition: all ease-in 1s;
+    will-change: transform;
+    transition: transform ease-in 1s;
+    transform-origin: 50% 50%;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+    }
 
     &:hover {
 			transform: scale(1.2) rotate(-90deg);
-			transform-origin: 50% 50%;
     }
   }
 
@@ -145,7 +136,6 @@
     button.punch-button {
       width: 75px;
       height: 75px;
-      font-size: 20px;
     }
 
     .form-list {
@@ -155,10 +145,6 @@
 
     h3.form-title {
       font-size: 28px;
-    }
-
-    button.punch-button {
-      background-size: 70px 70px;
     }
   }
 
@@ -176,10 +162,6 @@
 
     .form-list {
       font-size: 28px;
-    }
-
-    button.punch-button {
-      background-size: 75px 75px;
     }
   }
 }
