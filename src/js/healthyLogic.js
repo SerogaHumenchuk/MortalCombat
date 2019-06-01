@@ -26,5 +26,16 @@ class Livesbar {
   }
 }
 
+
 const heroLifeBar = new Livesbar(MyLives, 100);
 const enemyLifeBar = new Livesbar(EnemyLives, 100);
+
+function PageChange() {if(heroLifeBar.lifeAmount <= 0 || enemyLifeBar.lifeAmount <= 0){
+  if(enemyLifeBar.lifeAmount <= 0){
+    document.querySelector('.windowResultPage__container').style.backgroundImage = 'url(../images/won.gif)';
+}else if(heroLifeBar.lifeAmount <= 0){
+    document.querySelector('.windowResultPage__container').style.backgroundImage = 'url(../images/Lost.gif)';
+}
+  document.querySelector('.windowResultPage__container').classList.remove('hide');
+  document.querySelector('.fightPage_wrapper').classList.add('hide');
+}}
