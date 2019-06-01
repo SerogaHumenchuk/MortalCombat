@@ -253,6 +253,19 @@ class Livesbar {
 
 const heroLifeBar = new Livesbar(MyLives, 100);
 const enemyLifeBar = new Livesbar(EnemyLives, 100);
+
+function PageChange() {
+  if (heroLifeBar.lifeAmount <= 80 || enemyLifeBar.lifeAmount <= 80) {
+    if (enemyLifeBar.lifeAmount <= 80) {
+      document.querySelector('.windowResultPage__container').style.backgroundImage = 'url(../images/won.gif)';
+    } else if (heroLifeBar.lifeAmount <= 80) {
+      document.querySelector('.windowResultPage__container').style.backgroundImage = 'url(../images/Lost.gif)';
+    }
+
+    document.querySelector('.windowResultPage__container').classList.remove('hide');
+    document.querySelector('.fightPage_wrapper').classList.add('hide');
+  }
+}
 function playClickMusic() {
   const audio = document.getElementById('music_start');
   audio.play();
@@ -343,6 +356,12 @@ function fightFunc(e) {
 
   function funcIf() {
     if (attack !== null && defense !== null) {
+      resetTimer();
+      setTimeout(PageChange, 3000);
+      document.querySelector('.makeACh').textContent = '';
+      setTimeout(function () {
+        resetTimer();
+      }, 3000);
       const fight = new FightLogic();
       const fightAnimation = new FightAnimation();
       fightAnimation.runUser();
@@ -846,3 +865,8 @@ class FightLogic {
   }
 
 }
+const restartB = document.querySelector('.toFirst');
+const revengeB = document.querySelector('.toSecond');
+restartB.addEventListener('click', function () {
+  location.reload();
+});

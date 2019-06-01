@@ -9,10 +9,17 @@ function fightFunc(e) {
 
   let attack = document.querySelector('input[name="attack"]:checked');
   let defense = document.querySelector('input[name="defense"]:checked');
+  
 
   function funcIf() {
     if (attack !== null && defense !== null) {
-      
+     resetTimer();
+     setTimeout(PageChange ,3000)
+    
+     document.querySelector('.makeACh').textContent = '';
+     setTimeout(function(){
+       resetTimer();
+     },3000)
       const fight = new FightLogic();
       const fightAnimation = new FightAnimation();
       
