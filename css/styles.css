@@ -1031,6 +1031,8 @@ svg.decrease {
   background-color: #000000;
   font-family: Mortal;
   position: relative;
+  font-size: 50em;
+  color: #ffffff;
 }
 
 .windowResultPage__container .toFirst {
@@ -1038,7 +1040,7 @@ svg.decrease {
   height: 10vh;
   border: 2px solid #ff4500;
   width: 25%;
-  font-size: 1.5em;
+  font-size: 4vw;
   position: absolute;
   top: 75%;
   left: 50%;
@@ -1186,6 +1188,10 @@ h2 {
     overflow-y: hidden;
     overflow-x: scroll;
     height: 30%;
+  }
+
+  .secondPage__container .info_fields-section .fields-section .field {
+    min-width: 400px;
   }
 
   .secondPage__container .info_fields-section .fighter__container {
