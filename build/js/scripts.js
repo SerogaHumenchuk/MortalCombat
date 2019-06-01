@@ -116,8 +116,6 @@ class ComputerRandomHero {
   }
 
 }
-;
-
 (() => {
   let name = document.querySelector('.name');
   let firstPageForm = document.querySelector('.firstPage__form');
@@ -132,7 +130,7 @@ class ComputerRandomHero {
   const onSubmit = function (e) {
     e.preventDefault();
 
-    if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
+    if (/^[А-Яа-яA-Za-z0-9_ -]{3,16}$/.test(name.value)) {
       globalObj.user.name = name.value;
       nickname.textContent = name.value;
       changeFirstPageToSecondPage();
@@ -257,9 +255,9 @@ const enemyLifeBar = new Livesbar(EnemyLives, 100);
 function PageChange() {
   if (heroLifeBar.lifeAmount <= 0 || enemyLifeBar.lifeAmount <= 0) {
     if (enemyLifeBar.lifeAmount <= 0) {
-      document.querySelector('.windowResultPage__container').style.backgroundImage = 'url(../images/won.gif)';
+      document.querySelector('.windowResultPage__container').style.backgroundImage = 'url("../images/won.gif")';
     } else if (heroLifeBar.lifeAmount <= 0) {
-      document.querySelector('.windowResultPage__container').style.backgroundImage = 'url(../images/Lost.gif)';
+      document.querySelector('.windowResultPage__container').style.backgroundImage = 'url("../images/Lost.gif")';
     }
 
     document.querySelector('.windowResultPage__container').classList.remove('hide');
@@ -894,7 +892,6 @@ class FightLogic {
 
 }
 const restartB = document.querySelector('.toFirst');
-const revengeB = document.querySelector('.toSecond');
 restartB.addEventListener('click', function () {
   location.reload();
 });

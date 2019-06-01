@@ -230,6 +230,10 @@
           overflow-y: hidden;
           overflow-x: scroll;
           height: 30%;
+
+          .field {
+            min-width: 400px;
+          }
         }
 
         .fighter {

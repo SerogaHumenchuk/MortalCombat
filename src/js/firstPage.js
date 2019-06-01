@@ -1,4 +1,4 @@
-;(() => {
+(() => {
   let name = document.querySelector('.name');
   let firstPageForm = document.querySelector('.firstPage__form');
   let firstPageWrapp = document.querySelector('.firstPageWrapp');
@@ -11,7 +11,7 @@
 
   const onSubmit = function(e) {
     e.preventDefault();
-    if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
+    if (/^[А-Яа-яA-Za-z0-9_ -]{3,16}$/.test(name.value)) {
       globalObj.user.name = name.value;
       nickname.textContent = name.value;
       changeFirstPageToSecondPage();
@@ -27,55 +27,63 @@
   const fullscreenSvg = document.querySelector('.fullscreen__svg');
 
   open = elem => {
-    if (document.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-    elem.webkitRequestFullscreen();
+    if (document.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
     } else if (elem.requestFullscreen) {
       elem.requestFullscreen();
-    } else if (document.mozRequestFullScreen) { /* Firefox */
+    } else if (document.mozRequestFullScreen) {
+      /* Firefox */
       elem.mozRequestFullScreen();
-    } else if (document.msRequestFullscreen) { /* IE/Edge */
+    } else if (document.msRequestFullscreen) {
+      /* IE/Edge */
       elem.msRequestFullscreen();
     }
-  }
+  };
 
   close = () => {
     if (document.exitFullscreen) {
       document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { /* Firefox */
+    } else if (document.mozCancelFullScreen) {
+      /* Firefox */
       document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+    } else if (document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
       document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE/Edge */
+    } else if (document.msExitFullscreen) {
+      /* IE/Edge */
       document.msExitFullscreen();
     }
-  }
+  };
 
-  fullscreen.addEventListener( 'click', () => {
+  fullscreen.addEventListener('click', () => {
     fullscreen.classList.toggle('clicked');
 
-    if ( fullscreen.classList.contains('clicked') ) {
+    if (fullscreen.classList.contains('clicked')) {
       open(document.documentElement);
-      fullscreenSvg.setAttribute( 'src', './images/fullscreen-decrease.svg')
+      fullscreenSvg.setAttribute('src', './images/fullscreen-decrease.svg');
     } else {
       close();
-      fullscreenSvg.setAttribute( 'src', './images/fullscreen-increase.svg')
+      fullscreenSvg.setAttribute('src', './images/fullscreen-increase.svg');
     }
-  } );
+  });
 })();
 
 class StartMusic {
-  constructor () {
-    this.btnStart = document.querySelector('.start'), 
-    this.listener();
+  constructor() {
+    (this.btnStart = document.querySelector('.start')), this.listener();
   }
 
-  musicFirstPage () {
+  musicFirstPage() {
     playClickFighterPlay();
   }
 
-  listener () { 
+  listener() {
     const $this = this;
-    window.addEventListener( 'DOMContentLoaded', this.musicFirstPage.bind($this) ); 
+    window.addEventListener(
+      'DOMContentLoaded',
+      this.musicFirstPage.bind($this),
+    );
   }
 }
 
