@@ -16,11 +16,11 @@
     background-size: cover;
     font-family: Mortal;
 
-    .level-form{
+    .level-form {
       display: flex;
       flex-direction: column;
       color: #eee;
-      
+
       // #1:checked ~ #label-1 {
       //   color: rebeccapurple;
       // }
@@ -33,7 +33,7 @@
       //   color: rebeccapurple;
       // }
 
-      .level{
+      .level {
         color: #eee;
       }
     }
@@ -73,10 +73,10 @@
           display: flex;
           min-width: 200px;
           height: 90%;
-          border: 3px solid #f00;
           border-radius: 10px;
           transition: all ease-in-out 200ms;
           background-size: cover;
+          background-position: center center;
           margin: 8px;
 
           &:nth-child(1) {
@@ -101,6 +101,7 @@
           &__wind {
             background-image: url('../images/arena/wind.gif');
           }
+          //
         }
       }
     }
@@ -146,7 +147,6 @@
       align-items: center;
       width: 100%;
       min-height: 50vh;
-      border: 3px solid #f00;
       border-radius: 10px;
       background: url('../images/hero-bg.gif') 50% bottom;
       background-repeat: no-repeat;
@@ -184,7 +184,7 @@
 
           &__name {
             text-align: right;
-            font-size: 2em;
+            font-size: 7vh;
             color: #eee;
             letter-spacing: 4px;
           }
@@ -192,7 +192,7 @@
           &__attack,
           &__defence {
             text-align: right;
-            font-size: 1.2em;
+            font-size: 4.2vh;
             color: #f22;
             letter-spacing: 2px;
           }
@@ -233,7 +233,6 @@
         }
 
         .fighter {
-
           &__container {
             flex-direction: row;
             align-items: center;
@@ -243,7 +242,6 @@
           &__card {
             width: 70%;
             height: 100%;
-
           }
         }
       }
@@ -267,6 +265,21 @@
           width: 20vw;
           min-height: 100px;
           height: 28vh;
+        }
+      }
+
+      .hero {
+        &__img {
+          height: 100%;
+        }
+
+        &__name {
+          font-size: 5em;
+        }
+
+        &__attack,
+        &__defence {
+          font-size: 3.2em;
         }
       }
     }

@@ -637,6 +637,8 @@ class ClickSound {
     if (e.target.nodeName === 'INPUT' || e.target.nodeName === 'LABEL') {
       const audio = document.getElementById('clickmouse');
       audio.play();
+      changeColorByClick();
+      changeColorFieldsByClick();
     }
   }
 
@@ -710,7 +712,33 @@ new BuildRandomBtn(document.querySelector('.fields-section'), 'field');
 new SubmitAction(document.querySelector('.secondPage__submit'));
 new ClickSound();
 new ChangePageToFightPage();
-new ReturnInfoCard();
+new ReturnInfoCard(); // переробити ці 2 функції в одну
+
+function changeColorByClick() {
+  const allFighters = Array.from(document.querySelectorAll('.fighter'));
+  allFighters.map(el => {
+    if (el.firstElementChild == document.querySelector('input[name="hero-radio"]:checked')) {
+      el.style.border = '5px solid green';
+    } else {
+      el.style.border = '5px solid red';
+    }
+  });
+}
+
+changeColorByClick();
+
+function changeColorFieldsByClick() {
+  const allFields = Array.from(document.querySelectorAll('.field'));
+  allFields.map(el => {
+    if (el.firstElementChild == document.querySelector('input[name="field-radio"]:checked')) {
+      el.style.border = '5px solid green';
+    } else {
+      el.style.border = '5px solid red';
+    }
+  });
+}
+
+changeColorFieldsByClick();
 // (function(){
 let progressBar = document.querySelector('.e-c-progress'); // let indicator = document.getElementById('e-indicator');
 

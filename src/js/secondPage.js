@@ -12,7 +12,7 @@ const heroes = [
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
     dieURL: '_die.gif',
-    deadURL: '_dead.png'
+    deadURL: '_dead.png',
   },
   {
     name: 'colossus',
@@ -27,7 +27,7 @@ const heroes = [
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
     dieURL: '_die.gif',
-    deadURL: '_dead.png'
+    deadURL: '_dead.png',
   },
   {
     name: 'mystique',
@@ -42,7 +42,7 @@ const heroes = [
     blockURL: '_block.gif',
     hitURL: '_hit.gif',
     dieURL: '_die.gif',
-    deadURL: '_dead.png'
+    deadURL: '_dead.png',
   },
   {
     name: 'starlord',
@@ -57,11 +57,12 @@ const heroes = [
     blockURL: '_block.gif',
     hitURL: '_block.gif',
     dieURL: '_die.gif',
-    deadURL: '_dead.png'
+    deadURL: '_dead.png',
   },
 ];
 
-const fields = [{
+const fields = [
+  {
     name: 'boat',
     url: './images/arena/boat.gif',
   },
@@ -90,8 +91,8 @@ const fields = [{
 class BuildHeroes {
   constructor(heroes) {
     (this.wrapper = document.querySelector('.fighters-section')),
-    (this.heroes = heroes),
-    this.build();
+      (this.heroes = heroes),
+      this.build();
   }
 
   build() {
@@ -119,8 +120,8 @@ class BuildHeroes {
 class BuildFields {
   constructor(fields) {
     (this.wrapper = document.querySelector('.fields-section')),
-    (this.fields = fields),
-    this.build();
+      (this.fields = fields),
+      this.build();
   }
 
   build() {
@@ -165,8 +166,8 @@ class BuildRandomBtn {
 class SubmitAction {
   constructor(btn) {
     (this.block = document.querySelector('.fightPage__container')),
-    this.btn = btn,
-    this.hero_name = document.querySelector('.hero__name');
+      (this.btn = btn),
+      (this.hero_name = document.querySelector('.hero__name'));
     this.hero_url = document.querySelector('.hero__img');
     this.hero_attack = document.querySelector('.hero__attack');
     this.hero_Defence = document.querySelector('.hero__defence');
@@ -248,10 +249,10 @@ class SubmitAction {
 class ChangePageToFightPage {
   constructor() {
     (this.secondWrapper = document.querySelector('.secondPageWrapp')),
-    (this.thirdWrapper = document.querySelector('.thirdPageWrapp')),
-    (this.btn = document.querySelector('.secondPage__submit')),
-    (this.gifPage = document.querySelector('.gifPage')),
-    this.listener();
+      (this.thirdWrapper = document.querySelector('.thirdPageWrapp')),
+      (this.btn = document.querySelector('.secondPage__submit')),
+      (this.gifPage = document.querySelector('.gifPage')),
+      this.listener();
   }
 
   change() {
@@ -278,14 +279,16 @@ class ChangePageToFightPage {
 class ClickSound {
   constructor() {
     (this.fighterSection = document.querySelector('.fighters-section')),
-    (this.fieldSection = document.querySelector('.fields-section')),
-    this.listeners();
+      (this.fieldSection = document.querySelector('.fields-section')),
+      this.listeners();
   }
 
   click(e) {
     if (e.target.nodeName === 'INPUT' || e.target.nodeName === 'LABEL') {
       const audio = document.getElementById('clickmouse');
       audio.play();
+      changeColorByClick();
+      changeColorFieldsByClick();
     }
   }
 
@@ -299,11 +302,11 @@ class ClickSound {
 class ReturnInfoCard {
   constructor() {
     (this.labelsWrapper = document.querySelector('.fighters-section')),
-    (this.hero_name = document.querySelector('.hero__name')),
-    (this.hero_url = document.querySelector('.hero__img')),
-    (this.hero_attack = document.querySelector('.hero__attack')),
-    (this.hero_Defence = document.querySelector('.hero__defence')),
-    (this.obj = null);
+      (this.hero_name = document.querySelector('.hero__name')),
+      (this.hero_url = document.querySelector('.hero__img')),
+      (this.hero_attack = document.querySelector('.hero__attack')),
+      (this.hero_Defence = document.querySelector('.hero__defence')),
+      (this.obj = null);
 
     this.listeners();
   }
@@ -314,17 +317,22 @@ class ReturnInfoCard {
   }
 
   returnObj(e) {
-    if ( e.target.nodeName === 'IMG' && e.target.classList.contains('random-img') ) {
+    if (
+      e.target.nodeName === 'IMG' &&
+      e.target.classList.contains('random-img')
+    ) {
       this.showRandom();
-    } else if ( e.target.nodeName === 'INPUT' && e.target.nextSibling.classList.contains('random-img') ) {
+    } else if (
+      e.target.nodeName === 'INPUT' &&
+      e.target.nextSibling.classList.contains('random-img')
+    ) {
       this.showRandom();
     } else if (e.target.nodeName === 'IMG') {
       let imgAlt = e.target.getAttribute('alt');
       const obj = heroes.find(hero => hero.name === imgAlt);
       this.obj = obj;
       this.show();
-
-    } else if (e.target.nodeName === 'INPUT' ) {
+    } else if (e.target.nodeName === 'INPUT') {
       let imgAlt = e.target.nextSibling.getAttribute('alt');
       const obj = heroes.find(hero => hero.name === imgAlt);
       this.obj = obj;
@@ -332,7 +340,7 @@ class ReturnInfoCard {
     }
   }
 
-  showRandom () {
+  showRandom() {
     this.hero_name.textContent = 'RANDOM HERO';
     this.hero_url.setAttribute('src', '');
     this.hero_attack.textContent = '';
@@ -367,3 +375,34 @@ new SubmitAction(document.querySelector('.secondPage__submit'));
 new ClickSound();
 new ChangePageToFightPage();
 new ReturnInfoCard();
+
+// переробити ці 2 функції в одну
+function changeColorByClick() {
+  const allFighters = Array.from(document.querySelectorAll('.fighter'));
+  allFighters.map(el => {
+    if (
+      el.firstElementChild ==
+      document.querySelector('input[name="hero-radio"]:checked')
+    ) {
+      el.style.border = '5px solid green';
+    } else {
+      el.style.border = '5px solid red';
+    }
+  });
+}
+changeColorByClick();
+
+function changeColorFieldsByClick() {
+  const allFields = Array.from(document.querySelectorAll('.field'));
+  allFields.map(el => {
+    if (
+      el.firstElementChild ==
+      document.querySelector('input[name="field-radio"]:checked')
+    ) {
+      el.style.border = '5px solid green';
+    } else {
+      el.style.border = '5px solid red';
+    }
+  });
+}
+changeColorFieldsByClick();
