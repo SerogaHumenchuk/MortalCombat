@@ -1,7 +1,6 @@
 const globalObj = {
   lifeUser: 100,
   lifeComputer: 100,
-  round: 1,
   intervalTimer: null,
   arena: null,
   user: {
@@ -21,6 +20,8 @@ const globalObj = {
     defencePart: null
   }
 };
+const botname = document.querySelector('.bot_name');
+const nickname = document.querySelector('.nick_name');
 
 class DefaultStart {
   constructor() {
@@ -52,28 +53,31 @@ class FightAnimation {
 
   dieUser() {
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.dieURL}`);
+    setTimeout(() => {
+      this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.deadURL}`);
+    }, 280);
   }
 
   dieComputer() {
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.dieURL}`);
+    setTimeout(() => {
+      this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.deadURL}`);
+    }, 280);
   }
 
   runUser() {
-    let left = 9;
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
-    const intervalUser = setInterval(() => this.userHero.style.left = `${left += 0.4}%`, 1000 / 60);
-    setTimeout(() => clearInterval(intervalUser), 1280);
+    this.userHero.style.transform = 'translateX(200%)';
   }
 
   runComputer() {
-    let right = 9;
     this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
-    const intervalComputer = setInterval(() => this.computerHero.style.right = `${right += 0.4}%`, 1000 / 60);
-    setTimeout(() => clearInterval(intervalComputer), 1280);
+    this.computerHero.style.transform = 'scaleX(-1) translateX(200%)';
   }
 
   attackUser() {
     this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.attackURL}`);
+    playClickKick();
   }
 
   attackComputer() {
@@ -81,29 +85,19 @@ class FightAnimation {
   }
 
   runBackUser() {
-    let left = parseFloat(this.userHero.style.left);
-    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.runURL}`);
-    this.userHero.style.transform = 'scaleX(-1)';
-    const runBackInterval = setInterval(() => {
-      this.userHero.style.left = `${left -= 0.4}%`;
-    }, 1000 / 60);
+    this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.run_backURL}`);
+    this.userHero.style.transform = 'translateX(0%)';
     setTimeout(() => {
-      clearInterval(runBackInterval);
-      this.userHero.style.transform = 'scaleX(1)';
-    }, 1280);
+      this.userHero.setAttribute('src', `${globalObj.user.obj.url}${globalObj.user.obj.standURL}`);
+    }, 1000);
   }
 
   runBackComputer() {
-    let right = parseFloat(this.computerHero.style.right);
-    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.runURL}`);
-    this.computerHero.style.transform = 'scaleX(1)';
-    const runBackInterval = setInterval(() => {
-      this.computerHero.style.right = `${right -= 0.4}%`;
-    }, 1000 / 60);
+    this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.run_backURL}`);
+    this.computerHero.style.transform = 'scaleX(-1) translateX(0%)';
     setTimeout(() => {
-      clearInterval(runBackInterval);
-      this.computerHero.style.transform = 'scaleX(-1)';
-    }, 1280);
+      this.computerHero.setAttribute('src', `${globalObj.computer.obj.url}${globalObj.computer.obj.standURL}`);
+    }, 1000);
   }
 
 }
@@ -118,6 +112,7 @@ class ComputerRandomHero {
     globalObj.computer.name = heroes[num].name;
     globalObj.computer.attack = heroes[num].attack;
     globalObj.computer.defence = heroes[num].defence;
+    botname.textContent = globalObj.computer.name;
   }
 
 }
@@ -139,6 +134,7 @@ class ComputerRandomHero {
 
     if (/^[A-Za-z0-9_-]{3,16}$/.test(name.value)) {
       globalObj.user.name = name.value;
+      nickname.textContent = name.value;
       changeFirstPageToSecondPage();
       stopClickFighterPlay();
       playClickFighterSelection();
@@ -148,11 +144,55 @@ class ComputerRandomHero {
   };
 
   firstPageForm.addEventListener('submit', onSubmit);
+  const fullscreen = document.querySelector('.fullscreen');
+  const fullscreenSvg = document.querySelector('.fullscreen__svg');
+
+  open = elem => {
+    if (document.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (document.mozRequestFullScreen) {
+      /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (document.msRequestFullscreen) {
+      /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  };
+
+  close = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      /* IE/Edge */
+      document.msExitFullscreen();
+    }
+  };
+
+  fullscreen.addEventListener('click', () => {
+    fullscreen.classList.toggle('clicked');
+
+    if (fullscreen.classList.contains('clicked')) {
+      open(document.documentElement);
+      fullscreenSvg.setAttribute('src', './images/fullscreen-decrease.svg');
+    } else {
+      close();
+      fullscreenSvg.setAttribute('src', './images/fullscreen-increase.svg');
+    }
+  });
 })();
 
 class StartMusic {
   constructor() {
-    this.secondPageWrapp = document.querySelector('.secondPageWrapp').classList.contains('hide'), this.btnStart = document.querySelector('.start'), this.listener();
+    this.btnStart = document.querySelector('.start'), this.listener();
   }
 
   musicFirstPage() {
@@ -171,6 +211,10 @@ function resetGif() {
   setTimeout(function () {
     document.querySelector('.thirdPageWrapp').classList.remove('hide');
     document.querySelector('.gifPage').classList.add('hide');
+    playClickFightSound();
+    setTimeout(() => {
+      playClickFight();
+    }, 1500);
     resetTimer();
   }, 3000);
 }
@@ -209,6 +253,19 @@ class Livesbar {
 
 const heroLifeBar = new Livesbar(MyLives, 100);
 const enemyLifeBar = new Livesbar(EnemyLives, 100);
+
+function PageChange() {
+  if (heroLifeBar.lifeAmount <= 0 || enemyLifeBar.lifeAmount <= 0) {
+    if (enemyLifeBar.lifeAmount <= 0) {
+      document.querySelector('.windowResultPage__container').style.backgroundImage = 'url(../images/won.gif)';
+    } else if (heroLifeBar.lifeAmount <= 0) {
+      document.querySelector('.windowResultPage__container').style.backgroundImage = 'url(../images/Lost.gif)';
+    }
+
+    document.querySelector('.windowResultPage__container').classList.remove('hide');
+    document.querySelector('.fightPage_wrapper').classList.add('hide');
+  }
+}
 function playClickMusic() {
   const audio = document.getElementById('music_start');
   audio.play();
@@ -216,7 +273,14 @@ function playClickMusic() {
 
 function playClickFightSound() {
   const audio = document.getElementById('fight-sound');
+  audio.volume = 0.7;
   audio.play();
+}
+
+function stopClickFightSound() {
+  const audio = document.getElementById('fight-sound');
+  audio.pause();
+  audio.currentTime = 0;
 }
 
 function playClickWinner() {
@@ -259,6 +323,12 @@ function playClickFighterSelection() {
   audio.play();
 }
 
+function stopClickFighterSelection() {
+  const audio = document.getElementById('fighter-selection');
+  audio.pause();
+  audio.currentTime = 0;
+}
+
 function playClickFighterPlay() {
   const audio = document.getElementById('play');
   audio.play();
@@ -277,71 +347,64 @@ function playClickFighterClickMouse() {
 // функция вывода информации о раунде
 const ADForm = document.querySelector('.attack-defense');
 const punchBut = document.querySelector('.punch-button');
-let attack, defense, output;
-let atchecks = document.querySelectorAll('[name="attack"]');
-let defchecks = document.querySelectorAll('[name="defense"]');
+let attack, defense;
 
 function fightFunc(e) {
   e.preventDefault();
-  let attack = document.querySelector('[name="attack"]:checked');
-  let defense = document.querySelector('[name="defense"]:checked');
+  let attack = document.querySelector('input[name="attack"]:checked');
+  let defense = document.querySelector('input[name="defense"]:checked');
 
-  if (attack == null || defense == null) {
-    output = 'MAKE A CHOISE';
-  } else {
-    output = `You hit ${globalObj.computer.name} in ${attack.value} and protect your ${defense.value}`;
-    resetTimer();
+  function funcIf() {
+    if (attack !== null && defense !== null) {
+      resetTimer();
+      setTimeout(PageChange, 3000);
+      document.querySelector('.makeACh').textContent = '';
+      setTimeout(function () {
+        resetTimer();
+      }, 3000);
+      const fight = new FightLogic();
+      const fightAnimation = new FightAnimation();
+      fightAnimation.runUser();
+      fightAnimation.runComputer();
+      new RandomPart();
+      setTimeout(() => {
+        fightAnimation.attackUser();
+        fightAnimation.attackComputer();
+      }, 1280);
+      setTimeout(() => {
+        globalObj.lifeUser <= 0 ? fightAnimation.dieUser() : fightAnimation.runBackUser();
+        globalObj.lifeComputer <= 0 ? fightAnimation.dieComputer() : fightAnimation.runBackComputer();
+      }, 1840);
+      fight.healthUserLogic();
+      fight.healthComputerLogic();
+      setTimeout(() => {
+        globalObj.lifeUser >= 0 ? heroLifeBar.changeHP(globalObj.lifeUser) : heroLifeBar.changeHP(0);
+        globalObj.lifeComputer >= 0 ? enemyLifeBar.changeHP(globalObj.lifeComputer) : enemyLifeBar.changeHP(0);
+      }, 1300); // resetTimer();
+
+      ADForm.reset();
+    } else {
+      document.querySelector('.makeACh').textContent = 'MAKE A CHOISE!!!';
+    }
   }
 
-  attack = null;
-  defense = null;
-  new RandomPart();
-  const fight = new FightLogic();
-  const fightAnimation = new FightAnimation();
-  fightAnimation.runUser();
-  fightAnimation.runComputer();
-  const timerAttack = setTimeout(() => {
-    fightAnimation.attackUser();
-    fightAnimation.attackComputer();
-  }, 1280);
-  const timerRunBack = setTimeout(() => {
-    if (globalObj.lifeUser <= 0) {
-      fightAnimation.dieUser();
-    } else {
-      fightAnimation.runBackUser();
-    }
-
-    if (globalObj.lifeComputer <= 0) {
-      fightAnimation.dieComputer();
-    } else {
-      fightAnimation.runBackComputer();
-    }
-  }, 1840); // fightAnim.runBack();
-
-  fight.healthUserLogic();
-  fight.healthComputerLogic();
-  setTimeout(() => {
-    heroLifeBar.changeHP(globalObj.lifeUser);
-    enemyLifeBar.changeHP(globalObj.lifeComputer);
-  }, 1300);
-  console.log(output);
-  new FightLogic();
-  console.log(output);
-  let i = 0;
-  const byLatId = setInterval(function () {
-    if (i < output.length) {
-      document.querySelector('.output').append(output[i]);
-      i++;
-      console.log(i);
-    }
-  }, 40);
-  clearInterval(byLatId);
+  if (globalObj.lifeUser > 0 && globalObj.lifeComputer > 0) {
+    funcIf();
+  } else if (globalObj.lifeUser > 0 && globalObj.lifeComputer <= 0) {
+    alert('You\'re a winner!');
+  } else if (globalObj.lifeComputer > 0 && globalObj.lifeUser <= 0) {
+    alert('You\'re a looser!');
+  }
 }
 
-ADForm.reset();
-ADForm.addEventListener('submit', fightFunc);
-
-function gifFunc() {} // punchBut.addEventListener('click', resetTimerBut);
+let nullChecker = setInterval(function () {
+  if (timeLeft === 0) {
+    resetTimer();
+    document.querySelector('.makeACh').textContent = 'MAKE A CHOISE!!!';
+    resetTimer();
+  }
+}, 1000);
+ADForm.addEventListener('submit', fightFunc); // punchBut.addEventListener('click', resetTimerBut);
 //call resetTimer() when animation is ended
 const heroes = [{
   name: 'redskull',
@@ -351,10 +414,12 @@ const heroes = [{
   standURL: '.gif',
   walkURL: '_walk.gif',
   runURL: '_run.gif',
+  run_backURL: '_run-back.gif',
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_hit.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }, {
   name: 'colossus',
   attack: 13,
@@ -363,10 +428,12 @@ const heroes = [{
   standURL: '.gif',
   walkURL: '_walk.gif',
   runURL: '_run.gif',
+  run_backURL: '_run-back.gif',
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_hit.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }, {
   name: 'mystique',
   attack: 10,
@@ -375,10 +442,12 @@ const heroes = [{
   standURL: '.gif',
   walkURL: '_walk.gif',
   runURL: '_run.gif',
+  run_backURL: '_run-back.gif',
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_hit.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }, {
   name: 'starlord',
   attack: 9,
@@ -387,10 +456,12 @@ const heroes = [{
   standURL: '.gif',
   walkURL: '_walk.gif',
   runURL: '_run.gif',
+  run_backURL: '_run-back.gif',
   attackURL: '_attack.gif',
   blockURL: '_block.gif',
   hitURL: '_block.gif',
-  dieURL: '_die.gif'
+  dieURL: '_die.gif',
+  deadURL: '_dead.png'
 }];
 const fields = [{
   name: 'boat',
@@ -478,11 +549,11 @@ class BuildRandomBtn {
 
 class SubmitAction {
   constructor(btn) {
-    this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.events();
-    this.hero_name = document.querySelector('.hero__name');
+    this.block = document.querySelector('.fightPage__container'), this.btn = btn, this.hero_name = document.querySelector('.hero__name');
     this.hero_url = document.querySelector('.hero__img');
     this.hero_attack = document.querySelector('.hero__attack');
     this.hero_Defence = document.querySelector('.hero__defence');
+    this.events();
   }
 
   checkAction(e) {
@@ -510,11 +581,9 @@ class SubmitAction {
         globalObj.user.obj = heroes.find(hero => hero.name == imgName);
         globalObj.user.attack = globalObj.user.obj.attack;
         globalObj.user.defence = globalObj.user.obj.defence;
-        console.log(globalObj);
+        nickname.textContent = globalObj.user.name;
       } else {
-        setTimeout(function () {
-          this.randomHero();
-        }, 0);
+        this.randomHero();
       }
     }
   }
@@ -539,7 +608,7 @@ class SubmitAction {
     globalObj.user.obj = heroes[num];
     globalObj.user.attack = heroes[num].attack;
     globalObj.user.defence = heroes[num].defence;
-    this.name.textContent = 'Random hero';
+    this.hero_name.textContent = 'Random hero';
   }
 
   randomField() {
@@ -563,6 +632,7 @@ class ChangePageToFightPage {
     if (document.querySelector('input[name="hero-radio"]:checked') !== null && document.querySelector('input[name="field-radio"]:checked')) {
       this.secondWrapper.classList.add('hide');
       this.gifPage.classList.remove('hide');
+      stopClickFighterSelection();
     } else {
       alert('Choose your fighter and field!');
     }
@@ -571,7 +641,7 @@ class ChangePageToFightPage {
   listener() {
     const $this = this;
     this.btn.addEventListener('click', this.change.bind($this));
-    this.btn.addEventListener('click', gifFunc);
+    this.btn.addEventListener('click', resetGif);
     this.btn.addEventListener('click', resetGif);
   }
 
@@ -586,6 +656,8 @@ class ClickSound {
     if (e.target.nodeName === 'INPUT' || e.target.nodeName === 'LABEL') {
       const audio = document.getElementById('clickmouse');
       audio.play();
+      changeColorByClick();
+      changeColorFieldsByClick();
     }
   }
 
@@ -609,12 +681,28 @@ class ReturnInfoCard {
   }
 
   returnObj(e) {
-    if (e.target.nodeName === 'IMG') {
+    if (e.target.nodeName === 'IMG' && e.target.classList.contains('random-img')) {
+      this.showRandom();
+    } else if (e.target.nodeName === 'INPUT' && e.target.nextSibling.classList.contains('random-img')) {
+      this.showRandom();
+    } else if (e.target.nodeName === 'IMG') {
       let imgAlt = e.target.getAttribute('alt');
       const obj = heroes.find(hero => hero.name === imgAlt);
       this.obj = obj;
       this.show();
+    } else if (e.target.nodeName === 'INPUT') {
+      let imgAlt = e.target.nextSibling.getAttribute('alt');
+      const obj = heroes.find(hero => hero.name === imgAlt);
+      this.obj = obj;
+      this.show();
     }
+  }
+
+  showRandom() {
+    this.hero_name.textContent = 'RANDOM HERO';
+    this.hero_url.setAttribute('src', '');
+    this.hero_attack.textContent = '';
+    this.hero_Defence.textContent = '';
   }
 
   show() {
@@ -626,7 +714,15 @@ class ReturnInfoCard {
     }
   }
 
-}
+} // class Hover {
+//   constructor () {
+//     this.chosenInput = document.querySelector('input[name="hero-radio"]:checked');
+//   }
+//   hover () {
+//     this.
+//   }
+// }
+
 
 new BuildHeroes(heroes);
 new BuildFields(fields);
@@ -635,7 +731,33 @@ new BuildRandomBtn(document.querySelector('.fields-section'), 'field');
 new SubmitAction(document.querySelector('.secondPage__submit'));
 new ClickSound();
 new ChangePageToFightPage();
-new ReturnInfoCard();
+new ReturnInfoCard(); // переробити ці 2 функції в одну
+
+function changeColorByClick() {
+  const allFighters = Array.from(document.querySelectorAll('.fighter'));
+  allFighters.map(el => {
+    if (el.firstElementChild == document.querySelector('input[name="hero-radio"]:checked')) {
+      el.style.border = '5px solid green';
+    } else {
+      el.style.border = '5px solid red';
+    }
+  });
+}
+
+changeColorByClick();
+
+function changeColorFieldsByClick() {
+  const allFields = Array.from(document.querySelectorAll('.field'));
+  allFields.map(el => {
+    if (el.firstElementChild == document.querySelector('input[name="field-radio"]:checked')) {
+      el.style.border = '5px solid green';
+    } else {
+      el.style.border = '5px solid red';
+    }
+  });
+}
+
+changeColorFieldsByClick();
 // (function(){
 let progressBar = document.querySelector('.e-c-progress'); // let indicator = document.getElementById('e-indicator');
 
@@ -737,9 +859,22 @@ class RandomPart {
 }
 
 class FightLogic {
-  constructor() {}
+  constructor() {
+    this.attackRadio = document.querySelector('input[name="attack"]:checked'), this.defenceRadio = document.querySelector('input[name="defense"]:checked');
+  }
+
+  userAttackPart() {
+    globalObj.user.attackPart = this.attackRadio.getAttribute('value');
+  }
+
+  userDefencePart() {
+    globalObj.user.defencePart = this.defenceRadio.getAttribute('value');
+  }
 
   healthUserLogic() {
+    this.userAttackPart();
+    this.userDefencePart();
+
     if (globalObj.user.defencePart !== globalObj.computer.attackPart) {
       globalObj.lifeUser -= globalObj.computer.attack;
     } else if (globalObj.user.defencePart === globalObj.computer.attackPart) {
@@ -757,16 +892,9 @@ class FightLogic {
     }
   }
 
-} //return alert when user wasn't make a choose
-
-
-class ModalMakeChoose {
-  constructor() {
-    this.message = 'Make a choose!!!', this.alert();
-  }
-
-  alert() {
-    alert(this.message);
-  }
-
 }
+const restartB = document.querySelector('.toFirst');
+const revengeB = document.querySelector('.toSecond');
+restartB.addEventListener('click', function () {
+  location.reload();
+});
