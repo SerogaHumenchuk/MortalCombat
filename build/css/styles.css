@@ -858,6 +858,15 @@ svg.decrease {
   font-family: 'Mortal';
 }
 
+.fight-round .makeACh {
+  font-size: 4.6vh;
+  color: #ff0000;
+  position: absolute;
+  top: 30%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .fight-round .fightPage_wrapper {
   height: 100vh;
 }
@@ -1245,6 +1254,14 @@ h2 {
     font-size: 28px;
   }
 
+  .fight-round .nick_name {
+    font-size: 32px;
+  }
+
+  .fight-round .bot_name {
+    font-size: 32px;
+  }
+
   ::-webkit-scrollbar {
     height: 8px;
   }
@@ -1266,17 +1283,27 @@ h2 {
 
 @media (min-width: 1440px) {
   .EnemyHealthy__Bar {
-    width: 400px;
+    width: 500px;
     height: 31px;
     margin-top: 30px;
     border: 2px solid black;
   }
 
   .MyHealthy__Bar {
-    width: 400px;
+    width: 500px;
     height: 31px;
     margin-top: 30px;
     border: 2px solid black;
+  }
+}
+
+@media (min-width: 1480px) {
+  .fight-round .nick_name {
+    font-size: 40px;
+  }
+
+  .fight-round .bot_name {
+    font-size: 40px;
   }
 }
 
