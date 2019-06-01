@@ -1,5 +1,6 @@
 @media screen and (orientation:portrait) {
   .land {
+    z-index: 101;
     position: fixed;
     width: 100vw;
     height: 100vh;
