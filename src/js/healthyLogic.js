@@ -38,7 +38,7 @@ function PageChange() {
     } else if (heroLifeBar.lifeAmount <= 0) {
       document.querySelector(
         '.windowResultPage__container',
-      ).style.backgroundImage = 'url("./images/Lost.gif")';
+      ).style.backgroundImage = 'url(./images/lost.gif)';
     }
     document
       .querySelector('.windowResultPage__container')
