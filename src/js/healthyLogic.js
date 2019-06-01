@@ -34,11 +34,11 @@ function PageChange() {
     if (enemyLifeBar.lifeAmount <= 0) {
       document.querySelector(
         '.windowResultPage__container',
-      ).style.backgroundImage = 'url("../images/won.gif")';
+      ).style.backgroundImage = 'url("./images/won.gif")';
     } else if (heroLifeBar.lifeAmount <= 0) {
       document.querySelector(
         '.windowResultPage__container',
-      ).style.backgroundImage = 'url("../images/Lost.gif")';
+      ).style.backgroundImage = 'url("./images/Lost.gif")';
     }
     document
       .querySelector('.windowResultPage__container')
